@@ -20,11 +20,6 @@ layout: default
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <!-- Multi-Lingual -->
-                {% if page.multilingual %}
-                    {% include multilingual-sel.html %}
-                {% endif %}
-
 				{{ content }}
 
                 <hr style="visibility: hidden;">
@@ -32,7 +27,7 @@ layout: default
                     {% if page.previous.url %}
                     <li class="previous">
                         <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">
-                        Previous<br>
+                        Anterior<br>
                         <span>{{page.previous.title}}</span>
                         </a>
                     </li>
@@ -40,7 +35,7 @@ layout: default
                     {% if page.next.url %}
                     <li class="next">
                         <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">
-                        Next<br>
+                        Próximo<br>
                         <span>{{page.next.title}}</span>
                         </a>
                     </li>
@@ -49,17 +44,17 @@ layout: default
                 <hr style="visibility: hidden;">
 
                 {% if site.disqus_username %}
-                <!-- disqus 评论框 start -->
+                <!-- Início da seção de comentários do Disqus -->
                 <div class="comment">
                     <div id="disqus_thread" class="disqus-thread"></div>
                 </div>
-                <!-- disqus 评论框 end -->
+                <!-- Fim da seção de comentários do Disqus -->
                 {% endif %}
 
                 {% if site.netease_comment %}
-                <!-- 网易云跟帖 评论框 start -->
+                <!-- Início da seção de comentários do Netease -->
                 <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-                <!-- 网易云跟帖 评论框 end -->
+                <!-- Fim da seção de comentários do Netease -->
                 {% endif %}
             </div>  
 
@@ -73,7 +68,7 @@ layout: default
                 <div class="side-catalog">
                     <hr class="hidden-sm hidden-xs">
                     <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
+                        <a class="catalog-toggle" href="#">CATÁLOGO</a>
                     </h5>
                     <ul class="catalog-body"></ul>
                 </div>
@@ -102,7 +97,7 @@ layout: default
 {% endif %}
 
 {% if site.netease_comment %}
-<!-- 网易云跟帖JS代码 start -->
+<!-- Início do código JS do Netease -->
 <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
 <script>
   var cloudTieConfig = {
@@ -114,14 +109,14 @@ layout: default
   var yunManualLoad = true;
   Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
 </script>
-<!-- 网易云跟帖JS代码 end -->
+<!-- Fim do código JS do Netease -->
 {% endif %}
 
 
 {% if site.disqus_username %}
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<!-- Início do código JS público do Disqus (inserir apenas uma vez por página) -->
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
+    /* * * VARIÁVEIS DE CONFIGURAÇÃO * * */
     var disqus_shortname = "{{site.disqus_username}}";
     var disqus_identifier = "{{page.id}}";
     var disqus_url = "{{site.url}}{{page.url}}";
@@ -132,7 +127,7 @@ layout: default
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 </script>
-<!-- disqus 公共JS代码 end -->
+<!-- Fim do código JS público do Disqus -->
 {% endif %}
 
 

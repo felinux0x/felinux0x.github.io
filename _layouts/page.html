@@ -2,49 +2,49 @@
 layout: default
 ---
 
-<!-- Page Header -->
+<!-- Cabeçalho da Página -->
 {% include intro-header.html type='page' %}
 
-<!-- Main Content -->
+<!-- Conteúdo Principal -->
 <div class="container">
   <div class="row">
     {% if site.sidebar == false %}
-    <!-- NO SIDEBAR -->
-    <!-- PostList Container -->
+    <!-- SEM BARRA LATERAL -->
+    <!-- Container da Lista de Posts -->
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1
       postlist-container">
       {{ content }}
     </div>
-    <!-- Sidebar Container -->
+    <!-- Container da Barra Lateral -->
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1
       sidebar-container">
-      <!-- Featured Tags -->
+      <!-- Tags em Destaque -->
       {% include featured-tags.html %}
 
-      <!-- Friends Blog -->
+      <!-- Blog de Amigos -->
       {% include friends.html %}
     </div>
     {% else %}
 
-    <!-- USE SIDEBAR -->
-    <!-- PostList Container -->
+    <!-- COM BARRA LATERAL -->
+    <!-- Container da Lista de Posts -->
     <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12
       col-xs-12 postlist-container">
       {{ content }}
     </div>
-    <!-- Sidebar Container -->
+    <!-- Container da Barra Lateral -->
     <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12
       col-xs-12 sidebar-container">
-      <!-- Featured Tags -->
+      <!-- Tags em Destaque -->
       {% include featured-tags.html %}
 
-      <!-- Short About -->
+      <!-- Sobre Mim (resumido) -->
       {% include short-about.html %}
 
-      <!-- Friends Blog -->
+      <!-- Blog de Amigos -->
       {% include friends.html %}
 
-      <!-- Ads -->
+      <!-- Anúncios -->
       {% include ads.html %}
     </div>
     {% endif %}
@@ -52,9 +52,9 @@ layout: default
 </div>
 
 {% if site.page-mathjax %}
-<!-- Add support for Mathjax by Voleking-->
-<!-- If you want to see formulars well in post preview, Maybe you should add this.-->
-<!-- However, most of the time formulars may not appear in the post preview, you can delete it.-->
+<!-- Adiciona suporte para Mathjax por Voleking-->
+<!-- Se você quer ver fórmulas na pré-visualização do post, talvez devesse adicionar isto.-->
+<!-- No entanto, na maioria das vezes as fórmulas podem não aparecer na pré-visualização do post, você pode excluí-lo.-->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     TeX: {
@@ -63,8 +63,12 @@ layout: default
       }
     },
     tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      displayMath: [ ['$$','$$'] ],
+      inlineMath: [ ['
+,'
+] ],
+      displayMath: [ ['
+,'
+] ],
       processEscapes: true,
     }
   });

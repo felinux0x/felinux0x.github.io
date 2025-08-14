@@ -1,27 +1,25 @@
-# Site settings
-title: Hux Blog
-SEOTitle: 黄玄的博客 | Hux Blog
+# Configurações do site
+title: Cyber Coffe
+SEOTitle: Cyber Coffe
 header-img: img/home-bg.jpg
-email: huxpro@gmail.com
-description: "这里是 @Hux黄玄 的个人博客，与你一起发现更大的世界 | 要做一个有 swag 的程序员"
-keyword: "黄玄, Hux黄玄, Hux, 鬼栈, huxpro, @huxpro, 黄玄的博客, Hux Blog, 博客, 个人网站, 互联网, Web, JavaScript, React, React Native, 前端, 设计"
-url: "https://huangxuan.me" # your host, for absolute URL
-baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
+email: felipedasvrosa@hotmail.com
+description: "Profissional em Cibersegurança com expertise em Análise de Vulnerabilidades, Administração, Suporte técnico e Segurança Ofensiva."
+keyword: "Felipe da Silva Rosa, Cibersegurança, Segurança da Informação, Pentest, Análise de Vulnerabilidades, Red Team, Blue Team"
+url: "https://felipedasilvarosa.github.io" # Substitua pelo seu host real
+baseurl: "" # por exemplo, '/blog' se o seu blog estiver hospedado em 'host/blog'
 
-# Publish posts or collection documents with a future date.
+# Publicar posts ou documentos de coleção com uma data futura.
 future: true
 
-# SNS settings
+# Configurações de redes sociais
 RSS: false
-weibo_username: huxpro
-zhihu_username: huxpro
-github_username: huxpro
-twitter_username: huxpro
+github_username: felinux0x
+twitter_username: c0rvo_pwn
 #facebook_username:  huxpro
-#linkedin_username:  firstname-lastname-idxxxx
+linkedin_username:  felipe0x01
 
-# Build settings
-# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
+# Configurações de compilação
+# a partir de 2016, 'pygments' não é suportado no GitHub Pages. Use 'rouge' para realce de sintaxe.
 highlighter: rouge
 permalink: pretty
 paginate: 10
@@ -34,23 +32,23 @@ exclude:
     "README.md",
     "README.zh.md",
   ]
-anchorjs: true # if you want to customize anchor. check out line:181 of `post.html`
-# If you have timezone issue (e.g. #68) in China, uncomment to use this:
+anchorjs: true # se você quiser personalizar a âncora. confira a linha:181 de `post.html`
+# Se você tiver problemas com fuso horário (por exemplo, #68) na China, descomente para usar isto:
 #timezone: CN
 
 # Gems
-# from PR#40, to support local preview for Jekyll 3.0
-# make sure you have this gem installed
+# do PR#40, para suportar a visualização local para Jekyll 3.0
+# certifique-se de ter esta gem instalada
 # `$ gem install jekyll-paginate`
 plugins: [jekyll-paginate]
 
-# Markdown settings
-# replace redcarpet to kramdown,
-# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
-# document: http://jekyllrb.com/docs/configuration/#kramdown
+# Configurações de Markdown
+# substitui redcarpet por kramdown,
+# embora o redcarpet possa realçar o código automaticamente, a falta de id de cabeçalho torna o catálogo impossível, então mudei para kramdown
+# documento: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 kramdown:
-  input: GFM # use Github Flavored Markdown !important
+  input: GFM # use Github Flavored Markdown !importante
   syntax_highlighter_opts:
     span:
       line_numbers: false
@@ -58,45 +56,38 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-# Disqus settings
-disqus_username: hux
+# Configurações do Disqus
+disqus_username: c0rvo
 
-# Netease settings
+# Configurações do Netease
 netease_comment: false
 
-# Analytics settings
+# Configurações de Analytics
 # Baidu Analytics
 # ba_track_id: [your track id]
 
 # Google Analytics
-ga_track_id: "UA-49627206-1" # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
+# ga_track_id:  # Formato: UA-xxxxxx-xx
+# ga_domain: 
 
-# Sidebar settings
-sidebar: true # whether or not using Sidebar.
-sidebar-about-description: "要做一个有 swag 的程序员 <br> React Team @ Meta"
-sidebar-avatar: https://github.com/Huxpro.png # use absolute URL, seeing it's used in both `/` and `/about/`
+# Configurações da barra lateral
+sidebar: true # se deve ou não usar a barra lateral.
+sidebar-about-description: "Atuar em Segurança da Informação com foco em Análise de Vulnerabilidades, Pentest, Controle de Acesso, Incidentes de Segurança e Administração de sistemas."
+sidebar-avatar: https://github.com/felinux0x.png # use URL absoluta, pois é usada em `/` e `/about/`
 
-# Featured Tags
-featured-tags: true # whether or not using Feature-Tags
-featured-condition-size: 1 # A tag will be featured if the size of it is more than this condition value
+# Tags em Destaque
+featured-tags: true # se deve ou não usar Tags em Destaque
+featured-condition-size: 1 # Uma tag aparecerá em destaque se o número de posts com ela for maior que este valor
 
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
 service-worker: true
 
-# MathJax rendering for layout:page (e.g. post preview)
+# Renderização MathJax para layout:page (ex: visualização de post)
 page-mathjax: false
 
-# Friends
+# Amigos
 friends:
   [
-    { title: "乱序（Midare）", href: "http://mida.re/" },
-    { title: "Ebn Zhang", href: "https://ebnbin.dev/" },
-    { title: "Kun Qian", href: "http://kunq.me" },
-    { title: "Sherry Woo", href: "https://sherrywoo.me/" },
-    { title: "SmdCn", href: "http://blog.smdcn.net" },
-    { title: "JiyinYiyong", href: "http://tiye.me/" },
-    { title: "DHong Say", href: "http://dhong.co" },
-    { title: "尹峰以为", href: "http://ingf.github.io/" },
+
   ]

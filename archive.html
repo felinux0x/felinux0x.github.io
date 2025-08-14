@@ -1,29 +1,29 @@
 ---
-title: Archive
+title: Arquivo
 layout: default
-description: "「我干了什么 究竟拿了时间换了什么」"
+description: "『O que eu fiz? Afinal, troquei meu tempo por quê?』"
 header-img: "img/bg-little-universe.jpg"
 ---
 
 <!--
-Credits: this page shamelessly borrowed a lot from:
+Créditos: esta página foi descaradamente inspirada em:
 https://github.com/kitian616/jekyll-TeXt-theme
 -->
-<!-- Page Header -->
+<!-- Cabeçalho da Página -->
 {% include intro-header.html type='page' short=true %}
 
-<!-- Main Content -->
+<!-- Conteúdo Principal -->
 <div class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<!-- Tags (as filter) -->
+			<!-- Tags (como filtro) -->
 			<div id='tag_cloud' class="tags tags-sup js-tags">
 				<a class="tag-button--all" data-encode="">
-					Show All
+					Mostrar Tudo
 					<sup>{{site.posts.size}}</sup>
 				</a>
 
-				{% capture tags %}
+				{% capture tags %} 
 				{% for tag in site.tags %}
 				<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
 					data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
@@ -36,12 +36,11 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				{{ tags | split:'__SEPERATOR__' | sort }}
 			</div>
 
-			<!-- Article List -->
+			<!-- Lista de Artigos -->
 			<div class="mini-post-list js-result d-none">
 				{%- assign _sorted_list = site.posts -%}
 				{%- assign _sorted_list = _sorted_list | sort: 'date' -%}
 				{%- assign _sorted_list = _sorted_list | reverse -%}
-
 
 				{%- for _article in _sorted_list -%}
 				{%- assign _tags = '' -%}
@@ -54,7 +53,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				{%- endif -%}
 				{%- endfor -%}
 
-				{% comment %} group by year {% endcomment %}
+				{% comment %} agrupar por ano {% endcomment %}
 				{%- assign _currentdate = _article.date | date: '%Y' -%}
 				{%- if _currentdate != _date -%}
 				{%- unless forloop.first -%}</section>{%- endunless -%}

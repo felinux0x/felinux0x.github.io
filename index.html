@@ -1,6 +1,6 @@
 ---
 layout: page
-description: "「离开世界之前 一切都是过程」"
+description: "『Antes de deixar o mundo, tudo é apenas processo』"
 ---
 
 {% for post in paginator.posts %}
@@ -15,31 +15,27 @@ description: "「离开世界之前 一切都是过程」"
         </h3>
         {% endif %}
         <div class="post-content-preview">
-            {% if post.lang == 'en' %}
-                {{ post.content | strip_html | truncate:300 }}
-            {% else %}
-                {{ post.content | strip_html | truncate:200 }}
-            {% endif %}
+            {{ post.content | strip_html | truncate:200 }}
         </div>
     </a>
     <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
+        Publicado por {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} em {{ post.date | date: "%-d de %B de %Y" }}
     </p>
 </div>
 <hr>
 {% endfor %}
 
-<!-- Pager -->
+<!-- Paginação -->
 {% if paginator.total_pages > 1 %}
 <ul class="pager">
     {% if paginator.previous_page %}
     <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Posts mais recentes</a>
     </li>
     {% endif %}
     {% if paginator.next_page %}
     <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Posts mais antigos &rarr;</a>
     </li>
     {% endif %}
 </ul>
