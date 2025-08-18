@@ -14,11 +14,6 @@ export default function About() {
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">
             <span className="text-white">~$ ls</span> ABOUT_AXROOT
           </h1>
-
-          <div className="flex flex-wrap gap-4 text-sm text-white/70">
-            <div className="flex items-center">
-            </div>
-          </div>
         </div>
       </section>
 
@@ -31,8 +26,12 @@ export default function About() {
                 <span className="text-white">~$ cat</span> WHOAMI
               </h2>
               <p className="opacity-80">
-                Cybersecurity professional with experience in Purple and Red Team. Passionate about the offensive area, 
-                I am constantly acquiring knowledge to always improve myself and deliver the best results.
+                I’m Felipe (<span className="text-green-400">axr00t</span>), a cybersecurity enthusiast and Red Team 
+                learner focused on offensive security, penetration testing and CTF challenges. 
+                Currently developing my skills through hands-on labs, Hack The Box, and real-world 
+                scenarios — always seeking to improve, break, learn, and share knowledge. 
+                My main goal is to grow as a professional in the offensive security field and 
+                contribute to the infosec community.
               </p>
 
               <h2 className="text-2xl font-bold mb-6 flex items-center">
@@ -78,4 +77,3 @@ export default function About() {
     </div>
   )
 }
-

@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "How to become a Hacker | axroot",
+  title: "How to become a Hacker | void",
   description: " A complete guide on how to become a 'hacker' what you really need to know.",
 }
 
@@ -23,7 +23,7 @@ export default function HowToBecomeHackerArticle() {
               />
             </div>
             <p className="mb-4">
-              First of all, let me introduce myself briefly. My name is Yoon (aka: axroot), I've been studying cybersecurity for about five years and have been working professionally in the field for almost three. Throughout my career, I've worked on both the defensive and offensive sides of security, and today I'm dedicated to the offensive side, which is my true passion.
+              First of all, let me introduce myself briefly. My name is Yoon (Felipe: void), I've been studying cybersecurity for about five years and have been working professionally in the field for almost three. Throughout my career, I've worked on both the defensive and offensive sides of security, and today I'm dedicated to the offensive side, which is my true passion.
             </p>
             <p className="mb-4">
               During this time, I've received many questions such as: <em>"How can I become a hacker?"</em> or <em>"How do I work with what you work with?"</em>. I always tried to help and guide with the knowledge I had, but I felt I could do more. I've long wanted to write something to help not only those who approach me directly, but also other people interested in entering the cybersecurity field. However, for a long time I put this idea to one side, thinking that I still didn't have enough experience - the famous <em>imposter syndrome</em>. Today, I feel more confident in my knowledge and believe I can contribute by sharing some of what I've learned along this journey.

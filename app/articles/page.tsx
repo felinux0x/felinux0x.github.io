@@ -7,14 +7,14 @@ const articles = [
     slug: "how-to-become-a-hacker",
     excerpt: "A complete guide on how to become a 'hacker' what you really need to know.",
     date: "2025-03-25",
-    author: "axroot",
+    author: "v01d",
   },
   {
-    title: "Mr. Robot CTF Writeup",
-    slug: "mr-robot",
-    excerpt: "Writeup of the Mr. Robot CTF (TryHackMe), exploring vulnerabilities and exploitation techniques.",
-    date: "2024-03-24",
-    author: "axroot",
+    title: "Fluffy Machine HTB",
+    slug: "fluffy-machine-htb",
+    excerpt: "Writeup da máquina Fluffy Machine do Hack The Box, explorando vulnerabilidades em Active Directory e escalada de privilégios via AD CS.",
+    date: "2025-08-16",
+    author: "v01d",
   },
   // Adicione mais artigos aqui conforme necessário
 ]

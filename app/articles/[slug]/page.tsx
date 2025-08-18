@@ -47,7 +47,7 @@ export default function ArticlePage({ params }: any) {
     title: "Exploiting Buffer Overflows in Modern Applications",
     slug: "buffer-overflows-modern-applications",
     date: "2023-11-15",
-    author: "axroot",
+    author: "v01d",
     category: "Exploit Development",
     content: `
       <h2>Introduction</h2>
@@ -137,7 +137,7 @@ void vulnerable_function(char *input) {
       <header className="border-b border-white/30 p-4">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-2 mb-4 md:mb-0">
-            <div className="text-3xl font-bold tracking-tighter">AXROOT</div>
+            <div className="text-3xl font-bold tracking-tighter">V01D</div>
             <div className="text-xs opacity-70">cybersecurity research</div>
           </div>
           <nav>
@@ -244,7 +244,7 @@ void vulnerable_function(char *input) {
       {/* Footer */}
       <footer className="py-6 border-t border-white/30">
         <div className="container mx-auto px-4 text-center text-xs opacity-60">
-          <p>© {new Date().getFullYear()} AXROOT. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} V01D. All rights reserved.</p>
           <p className="mt-2">All content on this site is provided for educational purposes only.</p>
         </div>
       </footer>
