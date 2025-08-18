@@ -12,7 +12,7 @@ export default function About() {
           </Link>
 
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            <span className="text-white">~$ ls</span> ABOUT_AXROOT
+            <span className="text-white">~$ ls</span> ABOUT_V01D
           </h1>
         </div>
       </section>

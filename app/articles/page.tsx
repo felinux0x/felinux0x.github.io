@@ -3,9 +3,9 @@ import { Calendar, User } from "lucide-react"
 
 const articles = [
   {
-    title: "How to become a 'Hacker'",
+    title: "Como se tornar um 'Hacker'",
     slug: "how-to-become-a-hacker",
-    excerpt: "A complete guide on how to become a 'hacker' what you really need to know.",
+    excerpt: "Um guia completo com tudo o que você realmente precisa saber para se tornar um 'hacker'.",
     date: "2025-03-25",
     author: "v01d",
   },
