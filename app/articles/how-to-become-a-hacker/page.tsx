@@ -23,7 +23,7 @@ export default function HowToBecomeHackerArticle() {
               />
             </div>
             <p className="mb-4">
-              Primeiramente, me apresento brevemente. Meu nome é Yoon (Felipe: void), estudo cibersegurança há cerca de cinco anos e atuo profissionalmente na área há quase três. Ao longo da minha carreira, já trabalhei tanto no lado defensivo quanto no ofensivo da segurança, e hoje me dedico ao lado ofensivo, que é minha verdadeira paixão.
+              Primeiramente, me apresento brevemente. Meu nome é Felipe (v01d : void), estudo cibersegurança há cerca de cinco anos e atuo profissionalmente na área há quase três. Ao longo da minha carreira, já trabalhei tanto no lado defensivo quanto no ofensivo da segurança, e hoje me dedico ao lado ofensivo, que é minha verdadeira paixão.
             </p>
             <p className="mb-4">
               Durante esse tempo, recebi muitas perguntas como: <em>"Como posso me tornar um hacker?"</em> ou <em>"Como faço para trabalhar com o que você trabalha?"</em>. Sempre tentei ajudar e orientar com o conhecimento que possuía, mas sentia que podia fazer mais. Há muito tempo, queria escrever algo para ajudar não apenas quem me procura diretamente, mas também outras pessoas interessadas em ingressar na área de cibersegurança. No entanto, por um longo período, deixei essa ideia de lado, pensando que ainda não tinha experiência suficiente — a famosa <em>síndrome do impostor</em>. Hoje, sinto-me mais confiante em meus conhecimentos e acredito que posso contribuir compartilhando um pouco do que aprendi ao longo dessa jornada.
