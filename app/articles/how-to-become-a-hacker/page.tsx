@@ -23,17 +23,18 @@ export default function HowToBecomeHackerArticle() {
               />
             </div>
             <p className="mb-4">
-              Primeiramente, me apresento brevemente. Meu nome é Felipe (v01d : void), estudo cibersegurança há cerca de cinco anos e atuo profissionalmente na área há quase três. Ao longo da minha carreira, já trabalhei tanto no lado defensivo quanto no ofensivo da segurança, e hoje me dedico ao lado ofensivo, que é minha verdadeira paixão.
+              Olá, meu nome é Felipe (também conhecido como <strong>v01d : void</strong>). Sou iniciante na área de cibersegurança, mas desde que entrei em contato com esse universo, percebi que encontrei algo que realmente me fascina. Tenho direcionado meus estudos para a <strong>segurança ofensiva</strong>, área que me motiva e desperta minha curiosidade todos os dias.
             </p>
             <p className="mb-4">
-              Durante esse tempo, recebi muitas perguntas como: <em>"Como posso me tornar um hacker?"</em> ou <em>"Como faço para trabalhar com o que você trabalha?"</em>. Sempre tentei ajudar e orientar com o conhecimento que possuía, mas sentia que podia fazer mais. Há muito tempo, queria escrever algo para ajudar não apenas quem me procura diretamente, mas também outras pessoas interessadas em ingressar na área de cibersegurança. No entanto, por um longo período, deixei essa ideia de lado, pensando que ainda não tinha experiência suficiente — a famosa <em>síndrome do impostor</em>. Hoje, sinto-me mais confiante em meus conhecimentos e acredito que posso contribuir compartilhando um pouco do que aprendi ao longo dessa jornada.
+              Muitas vezes me perguntam: <em>"Como posso começar a aprender hacking?"</em> ou <em>"Por onde devo iniciar para seguir esse caminho?"</em>. Durante muito tempo também tive essas dúvidas, e sei como é difícil filtrar tanta informação disponível. Foi justamente essa vontade de ajudar quem está começando, assim como eu, que me levou a escrever este conteúdo.
             </p>
             <p className="mb-4">
-              O objetivo deste artigo é mostrar o caminho para quem deseja ingressar na área de cibersegurança, com foco em segurança ofensiva. A área de cibersegurança é imensa e possui diversas subáreas, mas isso é assunto para outro dia. Aqui, quero compartilhar os conselhos que eu gostaria de ter recebido no início da minha jornada: como estudar, o que estudar, onde encontrar conteúdo relevante e como se preparar para entrar no mercado com um conhecimento sólido.
+              O objetivo deste artigo é compartilhar a minha visão como iniciante: os primeiros passos que estou dando, os recursos que encontrei e como estou organizando meus estudos. Não é um guia definitivo — longe disso — mas uma forma de mostrar que todos começam do zero, e que com dedicação e consistência é possível evoluir na área e construir uma base sólida.
             </p>
             <p>
-              Ser um hacker vai muito além do estereótipo de alguém digitando freneticamente em uma tela preta cheia de códigos. Em sua essência, trata-se de pensamento crítico, criatividade e, acima de tudo, uma curiosidade sem limites para entender como os sistemas funcionam — e como podem ser quebrados. A segurança ofensiva não é apenas sobre explorar vulnerabilidades, mas sobre antecipar ataques reais, testar defesas e fortalecer a segurança.
+              Ser um hacker vai muito além do estereótipo de alguém digitando em uma tela preta cheia de códigos. Trata-se de <strong>curiosidade</strong>, <strong>criatividade</strong> e da busca constante por entender como as coisas funcionam. A segurança ofensiva não é apenas explorar vulnerabilidades, mas também desenvolver um olhar crítico, antecipar ataques e aprender a pensar como um adversário. E é exatamente essa mentalidade que busco desenvolver dia após dia.
             </p>
+
           </section>
 
           <section>
