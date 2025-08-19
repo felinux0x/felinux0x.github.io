@@ -29,7 +29,7 @@ export default function About() {
                 I’m Felipe (<span className="text-green-400">vo1d</span>), a cybersecurity enthusiast and Red Team 
                 learner focused on offensive security, penetration testing and CTF challenges. 
                 Currently developing my skills through hands-on labs, Hack The Box, and real-world 
-                scenarios — always seeking to improve, break, learn, and share knowledge. 
+                scenarios always seeking to improve, break, learn, and share knowledge. 
                 My main goal is to grow as a professional in the offensive security field and 
                 contribute to the infosec community.
               </p>
