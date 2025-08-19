@@ -18,14 +18,6 @@ const formatDate = (dateString: string) => {
 // Lista de artigos unificada e traduzida
 const allArticles = [
   {
-    title: "Como se tornar um 'Hacker'",
-    slug: "how-to-become-a-hacker",
-    excerpt: "Um guia completo com tudo o que você realmente precisa saber para se tornar um 'hacker'.",
-    date: "2025-03-25",
-    author: "v01d",
-    category: "Conceitos",
-  },
-  {
     title: "Fluffy Machine - Writeup HTB",
     slug: "fluffy-machine-htb",
     excerpt: "Writeup da máquina Fluffy Machine do Hack The Box, explorando vulnerabilidades em Active Directory e escalada de privilégios via AD CS.",

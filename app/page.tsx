@@ -111,13 +111,6 @@ export default function Home() {
 // Sample data
 const featuredArticles = [
   {
-    title: "Como se tornar um 'Hacker'",
-    slug: "how-to-become-a-hacker",
-    excerpt: "Um guia completo com tudo o que você realmente precisa saber para se tornar um 'hacker'.",
-    date: "2025-03-25",
-    author: "v01d",
-  },
-  {
     title: "Fluffy Machine HTB",
     slug: "fluffy-machine-htb",
     excerpt: "Passo a passo da máquina Fluffy Machine (HTB), desde a enumeração SMB e captura de hash NTLMv2 até a escalada de privilégios em Active Directory com Shadow Credentials (pywhisker) e abuso de templates de certificado (ESC16 com Certipy).",
