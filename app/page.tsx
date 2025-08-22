@@ -119,19 +119,19 @@ const featuredArticles = [
   }
 ]
 
-const featuredTools: Tool[] = [
-  {
-    name: "API Bounty",
-    description: "Tool to automate the search for API Keys in Bug Bounty programs, performing a variety of search tasks.",
-    language: "Python",
-    githubUrl: "https://github.com/axr00t/api-bounty",
-    downloadUrl: "https://github.com/axr00t/api-bounty",
-  },
-  {
-    name: "Enum Bounty",
-    description: "Tool to automate the enumeration process in Bug Bounty programs by performing a wide variety of enumeration tasks.",
-    language: "Python",
-    githubUrl: "https://github.com/axr00t/enumbounty",
-    downloadUrl: "https://github.com/axr00t/enumbounty",
-  },
-]
+//const featuredTools: Tool[] = [
+//  {
+//    name: "API Bounty",
+//    description: "Tool to automate the search for API Keys in Bug Bounty programs, performing a variety of search tasks.",
+//    language: "Python",
+//    githubUrl: "https://github.com/axr00t/api-bounty",
+//    downloadUrl: "https://github.com/axr00t/api-bounty",
+//  },
+//  {
+//    name: "Enum Bounty",
+//    description: "Tool to automate the enumeration process in Bug Bounty programs by performing a wide variety of enumeration tasks.",
+//    language: "Python",
+//    githubUrl: "https://github.com/axr00t/enumbounty",
+//    downloadUrl: "https://github.com/axr00t/enumbounty",
+//  },
+//]
