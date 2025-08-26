@@ -113,28 +113,28 @@ export default function Tools() {
 // Sample data
 const tools = [
   {
-    name: "API Bounty",
+    name: "Python IDS Framework",
     description:
-      "The API Bounty tool automates the process of searching for API Keys in Bug Bounty programs, performing a wide variety of search tasks.",
+      "Sistema de Detecção de Intrusão (IDS) baseado em regras, desenvolvido em Python com a biblioteca Scapy para análise de pacotes de rede.",
     language: "Python",
     version: "1.0.0",
-    updated: "2024-06-21",
-    category: "Offensive Security",
-    githubUrl: "https://github.com/axr00t/api-bounty",
-    downloadUrl: "https://github.com/axr00t/api-bounty",
-    docsUrl: "https://github.com/axr00t/api-bounty/blob/main/README.md",
+    updated: "2023-09-22",
+    category: "Defensive Security",
+    githubUrl: "https://github.com/felinux0x/python-ids-framework",
+    downloadUrl: "https://github.com/felinux0x/python-ids-framework",
+    docsUrl: "https://github.com/felinux0x/python-ids-framework/blob/main/README.md",
   },
   {
-    name: "Enum Bounty",
+    name: "Arch Pentest Installer",
     description:
-      "Tool to automate the enumeration process in Bug Bounty programs by performing a wide variety of enumeration tasks.",
-    language: "Python",
+      "Um script shell para provisionar um ambiente de Pentest e CTF em sistemas Arch Linux, utilizando repositórios oficiais e o AUR para instalar ferramentas.",
+    language: "Shell",
     version: "1.0.0",
-    updated: "20234-06-15",
-    category: "Offensive Security",
-    githubUrl: "https://github.com/axr00t/enum-bounty",
-    downloadUrl: "https://github.com/axr00t/enum-bounty",
-    docsUrl: "https://github.com/axr00t/enum-bounty/blob/main/README.md",
+    updated: "2024-02-02",
+    category: "Tooling",
+    githubUrl: "https://github.com/felinux0x/arch-pentest-installer",
+    downloadUrl: "https://github.com/felinux0x/arch-pentest-installer",
+    docsUrl: "https://github.com/felinux0x/arch-pentest-installer/blob/main/README.md",
   },
 ]
 

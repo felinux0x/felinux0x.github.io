@@ -128,17 +128,17 @@ const featuredArticles = [
 
 const featuredTools: Tool[] = [
   {
-    name: "API Bounty",
-    description: "Tool to automate the search for API Keys in Bug Bounty programs, performing a variety of search tasks.",
+    name: "Python IDS Framework",
+    description: "Sistema de Detecção de Intrusão (IDS) baseado em regras, desenvolvido em Python com a biblioteca Scapy para análise de pacotes de rede.",
     language: "Python",
-    githubUrl: "https://github.com/axr00t/api-bounty",
-    downloadUrl: "https://github.com/axr00t/api-bounty",
+    githubUrl: "https://github.com/felinux0x/python-ids-framework",
+    downloadUrl: "https://github.com/felinux0x/python-ids-framework",
   },
   {
-    name: "Enum Bounty",
-    description: "Tool to automate the enumeration process in Bug Bounty programs by performing a wide variety of enumeration tasks.",
-    language: "Python",
-    githubUrl: "https://github.com/axr00t/enumbounty",
-    downloadUrl: "https://github.com/axr00t/enumbounty",
+    name: "Arch Pentest Installer",
+    description: "Um script shell para provisionar um ambiente de Pentest e CTF em sistemas Arch Linux. Utiliza os repositórios oficiais e o AUR (com yay) para instalar um conjunto selecionado de ferramentas, incluindo a configuração inicial do banco de dados do Metasploit.",
+    language: "Shell",
+    githubUrl: "https://github.com/felinux0x/arch-pentest-installer",
+    downloadUrl: "https://github.com/felinux0x/arch-pentest-installer",
   },
 ]
