@@ -18,65 +18,12 @@ const formatDate = (dateString: string) => {
 // Lista de artigos unificada e traduzida
 const allArticles = [
   {
-    title: "Como se tornar um 'Hacker'",
-    slug: "how-to-become-a-hacker",
-    excerpt: "Um guia completo com tudo o que você realmente precisa saber para se tornar um 'hacker'.",
-    date: "2025-03-25",
-    author: "v01d",
-    category: "Conceitos",
-  },
-  {
     title: "Fluffy Machine - Writeup HTB",
     slug: "fluffy-machine-htb",
     excerpt: "Writeup da máquina Fluffy Machine do Hack The Box, explorando vulnerabilidades em Active Directory e escalada de privilégios via AD CS.",
     date: "2025-08-16",
     author: "v01d",
     category: "Writeup",
-  },
-  {
-    title: "Explorando Buffer Overflows em Aplicações Modernas",
-    slug: "buffer-overflows-modern-applications",
-    excerpt:
-      "Uma análise aprofundada das vulnerabilidades de buffer overflow que ainda afetam softwares modernos, apesar de décadas de conhecimento sobre o tema.",
-    date: "2023-11-15",
-    author: "axroot",
-    category: "Desenvolvimento de Exploits",
-  },
-  {
-    title: "Técnicas Avançadas de Persistência em Sistemas Linux",
-    slug: "advanced-persistence-linux",
-    excerpt:
-      "Examinando métodos sofisticados que atacantes usam para manter acesso a ambientes Linux comprometidos. Aprenda sobre rootkits, backdoors e outros mecanismos.",
-    date: "2023-10-28",
-    author: "axroot",
-    category: "Análise de Malware",
-  },
-  {
-    title: "Engenharia Reversa de Protocolos Proprietários",
-    slug: "reverse-engineering-protocols",
-    excerpt:
-      "Metodologias e ferramentas para analisar e compreender protocolos de rede não documentados. Um guia sobre o processo de descoberta, análise e documentação.",
-    date: "2023-10-12",
-    author: "axroot",
-    category: "Engenharia Reversa",
-  },
-  {
-    title: "Metodologia para Descoberta de Vulnerabilidades Zero-Day",
-    slug: "zero-day-discovery",
-    excerpt:
-      "Uma abordagem estruturada para encontrar vulnerabilidades desconhecidas em software e hardware, cobrindo desde a seleção do alvo até o disclosure responsável.",
-    date: "2023-09-30",
-    author: "axroot",
-    category: "Desenvolvimento de Exploits",
-  },
-  {
-    title: "Fundamentos de Exploração de Kernel",
-    slug: "kernel-exploitation",
-    excerpt:
-      "Entendendo o básico de vulnerabilidades a nível de kernel e como desenvolver exploits confiáveis. Um mergulho técnico em estruturas, gerenciamento de memória e escalada de privilégios.",
-    date: "2023-09-15",
-    author: "axroot",
-    category: "Desenvolvimento de Exploits",
   },
 ]
 
