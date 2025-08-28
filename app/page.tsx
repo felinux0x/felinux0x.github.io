@@ -134,4 +134,11 @@ const featuredTools: Tool[] = [
     githubUrl: "https://github.com/felinux0x/arch-pentest-installer",
     downloadUrl: "https://github.com/felinux0x/arch-pentest-installer",
   },
+  {
+    name: "Spectro",
+    description: "Ferramenta educacional em Go para demonstrar técnicas de ofuscação de strings, gerando um programa autônomo com o payload codificado.",
+    language: "Go",
+    githubUrl: "https://github.com/felinux0x/spectro-go",
+    downloadUrl: "https://github.com/felinux0x/spectro-go",
+  },
 ]
