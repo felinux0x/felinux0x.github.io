@@ -1,5 +1,4 @@
-import Link from "next/link"
-import { ArrowLeft, Github, Twitter, Mail, MessageSquare, Youtube } from "lucide-react"
+import { ArrowLeft, Github, MessageSquare, Youtube, Flag, Box } from "lucide-react";
 
 export default function About() {
   return (
@@ -7,9 +6,9 @@ export default function About() {
       {/* About Header */}
       <section className="py-8 border-b border-white/30">
         <div className="container mx-auto px-4">
-          <Link href="/" className="inline-flex items-center text-sm hover:text-gray-400 mb-6">
+          <a href="/" className="inline-flex items-center text-sm hover:text-gray-400 mb-6">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
-          </Link>
+          </a>
 
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">
             <span className="text-white">~$ ls</span> ABOUT_V01D
@@ -26,11 +25,11 @@ export default function About() {
                 <span className="text-white">~$ cat</span> WHOAMI
               </h2>
               <p className="opacity-80">
-                I’m Felipe (<span className="text-green-400">vo1d</span>), a cybersecurity enthusiast and Red Team 
-                learner focused on offensive security, penetration testing and CTF challenges. 
-                Currently developing my skills through hands-on labs, Hack The Box, and real-world 
-                scenarios always seeking to improve, break, learn, and share knowledge. 
-                My main goal is to grow as a professional in the offensive security field and 
+                I’m Felipe (<span className="text-green-400">vo1d</span>), a cybersecurity enthusiast and Red Team
+                learner focused on offensive security, penetration testing and CTF challenges.
+                Currently developing my skills through hands-on labs, Hack The Box, and real-world
+                scenarios always seeking to improve, break, learn, and share knowledge.
+                My main goal is to grow as a professional in the offensive security field and
                 contribute to the infosec community.
               </p>
 
@@ -69,6 +68,24 @@ export default function About() {
                   <Youtube className="h-6 w-6 text-white" />
                   <span className="text-white">YouTube</span>
                 </a>
+                <a
+                  href="https://app.hackthebox.com/profile/2483868"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3 p-4 border border-white/30 hover:bg-white/5 transition-colors"
+                >
+                  <Box className="h-6 w-6 text-white" />
+                  <span className="text-white">HackTheBox</span>
+                </a>
+                <a
+                  href="https://tryhackme.com/p/felinux0x"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3 p-4 border border-white/30 hover:bg-white/5 transition-colors"
+                >
+                  <Flag className="h-6 w-6 text-white" />
+                  <span className="text-white">TryHackMe</span>
+                </a>
               </div>
             </div>
           </div>
@@ -77,3 +94,4 @@ export default function About() {
     </div>
   )
 }
+
