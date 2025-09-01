@@ -40,7 +40,7 @@ export default function About() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <a
-                  href="https://github.com/axr00t"
+                  href="https://github.com/felinux0x"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 p-4 border border-white/30 hover:bg-white/5 transition-colors"
@@ -50,7 +50,7 @@ export default function About() {
                 </a>
 
                 <a
-                  href="https://discord.gg/axroot"
+                  href="https://discord.gg/vo1dpwnd"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 p-4 border border-white/30 hover:bg-white/5 transition-colors"
@@ -60,7 +60,7 @@ export default function About() {
                 </a>
 
                 <a
-                  href="https://youtube.com/@axroot"
+                  href="https://youtube.com/@Vo1dPwnd"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 p-4 border border-white/30 hover:bg-white/5 transition-colors"
