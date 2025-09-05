@@ -19,6 +19,12 @@ const InlineCode = ({ children }: { children: React.ReactNode }) => (
   </code>
 );
 
+// Componente para blocos de informação
+const InfoBlock = ({ children }: { children: React.ReactNode }) => (
+    <div className="bg-blue-900/30 border-l-4 border-blue-400 p-4 rounded-md my-4">
+        {children}
+    </div>
+);
 export default function FluffyMachineArticle() {
   return (
     <div className="py-12">
@@ -27,13 +33,17 @@ export default function FluffyMachineArticle() {
         
         <div className="space-y-12"> {/* Aumentei o espaço para melhor legibilidade */}
           
-          <section>
-            <h2 className="text-2xl font-bold pt-4 mt-4 border-t border-white/30">Introduction</h2>
-            <p className="mt-4 text-gray-300">
-              This is a writeup for the Fluffy Machine from Hack The Box, an easy-rated Windows machine involving Active Directory enumeration, NTLM hash cracking, and privilege escalation through AD CS vulnerabilities.
-            </p>
-          </section>
+          <InfoBlock>
+              <p><strong>Resumo da Máquina</strong></p>
+              <p><strong>IP:</strong> <InlineCode>10.10.11.69</InlineCode></p>
+              <p><strong>SO:</strong> Windows</p>
+              <p><strong>Vetor de Ataque:</strong> Enumeração de Active Directory, captura de hash NTLMv2, e escalação de privilégios via AD CS (Shadow Credentials & ESC16).</p>
+          </InfoBlock>
 
+          <p className="text-gray-400">
+              <strong>Tags:</strong> <InlineCode>#activedirectory</InlineCode> <InlineCode>#windows</InlineCode> <InlineCode>#adcs</InlineCode> <InlineCode>#bloodhound</InlineCode> <InlineCode>#pywhisker</InlineCode> <InlineCode>#certipy</InlineCode> <InlineCode>#shadowcredentials</InlineCode> <InlineCode>#esc16</InlineCode>
+          </p>
+          
           <section>
             <h2 className="text-2xl font-bold pt-4 mt-4 border-t border-white/30">👤 Credenciais Iniciais</h2>
             <ul className="list-disc list-inside mt-4 text-gray-300">
