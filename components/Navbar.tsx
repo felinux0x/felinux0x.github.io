@@ -5,7 +5,7 @@ export function Navbar() {
     <header className="border-b border-white/30 p-4">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="flex items-center space-x-2 mb-4 md:mb-0">
-          <div className="text-xs opacity-70">v01d</div>
+          <div className="text-xs opacity-70">fe1ps</div>
         </div>
         <nav>
           <ul className="flex space-x-6 text-sm">

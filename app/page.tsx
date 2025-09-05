@@ -19,7 +19,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              <span className="text-white">root@v01d ~$</span>
+              <span className="text-white">root@fe1ps ~$</span>
             </h1>
             <p className="text-lg mb-8 opacity-80">
               I share content about hacking.
@@ -115,7 +115,21 @@ const featuredArticles = [
     slug: "fluffy-machine-htb",
     excerpt: "Passo a passo da máquina Fluffy Machine (HTB), desde a enumeração SMB e captura de hash NTLMv2 até a escalada de privilégios em Active Directory com Shadow Credentials (pywhisker) e abuso de templates de certificado (ESC16 com Certipy).",
     date: "2025-08-16",
-    author: "v01d",
+    author: "fe1ps",
+  },
+  {
+    title: "Try Hack Me - RootMe",
+    slug: "tryhackme-rootme",
+    excerpt: "Walkthrough da máquina RootMe do TryHackMe, abordando upload de shell reverso e escalação de privilégios via SUID em Python.",
+    date: "2025-09-04",
+    author: "fe1ps",
+  },
+  {
+    title: "TryHackMe - Simple CTF",
+    slug: "tryhackme-simple-ctf",
+    excerpt: "Walkthrough da máquina Simple CTF do TryHackMe, explorando a CVE-2019-9053 (SQLi) no CMS Made Simple e escalando privilégios com sudo vim.",
+    date: "2025-09-04",
+    author: "fe1ps",
   }
 ]
 

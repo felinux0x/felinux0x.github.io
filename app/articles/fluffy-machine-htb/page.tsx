@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Fluffy Machine - HTB (Windows | Easy) | v01d",
+  title: "Fluffy Machine - HTB (Windows | Easy) | fe1ps",
   description: "A writeup of the Fluffy Machine Hack The Box machine.",
 }
 

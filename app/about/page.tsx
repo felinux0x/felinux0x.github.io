@@ -11,7 +11,7 @@ export default function About() {
           </a>
 
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            <span className="text-white">~$ ls</span> ABOUT_V01D
+            <span className="text-white">~$ ls</span> ABOUT_FE1PS
           </h1>
         </div>
       </section>
@@ -25,7 +25,7 @@ export default function About() {
                 <span className="text-white">~$ cat</span> WHOAMI
               </h2>
               <p className="opacity-80">
-                I’m Felipe (<span className="text-green-400">vo1d</span>), a cybersecurity enthusiast and Red Team
+                I’m Felipe (<span className="text-green-400">fe1ps</span>), a cybersecurity enthusiast and Red Team
                 learner focused on offensive security, penetration testing and CTF challenges.
                 Currently developing my skills through hands-on labs, Hack The Box, and real-world
                 scenarios always seeking to improve, break, learn, and share knowledge.
@@ -50,7 +50,7 @@ export default function About() {
                 </a>
 
                 <a
-                  href="https://discord.gg/vo1dpwnd"
+                  href="https://discord.gg/felinux0x"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 p-4 border border-white/30 hover:bg-white/5 transition-colors"
@@ -60,7 +60,7 @@ export default function About() {
                 </a>
 
                 <a
-                  href="https://youtube.com/@Vo1dPwnd"
+                  href="https://youtube.com/@Fe1ps-pwnd"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 p-4 border border-white/30 hover:bg-white/5 transition-colors"
@@ -78,7 +78,7 @@ export default function About() {
                   <span className="text-white">HackTheBox</span>
                 </a>
                 <a
-                  href="https://tryhackme.com/p/felinux0x"
+                  href="https://tryhackme.com/p/Fe1ps"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 p-4 border border-white/30 hover:bg-white/5 transition-colors"
