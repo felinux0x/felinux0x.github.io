@@ -41,6 +41,14 @@ const allArticles = [
     author: "fe1ps",
     category: "Writeup",
   },
+  {
+    title: "Try Hack Me - OverPass",
+    slug: "tryhackme-overpass",
+    excerpt: "Walkthrough da máquina OverPass do TryHackMe, explorando chave SSH fraca e escalação de privilégios via Crontab Hijacking.",
+    date: "2025-09-06",
+    author: "fe1ps",
+    category: "Writeup",
+  },
 ]
 
 // Lista de categorias traduzida

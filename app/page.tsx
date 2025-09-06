@@ -130,6 +130,13 @@ const featuredArticles = [
     excerpt: "Walkthrough da máquina Simple CTF do TryHackMe, explorando a CVE-2019-9053 (SQLi) no CMS Made Simple e escalando privilégios com sudo vim.",
     date: "2025-09-04",
     author: "fe1ps",
+  },
+  {
+    title: "Try Hack Me - OverPass",
+    slug: "tryhackme-overpass",
+    excerpt: "Walkthrough da máquina OverPass do TryHackMe, explorando chave SSH fraca e escalação de privilégios via Crontab Hijacking.",
+    date: "2025-09-06",
+    author: "fe1ps",
   }
 ]
 
