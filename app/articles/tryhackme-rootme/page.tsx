@@ -145,7 +145,7 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data)    /bin/sh: 0: can\'t acce
 $ cat /var/www/user.txt`}
             </CodeBlock>
             <SuccessBlock>
-                <strong>user.txt:</strong> <InlineCode>THM{"THM{pr1v1l3g3_3sc4l4t10n}"}</InlineCode>
+                <strong>user.txt:</strong> <InlineCode>THM{"THM{...user_flag...}"}</InlineCode>
             </SuccessBlock>
           </section>
 
@@ -176,7 +176,7 @@ $ cat /var/www/user.txt`}
 cat /root/root.txt`}
             </CodeBlock>
             <SuccessBlock>
-                <strong>root.txt:</strong> <InlineCode>{"THM{pr1v1l3g3_3sc4l4t10n}"}</InlineCode>
+                <strong>root.txt:</strong> <InlineCode>{"THM{...root_flag...}"}</InlineCode>
             </SuccessBlock>
           </section>
         </div>

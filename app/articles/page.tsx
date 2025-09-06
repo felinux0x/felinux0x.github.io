@@ -49,6 +49,14 @@ const allArticles = [
     author: "fe1ps",
     category: "Writeup",
   },
+  {
+    title: "TryHackMe - Brute It",
+    slug: "tryhackme-bruteit",
+    excerpt: "Walkthrough da máquina Brute It do TryHackMe, focando em brute force com Hydra, quebra de senha de chave SSH com John the Ripper e escalação de privilégios via sudo cat.",
+    date: "2025-09-06",
+    author: "fe1ps",
+    category: "Writeup",
+  },
 ]
 
 // Lista de categorias traduzida

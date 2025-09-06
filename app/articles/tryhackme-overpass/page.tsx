@@ -159,7 +159,7 @@ todo.txt  user.txt
 james@overpass-prod:~$ cat user.txt`}
             </CodeBlock>
             <SuccessBlock>
-                <strong>user.txt:</strong> <InlineCode>thm{"{65c1aaf000506e56996822c6281e6bf7}"}</InlineCode>
+                <strong>user.txt:</strong> <InlineCode>thm{"{...user_flag...}"}</InlineCode>
             </SuccessBlock>
           </section>
 
@@ -209,7 +209,7 @@ root@overpass-prod:~#`}
             <p className="mt-2 text-gray-300">Com privilégios de root, a etapa final é simplesmente ler a flag localizada no diretório <InlineCode>/root</InlineCode>.</p>
             <CodeBlock>root@overpass-prod:~# cat /root/root.txt</CodeBlock>
             <SuccessBlock>
-                <strong>root.txt:</strong> <InlineCode>thm{"{7f336f8c359dbac18d54fdd64ea753bb}"}</InlineCode>
+                <strong>root.txt:</strong> <InlineCode>thm{"{...root_flag...}"}</InlineCode>
             </SuccessBlock>
           </section>
         </div>

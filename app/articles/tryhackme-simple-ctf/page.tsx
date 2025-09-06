@@ -139,7 +139,7 @@ user.txt
 $ cat user.txt`}
             </CodeBlock>
             <SuccessBlock>
-                <strong>user.txt:</strong> <InlineCode>G00d j0b, keep up!</InlineCode>
+                <strong>user.txt:</strong> <InlineCode>...user_flag...</InlineCode>
             </SuccessBlock>
 
             <h3 className="text-xl font-semibold mt-4">3.3. Enumeração de Usuários</h3>
@@ -180,7 +180,7 @@ root.txt
 cat root.txt`}
             </CodeBlock>
             <SuccessBlock>
-                <strong>root.txt:</strong> <InlineCode>W3ll d0n3. You made it!</InlineCode>
+                <strong>root.txt:</strong> <InlineCode>...root_flag...!</InlineCode>
             </SuccessBlock>
           </section>
         </div>
