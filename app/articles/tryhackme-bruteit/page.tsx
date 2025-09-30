@@ -202,7 +202,7 @@ root@bruteit:~# `}</CodeBlock>
               <p className="mt-2 text-gray-300">Após digitar a senha <InlineCode>football</InlineCode>, o acesso <InlineCode>root</InlineCode> foi obtido. A etapa final foi ler a flag.</p>
               <CodeBlock>root@bruteit:~# cat /root/root.txt</CodeBlock>
               <SuccessBlock>
-                  <strong>root.txt:</strong> <InlineCode>thm{'{...root_flag...}'}</InlineCode>
+                  <strong>root.txt:</strong> <InlineCode>thm{'{...user_flag...}'}</InlineCode>
               </SuccessBlock>
             </section>
           </ScrollAnimation>
