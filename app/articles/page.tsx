@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Calendar, User } from "lucide-react"
+import { ScrollAnimation } from "@/components/ScrollAnimation";
 
 // --- DADOS ---
 // Em um projeto real, estes dados viriam de um CMS ou de arquivos .mdx
@@ -79,34 +80,36 @@ export default function ArticlesPage() {
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-bold pt-4 mt-4 border-t border-white/30">Artigos</h1>
+        <ScrollAnimation>
+          <h1 className="text-4xl font-bold pt-4 mt-4 border-t border-white/30">Artigos</h1>
+        </ScrollAnimation>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-          {allArticles.map((article) => (
-            <Link 
-              key={article.slug} 
-              href={`/articles/${article.slug}`}
-              className="group block border border-white/20 bg-black hover:border-white/50 transition-all p-5 rounded-lg"
-            >
-              <article>
-                <div className="flex items-center space-x-2 text-xs mb-3 text-white/60">
-                  <Calendar className="h-4 w-4" />
-                  {/* Data formatada para pt-BR */}
-                  <span>{formatDate(article.date)}</span>
-                </div>
-                <h2 className="text-xl font-bold mb-3 text-white group-hover:text-sky-400 transition-colors">{article.title}</h2>
-                <p className="text-sm text-white/70 mb-5 line-clamp-3">{article.excerpt}</p>
-                <div className="flex items-center justify-between text-xs text-white/60 border-t border-white/20 pt-4">
-                  <div className="flex items-center space-x-2">
-                    <User className="h-4 w-4" />
-                    <span>{article.author}</span>
+          {allArticles.map((article, index) => (
+            <ScrollAnimation key={article.slug} delay={index * 100}>
+              <Link 
+                href={`/articles/${article.slug}`}
+                className="group block border border-white/20 bg-black hover:border-white/50 transition-all duration-300 hover:scale-105 p-5 rounded-lg h-full"
+              >
+                <article className="flex flex-col h-full">
+                  <div className="flex items-center space-x-2 text-xs mb-3 text-white/60">
+                    <Calendar className="h-4 w-4" />
+                    <span>{formatDate(article.date)}</span>
                   </div>
-                  <span className="group-hover:translate-x-1 transition-transform">
-                    Leia Mais →
-                  </span>
-                </div>
-              </article>
-            </Link>
+                  <h2 className="text-xl font-bold mb-3 text-white group-hover:text-sky-400 transition-colors">{article.title}</h2>
+                  <p className="text-sm text-white/70 mb-5 line-clamp-3 flex-grow">{article.excerpt}</p>
+                  <div className="flex items-center justify-between text-xs text-white/60 border-t border-white/20 pt-4 mt-auto">
+                    <div className="flex items-center space-x-2">
+                      <User className="h-4 w-4" />
+                      <span>{article.author}</span>
+                    </div>
+                    <span className="group-hover:translate-x-1 transition-transform">
+                      Leia Mais →
+                    </span>
+                  </div>
+                </article>
+              </Link>
+            </ScrollAnimation>
           ))}
         </div>
       </div>

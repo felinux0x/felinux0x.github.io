@@ -75,3 +75,45 @@ code {
   margin-left: 2px;
 }
 
+/* CMDK Command Palette Styles */
+[cmdk-dialog] {
+  @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl rounded-lg;
+  @apply bg-black border border-white/30 shadow-2xl;
+}
+
+[cmdk-dialog-overlay] {
+  @apply fixed inset-0 bg-black/50 backdrop-blur-sm;
+}
+
+[cmdk-input] {
+  @apply w-full p-4 text-lg bg-transparent text-white placeholder:text-white/50;
+  @apply border-b border-white/30 outline-none;
+}
+
+[cmdk-list] {
+  @apply h-[min(300px,calc(100vh-200px))] max-h-[400px] overflow-y-auto p-2;
+}
+
+[cmdk-item] {
+  @apply flex items-center p-2 rounded-md cursor-pointer select-none;
+  @apply text-white/80 hover:bg-white/10 transition-colors;
+}
+
+[cmdk-item][aria-selected="true"] {
+  @apply bg-white/10 text-white;
+}
+
+[cmdk-group-heading] {
+  @apply px-2 py-1.5 text-xs font-medium text-white/60;
+}
+
+[cmdk-empty] {
+  @apply p-4 text-center text-white/60;
+}
+
+[cmdk-kbd] {
+  @apply inline-flex items-center justify-center h-5 w-5 text-xs rounded-sm;
+  @apply bg-white/10 border border-white/20;
+  @apply ml-auto;
+}
+

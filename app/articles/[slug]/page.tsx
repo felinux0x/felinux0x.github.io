@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowLeft, Calendar, User, Tag, Share2 } from "lucide-react"
 import { Metadata } from "next"
+import { ScrollAnimation } from "@/components/ScrollAnimation";
 
 // Sample data
 const relatedArticles = [
@@ -168,78 +169,84 @@ void vulnerable_function(char *input) {
       </header>
 
       {/* Article Header */}
-      <section className="py-8 border-b border-white/30">
-        <div className="container mx-auto px-4">
-          <Link href="/articles" className="inline-flex items-center text-sm hover:text-gray-400 mb-6">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Articles
-          </Link>
+      <ScrollAnimation>
+        <section className="py-8 border-b border-white/30">
+          <div className="container mx-auto px-4">
+            <Link href="/articles" className="inline-flex items-center text-sm hover:text-gray-400 mb-6">
+              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Articles
+            </Link>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">{article.title}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">{article.title}</h1>
 
-          <div className="flex flex-wrap gap-4 text-sm text-white/70">
-            <div className="flex items-center">
-              <Calendar className="h-4 w-4 mr-1" />
-              <span>{article.date}</span>
-            </div>
-            <div className="flex items-center">
-              <User className="h-4 w-4 mr-1" />
-              <span>{article.author}</span>
-            </div>
-            <div className="flex items-center">
-              <Tag className="h-4 w-4 mr-1" />
-              <span>{article.category}</span>
+            <div className="flex flex-wrap gap-4 text-sm text-white/70">
+              <div className="flex items-center">
+                <Calendar className="h-4 w-4 mr-1" />
+                <span>{article.date}</span>
+              </div>
+              <div className="flex items-center">
+                <User className="h-4 w-4 mr-1" />
+                <span>{article.author}</span>
+              </div>
+              <div className="flex items-center">
+                <Tag className="h-4 w-4 mr-1" />
+                <span>{article.category}</span>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
 
       {/* Article Content */}
-      <section className="py-8">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <div className="prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: article.content }} />
+      <ScrollAnimation delay={200}>
+        <section className="py-8">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <div className="prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: article.content }} />
 
-            {/* Share Links */}
-            <div className="mt-12 pt-6 border-t border-white/30">
-              <div className="flex items-center">
-                <span className="text-sm mr-4">Share this article:</span>
-                <div className="flex space-x-4">
-                  <button className="p-2 border border-white/30 hover:bg-white/10 transition-colors">
-                    <Share2 className="h-4 w-4" />
-                  </button>
+              {/* Share Links */}
+              <div className="mt-12 pt-6 border-t border-white/30">
+                <div className="flex items-center">
+                  <span className="text-sm mr-4">Share this article:</span>
+                  <div className="flex space-x-4">
+                    <button className="p-2 border border-white/30 hover:bg-white/10 transition-colors">
+                      <Share2 className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
 
       {/* Related Articles */}
-      <section className="py-8 bg-white/5 border-y border-white/30">
-        <div className="container mx-auto px-4">
-          <h2 className="text-xl font-bold mb-6 text-white">
-            <span className="text-white">~$ ls</span> RELATED_ARTICLES
-          </h2>
+      <ScrollAnimation delay={400}>
+        <section className="py-8 bg-white/5 border-y border-white/30">
+          <div className="container mx-auto px-4">
+            <h2 className="text-xl font-bold mb-6 text-white">
+              <span className="text-white">~$ ls</span> RELATED_ARTICLES
+            </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {relatedArticles.map((article, index) => (
-              <article key={index} className="border border-white/30 bg-black p-4 hover:bg-white/10 transition-colors">
-                <h3 className="text-lg font-bold mb-2 text-white">{article.title}</h3>
-                <div className="flex items-center text-xs text-white/70 mb-3">
-                  <Calendar className="h-3 w-3 mr-1" />
-                  <span>{article.date}</span>
-                </div>
-                <Link
-                  href={`/articles/${article.slug}`}
-                  className="text-white hover:text-gray-400 transition-colors text-sm"
-                >
-                  Read Article
-                </Link>
-              </article>
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {relatedArticles.map((article, index) => (
+                <article key={index} className="border border-white/30 bg-black p-4 hover:bg-white/10 transition-colors">
+                  <h3 className="text-lg font-bold mb-2 text-white">{article.title}</h3>
+                  <div className="flex items-center text-xs text-white/70 mb-3">
+                    <Calendar className="h-3 w-3 mr-1" />
+                    <span>{article.date}</span>
+                  </div>
+                  <Link
+                    href={`/articles/${article.slug}`}
+                    className="text-white hover:text-gray-400 transition-colors text-sm"
+                  >
+                    Read Article
+                  </Link>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
 
       {/* Footer */}
       <footer className="py-6 border-t border-white/30">
