@@ -6,7 +6,7 @@ import {
   InfoBlock, 
   SummaryBlock, 
   SuccessBlock 
-} from "@/components/ArticleComponents";
+} from "../../components/ArticleComponents";
 
 export const metadata: Metadata = {
   title: "Try Hack Me - OverPass | fe1ps",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function OverPassArticle() {
   return (
-    <div className="py-12"> {/* Container principal */}
+    <div className="py-12">
       <div className="container mx-auto px-4">
         <article> {/* Envolve o conteúdo do artigo */}
           <ScrollAnimation>
@@ -32,8 +32,8 @@ export default function OverPassArticle() {
                 <p><strong>IP:</strong> <InlineCode>10.201.11.108</InlineCode></p>
                 <p><strong>SO:</strong> Ubuntu Linux</p>
                 <p><strong>Vetor de Ataque:</strong> Chave SSH privada exposta e protegida por senha fraca, escalação de privilégios via sequestro de tarefa Cron (Crontab Hijacking).</p>
-            </InfoBlock>
-          </ScrollAnimation>
+              </InfoBlock>
+            </ScrollAnimation>
 
             <ScrollAnimation delay={300}>
               <p className="text-gray-400">
