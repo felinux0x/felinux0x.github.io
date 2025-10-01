@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import { CommandPalette } from "@/components/CommandPalette"
+import TerminalLoader from "@/components/TerminalLoader"; // Added import
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -36,21 +37,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white font-mono flex flex-col">
-            <CommandPalette />
-            <Navbar />
-            <main className="flex-grow">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+        <TerminalLoader> {/* Wrapped content with TerminalLoader */}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white font-mono flex flex-col">
+              <CommandPalette />
+              <Navbar />
+              <main className="flex-grow">
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </ThemeProvider>
+        </TerminalLoader> {/* Closing tag */}
       </body>
     </html>
   )
