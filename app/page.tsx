@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { FileText, User, Calendar, Terminal, Github, Download } from "lucide-react"
 import { YouTubeVideo } from "./components/YouTubeVideo"
-import { title } from "process"
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 
 interface Tool {

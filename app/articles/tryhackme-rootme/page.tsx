@@ -1,49 +1,18 @@
 import { Metadata } from "next"
 import { ScrollAnimation } from "@/components/ScrollAnimation";
+import { 
+  CodeBlock, 
+  InlineCode, 
+  InfoBlock, 
+  SummaryBlock, 
+  WarningBlock, 
+  SuccessBlock 
+} from "@/components/ArticleComponents";
 
 export const metadata: Metadata = {
   title: "Try Hack Me - RootMe | fe1ps",
   description: "Walkthrough da máquina RootMe do TryHackMe, abordando upload de shell reverso e escalação de privilégios via SUID em Python.",
 }
-
-// --- Componentes de Estilo ---
-
-const CodeBlock = ({ children }: { children: React.ReactNode }) => (
-  <pre className="bg-gray-900/50 p-4 rounded-md overflow-x-auto text-sm text-white/90 font-mono">
-    <code>{children}</code>
-  </pre>
-);
-
-const InlineCode = ({ children }: { children: React.ReactNode }) => (
-  <code className="bg-gray-700/50 text-orange-300 py-1 px-1.5 rounded-md text-sm font-mono">
-    {children}
-  </code>
-);
-
-const InfoBlock = ({ children }: { children: React.ReactNode }) => (
-    <div className="bg-blue-900/30 border-l-4 border-blue-400 p-4 rounded-md my-4">
-        {children}
-    </div>
-);
-
-const SummaryBlock = ({ children }: { children: React.ReactNode }) => (
-    <div className="bg-gray-800/50 border-l-4 border-gray-500 p-4 rounded-md my-4">
-        {children}
-    </div>
-);
-
-const WarningBlock = ({ children }: { children: React.ReactNode }) => (
-    <div className="bg-yellow-900/30 border-l-4 border-yellow-400 p-4 rounded-md my-4">
-        {children}
-    </div>
-);
-
-const SuccessBlock = ({ children }: { children: React.ReactNode }) => (
-    <div className="bg-green-900/30 border-l-4 border-green-400 p-4 rounded-md my-4">
-        {children}
-    </div>
-);
-
 
 // --- Componente Principal do Artigo ---
 
@@ -51,29 +20,30 @@ export default function RootMeArticle() {
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
-        <ScrollAnimation>
-          <h1 className="text-4xl font-bold pt-4 mt-4 border-t border-white/30">Try Hack Me - RootMe</h1>
-        </ScrollAnimation>
-        
-        <div className="space-y-12">
+        <article>
+          <ScrollAnimation>
+            <h1 className="text-4xl font-bold pt-4 mt-4 border-t border-white/30">Try Hack Me - RootMe</h1>
+          </ScrollAnimation>
+          
+          <div className="space-y-12 mt-8">
             
-          <ScrollAnimation delay={200}>
-            <InfoBlock>
+            <ScrollAnimation delay={200}>
+              <InfoBlock>
                 <p><strong>Resumo da Máquina</strong></p>
                 <p><strong>IP:</strong> <InlineCode>10.10.2.78</InlineCode></p>
                 <p><strong>SO:</strong> Ubuntu Linux</p>
                 <p><strong>Vetor de Ataque:</strong> Upload de shell reverso PHP, escalação de privilégios via SUID em Python 2.7.</p>
-            </InfoBlock>
-          </ScrollAnimation>
+              </InfoBlock>
+            </ScrollAnimation>
 
-          <ScrollAnimation delay={300}>
-            <p className="text-gray-400">
+            <ScrollAnimation delay={300}>
+              <p className="text-gray-400">
                 <strong>Tags:</strong> <InlineCode>#ctf</InlineCode> <InlineCode>#walkthrough</InlineCode> <InlineCode>#nmap</InlineCode> <InlineCode>#gobuster</InlineCode> <InlineCode>#reverseshell</InlineCode> <InlineCode>#privesc</InlineCode> <InlineCode>#suid</InlineCode>
-            </p>
-          </ScrollAnimation>
+              </p>
+            </ScrollAnimation>
 
-          <ScrollAnimation delay={200}>
-            <section>
+            <ScrollAnimation delay={200}>
+              <section>
               <h2 className="text-2xl font-bold pt-4 mt-4 border-t border-white/30">1. Reconhecimento e Enumeração</h2>
               <p className="mt-4 text-gray-300">
                 O primeiro passo foi escanear a máquina alvo para identificar portas abertas e os serviços em execução.
@@ -176,9 +146,10 @@ cat /root/root.txt`}</CodeBlock>
               <SuccessBlock>
                   <strong>root.txt:</strong> <InlineCode>{"THM{...root_flag...}"}</InlineCode>
               </SuccessBlock>
-            </section>
-          </ScrollAnimation>
-        </div>
+              </section>
+            </ScrollAnimation>
+          </div>
+        </article>
       </div>
     </div>
   )

