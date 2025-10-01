@@ -38,12 +38,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <TerminalLoader> {/* Wrapped content with TerminalLoader */}
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+        >
             <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white font-mono flex flex-col">
               <CommandPalette />
               <Navbar />

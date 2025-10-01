@@ -19,6 +19,7 @@ const allTools = [
   { name: "Python IDS Framework", path: "/tools" },
   { name: "Arch Pentest Installer", path: "/tools" },
   { name: "Spectro", path: "/tools" },
+  { name: "PyVigil", path: "/tools" },
 ];
 
 export function CommandPalette() {
@@ -68,17 +69,9 @@ export function CommandPalette() {
         </Command.Group>
 
         <Command.Group heading="Theme">
-          <Command.Item onSelect={() => runCommand(() => setTheme("light"))}>
-            <Sun className="mr-2 h-4 w-4" />
-            <span>Light</span>
-          </Command.Item>
           <Command.Item onSelect={() => runCommand(() => setTheme("dark"))}>
             <Moon className="mr-2 h-4 w-4" />
             <span>Dark</span>
-          </Command.Item>
-          <Command.Item onSelect={() => runCommand(() => setTheme("system"))}>
-            <Laptop className="mr-2 h-4 w-4" />
-            <span>System</span>
           </Command.Item>
         </Command.Group>
 
