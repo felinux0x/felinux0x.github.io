@@ -7,7 +7,7 @@ import {
   SummaryBlock, 
   WarningBlock, 
   SuccessBlock 
-} from "@/components/ArticleComponents";
+} from "../../components/ArticleComponents";
 
 export const metadata: Metadata = {
   title: "Try Hack Me - RootMe | fe1ps",

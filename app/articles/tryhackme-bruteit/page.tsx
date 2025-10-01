@@ -6,7 +6,7 @@ import {
   InfoBlock, 
   SummaryBlock, 
   SuccessBlock 
-} from "@/components/ArticleComponents";
+} from "../../components/ArticleComponents";
 
 export const metadata: Metadata = {
   title: "TryHackMe - Brute It | fe1ps",
