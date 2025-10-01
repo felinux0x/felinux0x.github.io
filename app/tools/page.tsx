@@ -120,6 +120,18 @@ export default function Tools() {
 // Sample data
 const tools = [
   {
+    name: "PyVigil",
+    description:
+      "Um HIDS (Host-based Intrusion Detection System) simples e robusto que monitora arquivos de log em tempo real, aplicando um conjunto de regras flexíveis para detectar atividades suspeitas.",
+    language: "Python",
+    version: "1.0.0",
+    updated: "2025-10-01",
+    category: "Defensive Security",
+    githubUrl: "https://github.com/felinux0x/PyVigial",
+    downloadUrl: "https://github.com/felinux0x/PyVigial",
+    docsUrl: "https://github.com/felinux0x/PyVigial/blob/main/README.md",
+  },
+  {
     name: "Python IDS Framework",
     description:
       "Sistema de Detecção de Intrusão (IDS) baseado em regras, desenvolvido em Python com a biblioteca Scapy para análise de pacotes de rede.",

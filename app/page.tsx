@@ -155,6 +155,13 @@ const featuredArticles = [
 
 const featuredTools: Tool[] = [
   {
+    name: "PyVigil",
+    description: "Um HIDS (Host-based Intrusion Detection System) que monitora logs em tempo real para detectar atividades suspeitas com base em regras.",
+    language: "Python",
+    githubUrl: "https://github.com/felinux0x/PyVigial",
+    downloadUrl: "https://github.com/felinux0x/PyVigial",
+  },
+  {
     name: "Python IDS Framework",
     description: "Sistema de Detecção de Intrusão (IDS) baseado em regras, desenvolvido em Python com a biblioteca Scapy para análise de pacotes de rede.",
     language: "Python",
