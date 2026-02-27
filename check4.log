@@ -1,0 +1,51 @@
+
+> felps@0.0.1 check D:\Projetos\Siste teste\felps
+> astro check
+
+16:21:37 [content] Syncing content
+16:21:37 [content] Synced content
+16:21:37 [types] Generated 242ms
+16:21:37 [check] Getting diagnostics for Astro files in D:\Projetos\Siste teste\felps...
+[96msrc/config.ts[0m:[93m3[0m:[93m2[0m - [93mwarning[0m[90m ts(6196): [0m'GiscusConfig' is declared but never used.
+
+[7m3[0m  GiscusConfig,
+[7m [0m [93m ~~~~~~~~~~~~[0m
+
+[96msrc/components/control/CustomCursor.astro[0m:[93m32[0m:[93m11[0m - [93mwarning[0m[90m ts(6133): [0m'inner' is declared but its value is never read.
+
+[7m32[0m     const inner = cursor?.querySelector('.cursor-inner');
+[7m  [0m [93m          ~~~~~[0m
+
+[96msrc/components/widget/TerminalWidget.astro[0m:[93m3[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'BANNER_HEIGHT' is declared but its value is never read.
+
+[7m3[0m import { BANNER_HEIGHT } from "../../constants/constants";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/widget/TerminalWidget.astro[0m:[93m2[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'siteConfig' is declared but its value is never read.
+
+[7m2[0m import { siteConfig } from "../../config";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/layouts/Layout.astro[0m:[93m33[0m:[93m41[0m - [93mwarning[0m[90m ts(6133): [0m'setOGTypeArticle' is declared but its value is never read.
+
+[7m33[0m let { title, banner, description, lang, setOGTypeArticle } = Astro.props;
+[7m  [0m [93m                                        ~~~~~~~~~~~~~~~~[0m
+
+[96msrc/layouts/MainGridLayout.astro[0m:[93m17[0m:[93m2[0m - [93mwarning[0m[90m ts(6133): [0m'MAIN_PANEL_OVERLAPS_BANNER_HEIGHT' is declared but its value is never read.
+
+[7m17[0m  MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
+[7m  [0m [93m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/layouts/MainGridLayout.astro[0m:[93m8[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'ImageWrapper' is declared but its value is never read.
+
+[7m8[0m import ImageWrapper from "../components/misc/ImageWrapper.astro";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/plugins/expressive-code/language-badge.ts[0m:[93m10[0m:[93m16[0m - [93mwarning[0m[90m ts(6133): [0m'_cssVar' is declared but its value is never read.
+
+[7m10[0m   baseStyles: ({ _cssVar }) => `
+[7m  [0m [93m               ~~~~~~~~~~~[0m
+
+Result (72 files): 
+- 0 errors
+- 0 warnings
+- 8 hints
+

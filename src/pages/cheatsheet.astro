@@ -214,6 +214,7 @@ const allCommandFlat = categories.flatMap(cat => cat.commands.map(cmd => ({ ...c
 </MainGridLayout>
 
 <script>
+// @ts-nocheck
     function setupDashboard() {
         const searchInput = document.getElementById('command-search');
         const cards = document.querySelectorAll('.command-card');

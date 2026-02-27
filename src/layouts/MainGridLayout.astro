@@ -128,9 +128,6 @@ const mainPanelTop = siteConfig.banner.enable
 
 <script is:inline>
 (function() {
-    if (sessionStorage.getItem('ctrlk-shown')) return;
-    sessionStorage.setItem('ctrlk-shown', '1');
-
     const toast = document.getElementById('ctrlk-toast');
     const bar   = document.getElementById('ctrlk-bar');
     if (!toast) return;

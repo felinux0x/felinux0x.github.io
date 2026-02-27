@@ -1,0 +1,238 @@
+
+> felps@0.0.1 check D:\Projetos\Siste teste\felps
+> astro check
+
+16:20:02 [content] Syncing content
+16:20:02 [content] Synced content
+16:20:02 [types] Generated 223ms
+16:20:02 [check] Getting diagnostics for Astro files in D:\Projetos\Siste teste\felps...
+[96msrc/config.ts[0m:[93m3[0m:[93m2[0m - [93mwarning[0m[90m ts(6196): [0m'GiscusConfig' is declared but never used.
+
+[7m3[0m  GiscusConfig,
+[7m [0m [93m ~~~~~~~~~~~~[0m
+
+[96msrc/components/Navbar.astro[0m:[93m109[0m:[93m69[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'url'.
+
+[7m109[0m {import.meta.env.PROD && <script is:inline define:vars={{scriptUrl: url('/pagefind/pagefind.js')}}>
+[7m   [0m [91m                                                                    ~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m62[0m:[93m49[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'DisplaySettings'.
+
+[7m62[0m         <DisplaySettings client:only="svelte"></DisplaySettings>
+[7m  [0m [91m                                                ~~~~~~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m62[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'DisplaySettings'.
+
+[7m62[0m         <DisplaySettings client:only="svelte"></DisplaySettings>
+[7m  [0m [91m         ~~~~~~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m61[0m:[93m39[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'NavMenuPanel'.
+
+[7m61[0m         <NavMenuPanel links={links}></NavMenuPanel>
+[7m  [0m [91m                                      ~~~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m61[0m:[93m30[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'links'.
+
+[7m61[0m         <NavMenuPanel links={links}></NavMenuPanel>
+[7m  [0m [91m                             ~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m61[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'NavMenuPanel'.
+
+[7m61[0m         <NavMenuPanel links={links}></NavMenuPanel>
+[7m  [0m [91m         ~~~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m58[0m:[93m85[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Icon'.
+
+[7m58[0m                 <Icon name="material-symbols:menu-rounded" class="text-[1.25rem]"></Icon>
+[7m  [0m [91m                                                                                    ~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m58[0m:[93m18[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Icon'.
+
+[7m58[0m                 <Icon name="material-symbols:menu-rounded" class="text-[1.25rem]"></Icon>
+[7m  [0m [91m                 ~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m56[0m:[93m53[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'LightDarkSwitch'.
+
+[7m56[0m             <LightDarkSwitch client:only="svelte"></LightDarkSwitch>
+[7m  [0m [91m                                                    ~~~~~~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m56[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'LightDarkSwitch'.
+
+[7m56[0m             <LightDarkSwitch client:only="svelte"></LightDarkSwitch>
+[7m  [0m [91m             ~~~~~~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m53[0m:[93m96[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Icon'.
+
+[7m53[0m                         <Icon name="material-symbols:palette-outline" class="text-[1.25rem]"></Icon>
+[7m  [0m [91m                                                                                               ~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m53[0m:[93m26[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Icon'.
+
+[7m53[0m                         <Icon name="material-symbols:palette-outline" class="text-[1.25rem]"></Icon>
+[7m  [0m [91m                         ~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m51[0m:[93m15[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'siteConfig'.
+
+[7m51[0m             {!siteConfig.themeColor.fixed && (
+[7m  [0m [91m              ~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m50[0m:[93m44[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Search'.
+
+[7m50[0m             <Search client:only="svelte"></Search>
+[7m  [0m [91m                                           ~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m50[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Search'.
+
+[7m50[0m             <Search client:only="svelte"></Search>
+[7m  [0m [91m             ~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m43[0m:[93m190[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Icon'.
+
+[7m43[0m                         {l.external && <Icon name="fa6-solid:arrow-up-right-from-square" class="text-[0.875rem] transition -translate-y-[1px] ml-1 text-black/[0.2] dark:text-white/[0.2]"></Icon>}
+[7m  [0m [91m                                                                                                                                                                                             ~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m43[0m:[93m41[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Icon'.
+
+[7m43[0m                         {l.external && <Icon name="fa6-solid:arrow-up-right-from-square" class="text-[0.875rem] transition -translate-y-[1px] ml-1 text-black/[0.2] dark:text-white/[0.2]"></Icon>}
+[7m  [0m [91m                                        ~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m38[0m:[93m74[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'url'.
+
+[7m38[0m                 return <a aria-label={l.name} href={l.external ? l.url : url(l.url)} target={l.external ? "_blank" : null}
+[7m  [0m [91m                                                                         ~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m37[0m:[93m25[0m - [91merror[0m[90m ts(7006): [0mParameter 'l' implicitly has an 'any' type.
+
+[7m37[0m             {links.map((l) => {
+[7m  [0m [91m                        ~[0m
+[96msrc/components/Navbar.astro[0m:[93m37[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'links'.
+
+[7m37[0m             {links.map((l) => {
+[7m  [0m [91m             ~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m33[0m:[93m35[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'siteConfig'.
+
+[7m33[0m                 <GlitchText text={siteConfig.title} />
+[7m  [0m [91m                                  ~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m33[0m:[93m18[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'GlitchText'.
+
+[7m33[0m                 <GlitchText text={siteConfig.title} />
+[7m  [0m [91m                 ~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m32[0m:[93m18[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Icon'.
+
+[7m32[0m                 <Icon name="material-symbols:home-outline-rounded" class="text-[1.75rem] mb-1 mr-2" />
+[7m  [0m [91m                 ~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m30[0m:[93m18[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'url'.
+
+[7m30[0m         <a href={url('/')} class="btn-plain scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95">
+[7m  [0m [91m                 ~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m28[0m:[93m9[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'className'.
+
+[7m28[0m         className,
+[7m  [0m [91m        ~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m7[0m:[93m10[0m - [91merror[0m[90m ts(2552): [0mCannot find name 'url'. Did you mean 'URL'?
+
+[7m7[0m import { url } from "../utils/url-utils";
+[7m [0m [91m         ~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m6[0m:[93m22[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'type'.
+
+[7m6[0m import { LinkPreset, type NavBarLink } from "../types/config";
+[7m [0m [91m                     ~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m ts(2695): [0mLeft side of comma operator is unused and has no side effects.
+
+[7m6[0m import { LinkPreset, type NavBarLink } from "../types/config";
+[7m [0m [91m         ~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'LinkPreset'.
+
+[7m6[0m import { LinkPreset, type NavBarLink } from "../types/config";
+[7m [0m [91m         ~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m5[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'LinkPresets'.
+
+[7m5[0m import { LinkPresets } from "../constants/link-presets";
+[7m [0m [91m         ~~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m4[0m:[93m24[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'siteConfig'.
+
+[7m4[0m import { navBarConfig, siteConfig } from "../config";
+[7m [0m [91m                       ~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m4[0m:[93m10[0m - [91merror[0m[90m ts(2695): [0mLeft side of comma operator is unused and has no side effects.
+
+[7m4[0m import { navBarConfig, siteConfig } from "../config";
+[7m [0m [91m         ~~~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m4[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'navBarConfig'.
+
+[7m4[0m import { navBarConfig, siteConfig } from "../config";
+[7m [0m [91m         ~~~~~~~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Icon'.
+
+[7m3[0m import { Icon } from "astro-icon/components";
+[7m [0m [91m         ~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m19[0m:[93m4[0m - [91merror[0m[90m ts(1109): [0mExpression expected.
+
+[7m19[0m    return LinkPresets[item];
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/components/Navbar.astro[0m:[93m18[0m:[93m3[0m - [91merror[0m[90m ts(1109): [0mExpression expected.
+
+[7m18[0m   if (typeof item === "number") {
+[7m  [0m [91m  ~~[0m
+[96msrc/components/Navbar.astro[0m:[93m6[0m:[93m27[0m - [91merror[0m[90m ts(1005): [0m'}' expected.
+
+[7m6[0m import { LinkPreset, type NavBarLink } from "../types/config";
+[7m [0m [91m                          ~~~~~~~~~~[0m
+
+[96msrc/components/control/CustomCursor.astro[0m:[93m32[0m:[93m11[0m - [93mwarning[0m[90m ts(6133): [0m'inner' is declared but its value is never read.
+
+[7m32[0m     const inner = cursor?.querySelector('.cursor-inner');
+[7m  [0m [93m          ~~~~~[0m
+
+[96msrc/components/widget/TerminalWidget.astro[0m:[93m3[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'BANNER_HEIGHT' is declared but its value is never read.
+
+[7m3[0m import { BANNER_HEIGHT } from "../../constants/constants";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/widget/TerminalWidget.astro[0m:[93m2[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'siteConfig' is declared but its value is never read.
+
+[7m2[0m import { siteConfig } from "../../config";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/layouts/Layout.astro[0m:[93m33[0m:[93m41[0m - [93mwarning[0m[90m ts(6133): [0m'setOGTypeArticle' is declared but its value is never read.
+
+[7m33[0m let { title, banner, description, lang, setOGTypeArticle } = Astro.props;
+[7m  [0m [93m                                        ~~~~~~~~~~~~~~~~[0m
+
+[96msrc/layouts/MainGridLayout.astro[0m:[93m17[0m:[93m2[0m - [93mwarning[0m[90m ts(6133): [0m'MAIN_PANEL_OVERLAPS_BANNER_HEIGHT' is declared but its value is never read.
+
+[7m17[0m  MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
+[7m  [0m [93m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/layouts/MainGridLayout.astro[0m:[93m8[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'ImageWrapper' is declared but its value is never read.
+
+[7m8[0m import ImageWrapper from "../components/misc/ImageWrapper.astro";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/pages/archive.astro[0m:[93m14[0m:[93m3[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'MainGridLayout'.
+
+[7m14[0m </MainGridLayout>
+[7m  [0m [91m  ~~~~~~~~~~~~~~[0m
+[96msrc/pages/archive.astro[0m:[93m13[0m:[93m79[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'ArchivePanel'.
+
+[7m13[0m     <ArchivePanel sortedPosts={sortedPostsList as any} client:only="svelte"></ArchivePanel>
+[7m  [0m [91m                                                                              ~~~~~~~~~~~~[0m
+[96msrc/pages/archive.astro[0m:[93m13[0m:[93m32[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'sortedPostsList'.
+
+[7m13[0m     <ArchivePanel sortedPosts={sortedPostsList as any} client:only="svelte"></ArchivePanel>
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~[0m
+[96msrc/pages/archive.astro[0m:[93m13[0m:[93m6[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'ArchivePanel'.
+
+[7m13[0m     <ArchivePanel sortedPosts={sortedPostsList as any} client:only="svelte"></ArchivePanel>
+[7m  [0m [91m     ~~~~~~~~~~~~[0m
+[96msrc/pages/archive.astro[0m:[93m12[0m:[93m29[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'I18nKey'.
+
+[7m12[0m <MainGridLayout title={i18n(I18nKey.archive)}>
+[7m  [0m [91m                            ~~~~~~~[0m
+[96msrc/pages/archive.astro[0m:[93m12[0m:[93m24[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'i18n'.
+
+[7m12[0m <MainGridLayout title={i18n(I18nKey.archive)}>
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/pages/archive.astro[0m:[93m12[0m:[93m2[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'MainGridLayout'.
+
+[7m12[0m <MainGridLayout title={i18n(I18nKey.archive)}>
+[7m  [0m [91m ~~~~~~~~~~~~~~[0m
+[96msrc/pages/archive.astro[0m:[93m7[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'getSortedPostsList'.
+
+[7m7[0m import { getSortedPostsList } from "../utils/content-utils";
+[7m [0m [91m         ~~~~~~~~~~~~~~~~~~[0m
+[96msrc/pages/archive.astro[0m:[93m5[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'i18n'.
+
+[7m5[0m import { i18n } from "@i18n/translation";
+[7m [0m [91m         ~~~~[0m
+
+[96msrc/plugins/expressive-code/language-badge.ts[0m:[93m10[0m:[93m16[0m - [93mwarning[0m[90m ts(6133): [0m'_cssVar' is declared but its value is never read.
+
+[7m10[0m   baseStyles: ({ _cssVar }) => `
+[7m  [0m [93m               ~~~~~~~~~~~[0m
+
+Result (72 files): 
+- 46 errors
+- 0 warnings
+- 8 hints
+
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

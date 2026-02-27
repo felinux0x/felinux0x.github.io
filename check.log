@@ -1,0 +1,469 @@
+
+> felps@0.0.1 check D:\Projetos\Siste teste\felps
+> astro check
+
+16:15:33 [WARN] [router] The route "/cheatsheet" is defined in both "src/pages/cheatsheet/index.astro" and "src/pages/cheatsheet.astro". A static route cannot be defined more than once.
+16:15:33 [WARN] [router] A collision will result in an hard error in following versions of Astro.
+16:15:33 [content] Syncing content
+16:15:33 [content] Synced content
+16:15:33 [types] Generated 217ms
+16:15:33 [check] Getting diagnostics for Astro files in D:\Projetos\Siste teste\felps...
+[96msrc/config.ts[0m:[93m3[0m:[93m2[0m - [93mwarning[0m[90m ts(6196): [0m'GiscusConfig' is declared but never used.
+
+[7m3[0m  GiscusConfig,
+[7m [0m [93m ~~~~~~~~~~~~[0m
+
+[96msrc/components/Navbar.astro[0m:[93m55[0m:[93m14[0m - [91merror[0m[90m ts(2322): [0mType '{ "client:only": string; }' is not assignable to type 'IntrinsicAttributes & Record<string, never>'.
+  Type '{ "client:only": string; }' is not assignable to type 'Record<string, never>'.
+    Property 'client:only' is incompatible with index signature.
+      Type 'string' is not assignable to type 'never'.
+
+[7m55[0m             <LightDarkSwitch client:only="svelte"></LightDarkSwitch>
+[7m  [0m [91m             ~~~~~~~~~~~~~~~[0m
+
+[96msrc/components/control/CustomCursor.astro[0m:[93m32[0m:[93m11[0m - [93mwarning[0m[90m ts(6133): [0m'inner' is declared but its value is never read.
+
+[7m32[0m     const inner = cursor?.querySelector('.cursor-inner');
+[7m  [0m [93m          ~~~~~[0m
+
+[96msrc/components/misc/BootSequence.astro[0m:[93m196[0m:[93m32[0m - [91merror[0m[90m ts(18047): [0m'output' is possibly 'null'.
+
+[7m196[0m             output.scrollTop = output.scrollHeight;
+[7m   [0m [91m                               ~~~~~~[0m
+[96msrc/components/misc/BootSequence.astro[0m:[93m196[0m:[93m13[0m - [91merror[0m[90m ts(18047): [0m'output' is possibly 'null'.
+
+[7m196[0m             output.scrollTop = output.scrollHeight;
+[7m   [0m [91m            ~~~~~~[0m
+[96msrc/components/misc/BootSequence.astro[0m:[93m195[0m:[93m13[0m - [91merror[0m[90m ts(18047): [0m'output' is possibly 'null'.
+
+[7m195[0m             output.appendChild(el);
+[7m   [0m [91m            ~~~~~~[0m
+[96msrc/components/misc/BootSequence.astro[0m:[93m185[0m:[93m36[0m - [91merror[0m[90m ts(18047): [0m'output' is possibly 'null'.
+
+[7m185[0m                 output.scrollTop = output.scrollHeight;
+[7m   [0m [91m                                   ~~~~~~[0m
+[96msrc/components/misc/BootSequence.astro[0m:[93m185[0m:[93m17[0m - [91merror[0m[90m ts(18047): [0m'output' is possibly 'null'.
+
+[7m185[0m                 output.scrollTop = output.scrollHeight;
+[7m   [0m [91m                ~~~~~~[0m
+[96msrc/components/misc/BootSequence.astro[0m:[93m171[0m:[93m17[0m - [91merror[0m[90m ts(18047): [0m'output' is possibly 'null'.
+
+[7m171[0m                 output.appendChild(el);
+[7m   [0m [91m                ~~~~~~[0m
+[96msrc/components/misc/BootSequence.astro[0m:[93m101[0m:[93m28[0m - [91merror[0m[90m ts(18047): [0m'screen' is possibly 'null'.
+
+[7m101[0m         setTimeout(() => { screen.style.display = 'none'; }, 750);
+[7m   [0m [91m                           ~~~~~~[0m
+[96msrc/components/misc/BootSequence.astro[0m:[93m100[0m:[93m9[0m - [91merror[0m[90m ts(18047): [0m'screen' is possibly 'null'.
+
+[7m100[0m         screen.classList.add('boot-dissolving');
+[7m   [0m [91m        ~~~~~~[0m
+
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m379[0m:[93m43[0m - [91merror[0m[90m ts(7005): [0mVariable 'inputEl' implicitly has an 'any' type.
+
+[7m379[0m                 else { historyIndex = -1; inputEl.value = ''; }
+[7m   [0m [91m                                          ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m378[0m:[93m73[0m - [91merror[0m[90m ts(7005): [0mVariable 'history' implicitly has an 'any[]' type.
+
+[7m378[0m                 if (historyIndex > 0) { historyIndex--; inputEl.value = history[historyIndex]; }
+[7m   [0m [91m                                                                        ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m378[0m:[93m57[0m - [91merror[0m[90m ts(7005): [0mVariable 'inputEl' implicitly has an 'any' type.
+
+[7m378[0m                 if (historyIndex > 0) { historyIndex--; inputEl.value = history[historyIndex]; }
+[7m   [0m [91m                                                        ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m374[0m:[93m90[0m - [91merror[0m[90m ts(7005): [0mVariable 'history' implicitly has an 'any[]' type.
+
+[7m374[0m                 if (historyIndex < history.length - 1) { historyIndex++; inputEl.value = history[historyIndex]; }
+[7m   [0m [91m                                                                                         ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m374[0m:[93m74[0m - [91merror[0m[90m ts(7005): [0mVariable 'inputEl' implicitly has an 'any' type.
+
+[7m374[0m                 if (historyIndex < history.length - 1) { historyIndex++; inputEl.value = history[historyIndex]; }
+[7m   [0m [91m                                                                         ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m371[0m:[93m69[0m - [91merror[0m[90m ts(7005): [0mVariable 'inputEl' implicitly has an 'any' type.
+
+[7m371[0m             if (e.key === 'Tab') { e.preventDefault(); autocomplete(inputEl.value); }
+[7m   [0m [91m                                                                    ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m370[0m:[93m68[0m - [91merror[0m[90m ts(7005): [0mVariable 'inputEl' implicitly has an 'any' type.
+
+[7m370[0m             if (e.key === 'Enter') { handleCommand(inputEl.value); inputEl.value = ''; }
+[7m   [0m [91m                                                                   ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m370[0m:[93m52[0m - [91merror[0m[90m ts(7005): [0mVariable 'inputEl' implicitly has an 'any' type.
+
+[7m370[0m             if (e.key === 'Enter') { handleCommand(inputEl.value); inputEl.value = ''; }
+[7m   [0m [91m                                                   ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m366[0m:[93m30[0m - [91merror[0m[90m ts(7005): [0mVariable 'containerEl' implicitly has an 'any' type.
+
+[7m366[0m             if (e.target === containerEl) closeTerminal();
+[7m   [0m [91m                             ~~~~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m359[0m:[93m33[0m - [91merror[0m[90m ts(7005): [0mVariable 'containerEl' implicitly has an 'any' type.
+
+[7m359[0m                 const isOpen = !containerEl.classList.contains('opacity-0');
+[7m   [0m [91m                                ~~~~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m341[0m:[93m13[0m - [91merror[0m[90m ts(7005): [0mVariable 'inputEl' implicitly has an 'any' type.
+
+[7m341[0m             inputEl.value = matches[0];
+[7m   [0m [91m            ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m334[0m:[93m27[0m - [91merror[0m[90m ts(7006): [0mParameter 'val' implicitly has an 'any' type.
+
+[7m334[0m     function autocomplete(val) {
+[7m   [0m [91m                          ~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m330[0m:[93m14[0m - [91merror[0m[90m ts(7005): [0mVariable 'containerEl' implicitly has an 'any' type.
+
+[7m330[0m         if (!containerEl) return;
+[7m   [0m [91m             ~~~~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m322[0m:[93m13[0m - [91merror[0m[90m ts(7005): [0mVariable 'outputEl' implicitly has an 'any' type.
+
+[7m322[0m         if (outputEl && outputEl.children.length === 0) {
+[7m   [0m [91m            ~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m320[0m:[93m26[0m - [91merror[0m[90m ts(7005): [0mVariable 'inputEl' implicitly has an 'any' type.
+
+[7m320[0m         setTimeout(() => inputEl?.focus(), 40);
+[7m   [0m [91m                         ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m318[0m:[93m14[0m - [91merror[0m[90m ts(7005): [0mVariable 'containerEl' implicitly has an 'any' type.
+
+[7m318[0m         if (!containerEl) return;
+[7m   [0m [91m             ~~~~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m275[0m:[93m57[0m - [91merror[0m[90m ts(7005): [0mVariable 'outputEl' implicitly has an 'any' type.
+
+[7m275[0m         if (lower === 'clear' || lower === 'cls') { if (outputEl) outputEl.innerHTML = ''; return; }
+[7m   [0m [91m                                                        ~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m240[0m:[93m34[0m - [91merror[0m[90m ts(7005): [0mVariable 'history' implicitly has an 'any[]' type.
+
+[7m240[0m         if (history.length > 50) history.pop();
+[7m   [0m [91m                                 ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m235[0m:[93m28[0m - [91merror[0m[90m ts(7006): [0mParameter 'raw' implicitly has an 'any' type.
+
+[7m235[0m     function handleCommand(raw) {
+[7m   [0m [91m                           ~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m229[0m:[93m28[0m - [91merror[0m[90m ts(7006): [0mParameter 'label' implicitly has an 'any' type.
+
+[7m229[0m     function navigate(url, label) {
+[7m   [0m [91m                           ~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m229[0m:[93m23[0m - [91merror[0m[90m ts(7006): [0mParameter 'url' implicitly has an 'any' type.
+
+[7m229[0m     function navigate(url, label) {
+[7m   [0m [91m                      ~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m202[0m:[93m30[0m - [91merror[0m[90m ts(7005): [0mVariable 'outputEl' implicitly has an 'any' type.
+
+[7m202[0m         outputEl.scrollTop = outputEl.scrollHeight;
+[7m   [0m [91m                             ~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m202[0m:[93m9[0m - [91merror[0m[90m ts(7005): [0mVariable 'outputEl' implicitly has an 'any' type.
+
+[7m202[0m         outputEl.scrollTop = outputEl.scrollHeight;
+[7m   [0m [91m        ~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m201[0m:[93m9[0m - [91merror[0m[90m ts(7005): [0mVariable 'outputEl' implicitly has an 'any' type.
+
+[7m201[0m         outputEl.appendChild(wrapper);
+[7m   [0m [91m        ~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m151[0m:[93m23[0m - [91merror[0m[90m ts(7053): [0mElement implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ emerald: string; amber: string; cobalt: string; crimson: string; }'.
+  No index signature with a parameter of type 'string' was found on type '{ emerald: string; amber: string; cobalt: string; crimson: string; }'.
+
+[7m151[0m         const color = themeColor[theme] || '#00ff7f';
+[7m   [0m [91m                      ~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m124[0m:[93m22[0m - [91merror[0m[90m ts(7006): [0mParameter 'str' implicitly has an 'any' type.
+
+[7m124[0m     function escHtml(str) {
+[7m   [0m [91m                     ~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m120[0m:[93m26[0m - [91merror[0m[90m ts(7006): [0mParameter 'cmd' implicitly has an 'any' type.
+
+[7m120[0m     function printPrompt(cmd) {
+[7m   [0m [91m                         ~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m110[0m:[93m14[0m - [91merror[0m[90m ts(7005): [0mVariable 'outputEl' implicitly has an 'any' type.
+
+[7m110[0m         if (!outputEl) return;
+[7m   [0m [91m             ~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m109[0m:[93m20[0m - [91merror[0m[90m ts(7006): [0mParameter 'html' implicitly has an 'any' type.
+
+[7m109[0m     function print(html, cls = '') {
+[7m   [0m [91m                   ~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m107[0m:[93m28[0m - [91merror[0m[90m ts(7034): [0mVariable 'containerEl' implicitly has type 'any' in some locations where its type cannot be determined.
+
+[7m107[0m     let outputEl, inputEl, containerEl;
+[7m   [0m [91m                           ~~~~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m107[0m:[93m19[0m - [91merror[0m[90m ts(7034): [0mVariable 'inputEl' implicitly has type 'any' in some locations where its type cannot be determined.
+
+[7m107[0m     let outputEl, inputEl, containerEl;
+[7m   [0m [91m                  ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m107[0m:[93m9[0m - [91merror[0m[90m ts(7034): [0mVariable 'outputEl' implicitly has type 'any' in some locations where its type cannot be determined.
+
+[7m107[0m     let outputEl, inputEl, containerEl;
+[7m   [0m [91m        ~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m104[0m:[93m9[0m - [91merror[0m[90m ts(7034): [0mVariable 'history' implicitly has type 'any[]' in some locations where its type cannot be determined.
+
+[7m104[0m     let history = [];
+[7m   [0m [91m        ~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m86[0m:[93m19[0m - [91merror[0m[90m ts(7053): [0mElement implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ emerald: string; amber: string; cobalt: string; crimson: string; }'.
+  No index signature with a parameter of type 'string' was found on type '{ emerald: string; amber: string; cobalt: string; crimson: string; }'.
+
+[7m86[0m         const c = themeColor[theme] || '#00ff7f';
+[7m  [0m [91m                  ~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m152[0m:[93m15[0m - [93mwarning[0m[90m ts(6133): [0m'rows' is declared but its value is never read.
+
+[7m152[0m         const rows = Math.max(NEOFETCH_ART.length, info.length);
+[7m   [0m [93m              ~~~~[0m
+[96msrc/components/misc/GlobalCommand.astro[0m:[93m49[0m:[93m11[0m - [93mwarning[0m[90m ts(6133): [0m'NAV_COMMANDS' is declared but its value is never read.
+
+[7m49[0m     const NAV_COMMANDS = {
+[7m  [0m [93m          ~~~~~~~~~~~~[0m
+
+[96msrc/components/misc/TacticalBanner.astro[0m:[93m106[0m:[93m13[0m - [91merror[0m[90m ts(7005): [0mVariable 'bannerInterval' implicitly has an 'any' type.
+
+[7m106[0m         if (bannerInterval) clearInterval(bannerInterval);
+[7m   [0m [91m            ~~~~~~~~~~~~~~[0m
+[96msrc/components/misc/TacticalBanner.astro[0m:[93m104[0m:[93m9[0m - [91merror[0m[90m ts(7034): [0mVariable 'bannerInterval' implicitly has type 'any' in some locations where its type cannot be determined.
+
+[7m104[0m     let bannerInterval;
+[7m   [0m [91m        ~~~~~~~~~~~~~~[0m
+[96msrc/components/misc/TacticalBanner.astro[0m:[93m97[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'height' does not exist on type 'HTMLElement'.
+
+[7m97[0m             height = canvas.height = canvas.parentElement.offsetHeight;
+[7m  [0m [91m                            ~~~~~~[0m
+[96msrc/components/misc/TacticalBanner.astro[0m:[93m96[0m:[93m28[0m - [91merror[0m[90m ts(2339): [0mProperty 'width' does not exist on type 'HTMLElement'.
+
+[7m96[0m             width = canvas.width = canvas.parentElement.offsetWidth;
+[7m  [0m [91m                           ~~~~~[0m
+[96msrc/components/misc/TacticalBanner.astro[0m:[93m66[0m:[93m38[0m - [91merror[0m[90m ts(18047): [0m'canvas.parentElement' is possibly 'null'.
+
+[7m66[0m         let height = canvas.height = canvas.parentElement.offsetHeight;
+[7m  [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/misc/TacticalBanner.astro[0m:[93m66[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'height' does not exist on type 'HTMLElement'.
+
+[7m66[0m         let height = canvas.height = canvas.parentElement.offsetHeight;
+[7m  [0m [91m                            ~~~~~~[0m
+[96msrc/components/misc/TacticalBanner.astro[0m:[93m65[0m:[93m36[0m - [91merror[0m[90m ts(18047): [0m'canvas.parentElement' is possibly 'null'.
+
+[7m65[0m         let width = canvas.width = canvas.parentElement.offsetWidth;
+[7m  [0m [91m                                   ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/misc/TacticalBanner.astro[0m:[93m65[0m:[93m28[0m - [91merror[0m[90m ts(2339): [0mProperty 'width' does not exist on type 'HTMLElement'.
+
+[7m65[0m         let width = canvas.width = canvas.parentElement.offsetWidth;
+[7m  [0m [91m                           ~~~~~[0m
+[96msrc/components/misc/TacticalBanner.astro[0m:[93m62[0m:[93m28[0m - [91merror[0m[90m ts(2339): [0mProperty 'getContext' does not exist on type 'HTMLElement'.
+
+[7m62[0m         const ctx = canvas.getContext('2d');
+[7m  [0m [91m                           ~~~~~~~~~~[0m
+
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m182[0m:[93m34[0m - [91merror[0m[90m ts(2339): [0mProperty 'closest' does not exist on type 'EventTarget'.
+
+[7m182[0m             const el = e.target?.closest('a[href], button:not(#console-minimize):not(#console-close):not(#console-toggle)');
+[7m   [0m [91m                                 ~~~~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m178[0m:[93m83[0m - [91merror[0m[90m ts(2339): [0mProperty 'detail' does not exist on type 'Event'.
+
+[7m178[0m         window.addEventListener('tactical-log', (e) => addLog(e.detail.message, e.detail.type));
+[7m   [0m [91m                                                                                  ~~~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m178[0m:[93m65[0m - [91merror[0m[90m ts(2339): [0mProperty 'detail' does not exist on type 'Event'.
+
+[7m178[0m         window.addEventListener('tactical-log', (e) => addLog(e.detail.message, e.detail.type));
+[7m   [0m [91m                                                                ~~~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m127[0m:[93m32[0m - [91merror[0m[90m ts(7053): [0mElement implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ success: string; error: string; warning: string; info: string; }'.
+
+[7m127[0m             log.className = `${colorMap[type] || 'text-white/60'} leading-tight`;
+[7m   [0m [91m                               ~~~~~~~~~~~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m125[0m:[93m46[0m - [91merror[0m[90m ts(7031): [0mBinding element 'type' implicitly has an 'any' type.
+
+[7m125[0m         STATE.logs.forEach(({ time, message, type }) => {
+[7m   [0m [91m                                             ~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m125[0m:[93m37[0m - [91merror[0m[90m ts(7031): [0mBinding element 'message' implicitly has an 'any' type.
+
+[7m125[0m         STATE.logs.forEach(({ time, message, type }) => {
+[7m   [0m [91m                                    ~~~~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m125[0m:[93m31[0m - [91merror[0m[90m ts(7031): [0mBinding element 'time' implicitly has an 'any' type.
+
+[7m125[0m         STATE.logs.forEach(({ time, message, type }) => {
+[7m   [0m [91m                              ~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m106[0m:[93m28[0m - [91merror[0m[90m ts(7053): [0mElement implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ success: string; error: string; warning: string; info: string; }'.
+  No index signature with a parameter of type 'string' was found on type '{ success: string; error: string; warning: string; info: string; }'.
+
+[7m106[0m         log.className = `${colorMap[type] || 'text-white/60'} leading-tight transition-all duration-300 opacity-0 -translate-x-2`;
+[7m   [0m [91m                           ~~~~~~~~~~~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m94[0m:[93m21[0m - [91merror[0m[90m ts(7006): [0mParameter 'message' implicitly has an 'any' type.
+
+[7m94[0m     function addLog(message, type = 'info') {
+[7m  [0m [91m                    ~~~~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m77[0m:[93m27[0m - [91merror[0m[90m ts(7006): [0mParameter 'minimized' implicitly has an 'any' type.
+
+[7m77[0m     function setMinimized(minimized) {
+[7m  [0m [91m                          ~~~~~~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m48[0m:[93m26[0m - [91merror[0m[90m ts(2339): [0mProperty '__tacticalState' does not exist on type 'Window & typeof globalThis'.
+
+[7m48[0m     const STATE = window.__tacticalState;
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m39[0m:[93m16[0m - [91merror[0m[90m ts(2339): [0mProperty '__tacticalState' does not exist on type 'Window & typeof globalThis'.
+
+[7m39[0m         window.__tacticalState = {
+[7m  [0m [91m               ~~~~~~~~~~~~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m38[0m:[93m17[0m - [91merror[0m[90m ts(2339): [0mProperty '__tacticalState' does not exist on type 'Window & typeof globalThis'.
+
+[7m38[0m     if (!window.__tacticalState) {
+[7m  [0m [91m                ~~~~~~~~~~~~~~~[0m
+[96msrc/components/misc/TacticalConsole.astro[0m:[93m157[0m:[93m24[0m - [93mwarning[0m[90m ts(6133): [0m'logsEl' is declared but its value is never read.
+
+[7m157[0m         const { panel, logsEl, minBtn, closeBtn } = getEls();
+[7m   [0m [93m                       ~~~~~~[0m
+
+[96msrc/components/misc/UndergroundOverlays.astro[0m:[93m74[0m:[93m25[0m - [91merror[0m[90m ts(2339): [0mProperty 'height' does not exist on type 'HTMLElement'.
+
+[7m74[0m         height = canvas.height = window.innerHeight;
+[7m  [0m [91m                        ~~~~~~[0m
+[96msrc/components/misc/UndergroundOverlays.astro[0m:[93m73[0m:[93m25[0m - [91merror[0m[90m ts(2339): [0mProperty 'width' does not exist on type 'HTMLElement'.
+
+[7m73[0m         width  = canvas.width  = window.innerWidth;
+[7m  [0m [91m                        ~~~~~[0m
+[96msrc/components/misc/UndergroundOverlays.astro[0m:[93m43[0m:[93m25[0m - [91merror[0m[90m ts(2339): [0mProperty 'height' does not exist on type 'HTMLElement'.
+
+[7m43[0m     let height = canvas.height = window.innerHeight;
+[7m  [0m [91m                        ~~~~~~[0m
+[96msrc/components/misc/UndergroundOverlays.astro[0m:[93m42[0m:[93m25[0m - [91merror[0m[90m ts(2339): [0mProperty 'width' does not exist on type 'HTMLElement'.
+
+[7m42[0m     let width  = canvas.width  = window.innerWidth;
+[7m  [0m [91m                        ~~~~~[0m
+[96msrc/components/misc/UndergroundOverlays.astro[0m:[93m40[0m:[93m24[0m - [91merror[0m[90m ts(2339): [0mProperty 'getContext' does not exist on type 'HTMLElement'.
+
+[7m40[0m     const ctx = canvas.getContext('2d');
+[7m  [0m [91m                       ~~~~~~~~~~[0m
+[96msrc/components/misc/UndergroundOverlays.astro[0m:[93m70[0m:[93m9[0m - [93mwarning[0m[90m ts(6133): [0m'interval' is declared but its value is never read.
+
+[7m70[0m     let interval = setInterval(draw, 40);
+[7m  [0m [93m        ~~~~~~~~[0m
+
+[96msrc/components/widget/TerminalWidget.astro[0m:[93m3[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'BANNER_HEIGHT' is declared but its value is never read.
+
+[7m3[0m import { BANNER_HEIGHT } from "../../constants/constants";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/widget/TerminalWidget.astro[0m:[93m2[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'siteConfig' is declared but its value is never read.
+
+[7m2[0m import { siteConfig } from "../../config";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/layouts/Layout.astro[0m:[93m33[0m:[93m41[0m - [93mwarning[0m[90m ts(6133): [0m'setOGTypeArticle' is declared but its value is never read.
+
+[7m33[0m let { title, banner, description, lang, setOGTypeArticle } = Astro.props;
+[7m  [0m [93m                                        ~~~~~~~~~~~~~~~~[0m
+
+[96msrc/layouts/MainGridLayout.astro[0m:[93m17[0m:[93m2[0m - [93mwarning[0m[90m ts(6133): [0m'MAIN_PANEL_OVERLAPS_BANNER_HEIGHT' is declared but its value is never read.
+
+[7m17[0m  MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
+[7m  [0m [93m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/layouts/MainGridLayout.astro[0m:[93m8[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'ImageWrapper' is declared but its value is never read.
+
+[7m8[0m import ImageWrapper from "../components/misc/ImageWrapper.astro";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/pages/about.astro[0m:[93m284[0m:[93m13[0m - [91merror[0m[90m ts(18047): [0m'container' is possibly 'null'.
+
+[7m284[0m             container.classList.replace('border-dashed', 'border-solid');
+[7m   [0m [91m            ~~~~~~~~~[0m
+[96msrc/pages/about.astro[0m:[93m283[0m:[93m13[0m - [91merror[0m[90m ts(18047): [0m'container' is possibly 'null'.
+
+[7m283[0m             container.classList.replace('bg-black/30', 'bg-[var(--primary)]/5');
+[7m   [0m [91m            ~~~~~~~~~[0m
+[96msrc/pages/about.astro[0m:[93m282[0m:[93m13[0m - [91merror[0m[90m ts(18047): [0m'container' is possibly 'null'.
+
+[7m282[0m             container.classList.replace('border-[var(--primary)]/30', 'border-[var(--primary)]/50');
+[7m   [0m [91m            ~~~~~~~~~[0m
+[96msrc/pages/about.astro[0m:[93m281[0m:[93m13[0m - [91merror[0m[90m ts(18047): [0m'download' is possibly 'null'.
+
+[7m281[0m             download.classList.add('flex');
+[7m   [0m [91m            ~~~~~~~~[0m
+[96msrc/pages/about.astro[0m:[93m280[0m:[93m13[0m - [91merror[0m[90m ts(18047): [0m'download' is possibly 'null'.
+
+[7m280[0m             download.classList.remove('hidden');
+[7m   [0m [91m            ~~~~~~~~[0m
+[96msrc/pages/about.astro[0m:[93m279[0m:[93m13[0m - [91merror[0m[90m ts(18047): [0m'progressContainer' is possibly 'null'.
+
+[7m279[0m             progressContainer.style.display = 'none';
+[7m   [0m [91m            ~~~~~~~~~~~~~~~~~[0m
+[96msrc/pages/about.astro[0m:[93m256[0m:[93m7[0m - [91merror[0m[90m ts(18047): [0m'container' is possibly 'null'.
+
+[7m256[0m       container.classList.replace('border-white/20', 'border-[var(--primary)]/30');
+[7m   [0m [91m      ~~~~~~~~~[0m
+[96msrc/pages/about.astro[0m:[93m255[0m:[93m7[0m - [91merror[0m[90m ts(18047): [0m'progressContainer' is possibly 'null'.
+
+[7m255[0m       progressContainer.classList.add('flex');
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~[0m
+[96msrc/pages/about.astro[0m:[93m254[0m:[93m7[0m - [91merror[0m[90m ts(18047): [0m'progressContainer' is possibly 'null'.
+
+[7m254[0m       progressContainer.classList.remove('hidden');
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/pages/archive.astro[0m:[93m12[0m:[93m19[0m - [91merror[0m[90m ts(2322): [0mType 'PostForList[]' is not assignable to type 'Post[]'.
+  Type 'PostForList' is not assignable to type 'Post'.
+    The types of 'data.category' are incompatible between these types.
+      Type 'string | null' is not assignable to type 'string | undefined'.
+        Type 'null' is not assignable to type 'string | undefined'.
+
+[7m12[0m     <ArchivePanel sortedPosts={sortedPostsList} client:only="svelte"></ArchivePanel>
+[7m  [0m [91m                  ~~~~~~~~~~~[0m
+
+[96msrc/pages/cheatsheet.astro[0m:[93m285[0m:[93m33[0m - [91merror[0m[90m ts(2339): [0mProperty 'dataset' does not exist on type 'Element'.
+
+[7m285[0m                 const cmd = btn.dataset.command;
+[7m   [0m [91m                                ~~~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m278[0m:[93m25[0m - [91merror[0m[90m ts(2339): [0mProperty 'value' does not exist on type 'HTMLElement'.
+
+[7m278[0m             searchInput.value = "";
+[7m   [0m [91m                        ~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m278[0m:[93m13[0m - [91merror[0m[90m ts(18047): [0m'searchInput' is possibly 'null'.
+
+[7m278[0m             searchInput.value = "";
+[7m   [0m [91m            ~~~~~~~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m258[0m:[93m40[0m - [91merror[0m[90m ts(2339): [0mProperty 'dataset' does not exist on type 'Element'.
+
+[7m258[0m                 const difficulty = btn.dataset.difficulty;
+[7m   [0m [91m                                       ~~~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m257[0m:[93m38[0m - [91merror[0m[90m ts(2339): [0mProperty 'dataset' does not exist on type 'Element'.
+
+[7m257[0m                 const category = btn.dataset.category;
+[7m   [0m [91m                                     ~~~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m251[0m:[93m36[0m - [91merror[0m[90m ts(2339): [0mProperty 'value' does not exist on type 'EventTarget'.
+
+[7m251[0m             searchQuery = e.target.value;
+[7m   [0m [91m                                   ~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m251[0m:[93m27[0m - [91merror[0m[90m ts(18047): [0m'e.target' is possibly 'null'.
+
+[7m251[0m             searchQuery = e.target.value;
+[7m   [0m [91m                          ~~~~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m247[0m:[93m13[0m - [91merror[0m[90m ts(18047): [0m'resultsCount' is possibly 'null'.
+
+[7m247[0m             resultsCount.textContent = `Mostrando ${visibleCount} resultado(s)`;
+[7m   [0m [91m            ~~~~~~~~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m244[0m:[93m26[0m - [91merror[0m[90m ts(2339): [0mProperty 'style' does not exist on type 'Element'.
+
+[7m244[0m                     card.style.display = 'none';
+[7m   [0m [91m                         ~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m241[0m:[93m26[0m - [91merror[0m[90m ts(2339): [0mProperty 'style' does not exist on type 'Element'.
+
+[7m241[0m                     card.style.display = 'flex';
+[7m   [0m [91m                         ~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m234[0m:[93m44[0m - [91merror[0m[90m ts(2339): [0mProperty 'dataset' does not exist on type 'Element'.
+
+[7m234[0m                 const searchContent = card.dataset.search;
+[7m   [0m [91m                                           ~~~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m233[0m:[93m41[0m - [91merror[0m[90m ts(2339): [0mProperty 'dataset' does not exist on type 'Element'.
+
+[7m233[0m                 const difficulty = card.dataset.difficulty;
+[7m   [0m [91m                                        ~~~~~~~[0m
+[96msrc/pages/cheatsheet.astro[0m:[93m232[0m:[93m39[0m - [91merror[0m[90m ts(2339): [0mProperty 'dataset' does not exist on type 'Element'.
+
+[7m232[0m                 const category = card.dataset.category;
+[7m   [0m [91m                                      ~~~~~~~[0m
+
+[96msrc/pages/projetos.astro[0m:[93m73[0m:[93m18[0m - [91merror[0m[90m ts(2322): [0mType '{ title: string; description: string; href: string; tags: string[]; status: string; stack: string[]; }' is not assignable to type 'IntrinsicAttributes & Props'.
+  Type '{ title: string; description: string; href: string; tags: string[]; status: string; stack: string[]; }' is not assignable to type 'Props'.
+    Types of property 'status' are incompatible.
+      Type 'string' is not assignable to type '"Active" | "Research" | "Finished"'.
+
+[7m73[0m                 <ProjectCard {...project} />
+[7m  [0m [91m                 ~~~~~~~~~~~[0m
+
+[96msrc/plugins/expressive-code/language-badge.ts[0m:[93m10[0m:[93m16[0m - [93mwarning[0m[90m ts(6133): [0m'_cssVar' is declared but its value is never read.
+
+[7m10[0m   baseStyles: ({ _cssVar }) => `
+[7m  [0m [93m               ~~~~~~~~~~~[0m
+
+Result (74 files): 
+- 94 errors
+- 0 warnings
+- 12 hints
+
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.
