@@ -1,0 +1,212 @@
+---
+import BackToTop from "@components/control/BackToTop.astro";
+import Footer from "@components/Footer.astro";
+import Navbar from "@components/Navbar.astro";
+import SideBar from "@components/widget/SideBar.astro";
+import type { MarkdownHeading } from "astro";
+import { Icon } from "astro-icon/components";
+import ImageWrapper from "../components/misc/ImageWrapper.astro";
+import TOC from "../components/widget/TOC.astro";
+import TacticalBanner from "../components/misc/TacticalBanner.astro";
+import BootSequence from "../components/misc/BootSequence.astro";
+import GlobalCommand from "@components/misc/GlobalCommand.astro";
+import { siteConfig } from "../config";
+import {
+	BANNER_HEIGHT,
+	BANNER_HEIGHT_EXTEND,
+	MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
+} from "../constants/constants";
+import Layout from "./Layout.astro";
+
+interface Props {
+	title?: string;
+	banner?: string;
+	description?: string;
+	lang?: string;
+	setOGTypeArticle?: boolean;
+	headings?: MarkdownHeading[];
+}
+
+const {
+	title,
+	banner,
+	description,
+	lang,
+	setOGTypeArticle,
+	headings = [],
+} = Astro.props;
+const hasBannerCredit =
+	siteConfig.banner.enable && siteConfig.banner.credit.enable;
+const hasBannerLink = !!siteConfig.banner.credit.url;
+
+const mainPanelTop = siteConfig.banner.enable
+	? `calc(${BANNER_HEIGHT}vh - 4rem)`
+	: "5.5rem";
+---
+
+<!-- 
+  ===========================================
+  Ah, you're inspecting the source code? 
+  Good. Here's your reward: 
+  FLAG: felps{h1dd3n_1n_pl41n_51gh7}
+  Use it in the terminal.
+  ===========================================
+-->
+
+<Layout title={title} banner={banner} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle}>
+
+<BootSequence />
+
+<!-- Navbar -->
+<slot slot="head" name="head"></slot>
+<div id="top-row" class="z-50 pointer-events-none relative transition-all duration-700 max-w-[var(--page-width)] px-0 md:px-4 mx-auto" class:list={[""]}>
+    <div id="navbar-wrapper" class="pointer-events-auto sticky top-0 transition-all">
+        <Navbar></Navbar>
+    </div>
+</div>
+
+<!-- Banner -->
+{siteConfig.banner.enable && <div id="banner-wrapper" class={`absolute z-10 w-full transition duration-700 overflow-hidden h-[${BANNER_HEIGHT}vh]`} style={`top: -${BANNER_HEIGHT_EXTEND}vh`}>
+    <TacticalBanner />
+</div>}
+
+<!-- Main content -->
+<div class="absolute w-full z-30 pointer-events-none" style={`top: ${mainPanelTop}`}>
+    <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
+    <div class="relative max-w-[var(--page-width)] mx-auto pointer-events-auto">
+        <div id="main-grid" class="transition duration-700 w-full left-0 right-0 grid grid-cols-[17.5rem_auto] grid-rows-[auto_1fr_auto] lg:grid-rows-[auto]
+    mx-auto gap-4 px-0 md:px-4"
+        >
+            <!-- Banner image credit -->
+            {hasBannerCredit && <a href={siteConfig.banner.credit.url} id="banner-credit" target="_blank" rel="noopener" aria-label="Visit image source"
+                                   class:list={["group onload-animation transition-all absolute flex justify-center items-center rounded-full " +
+                                   "px-3 right-4 -top-[3.25rem] bg-black/60 hover:bg-black/70 h-9", {"hover:pr-9 active:bg-black/80": hasBannerLink}]}
+            >
+                <Icon class="text-white/75 text-[1.25rem] mr-1" name="material-symbols:copyright-outline-rounded" ></Icon>
+                <div class="text-white/75 text-xs">{siteConfig.banner.credit.text}</div>
+                <Icon class:list={["transition absolute text-[oklch(0.75_0.14_var(--hue))] right-4 text-[0.75rem] opacity-0",
+                    {"group-hover:opacity-100": hasBannerLink}]}
+                      name="fa6-solid:arrow-up-right-from-square">
+                </Icon>
+            </a>}
+
+
+            <SideBar class="mb-4 row-start-2 row-end-3 col-span-2 lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation" headings={headings}></SideBar>
+
+            <main id="swup-container" class="transition-swup-fade col-span-2 lg:col-span-1 overflow-hidden transition-glitch">
+                <div id="content-wrapper" class="onload-animation">
+                    <!-- the overflow-hidden here prevent long text break the layout-->
+                    <!-- make id different from windows.swup global property -->
+                    <slot></slot>
+                    <div class="footer col-span-2 onload-animation hidden lg:block">
+                        <Footer></Footer>
+                    </div>
+                </div>
+            </main>
+
+            <div class="footer col-span-2 onload-animation block lg:hidden">
+                <Footer></Footer>
+            </div>
+        </div>
+
+        <BackToTop></BackToTop>
+    </div>
+</div>
+
+<GlobalCommand />
+
+<!-- Ctrl+K Toast — shows once per session, 5s -->
+<div id="ctrlk-toast"
+    style="display:none; position:fixed; top:1rem; right:1rem; z-index:300;"
+    class="flex items-center gap-3 px-4 py-3 bg-zinc-900/95 border border-[var(--primary)]/40 rounded-xl backdrop-blur-md shadow-xl font-mono text-xs text-white/80 transition-all duration-500 opacity-0"
+    aria-live="polite"
+>
+    <span class="text-[var(--primary)] font-bold">[$]</span>
+    <span>Pressione <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-[var(--primary)] font-bold text-[10px]">Ctrl</kbd> + <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-[var(--primary)] font-bold text-[10px]">K</kbd> para abrir o terminal</span>
+    <div id="ctrlk-bar" class="absolute bottom-0 left-0 h-[2px] bg-[var(--primary)]/40 w-full rounded-b-xl origin-left" style="transform: scaleX(1); transition: transform 5000ms linear;"></div>
+</div>
+
+<script is:inline>
+(function() {
+    if (sessionStorage.getItem('ctrlk-shown')) return;
+    sessionStorage.setItem('ctrlk-shown', '1');
+
+    const toast = document.getElementById('ctrlk-toast');
+    const bar   = document.getElementById('ctrlk-bar');
+    if (!toast) return;
+
+    // Delay respects boot sequence duration
+    const delay = sessionStorage.getItem('felps-boot-v3') === '1' ? 4200 : 1500;
+
+    setTimeout(() => {
+        toast.style.display = 'flex';
+        requestAnimationFrame(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+            setTimeout(() => { if (bar) bar.style.transform = 'scaleX(0)'; }, 50);
+        });
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => { toast.style.display = 'none'; }, 500);
+        }, 5500);
+    }, delay);
+})();
+</script>
+
+<!-- Mobile-only floating CMD button (touch trigger for GlobalCommand) -->
+<button id="mobile-cmd-btn" aria-label="Open Command Terminal">
+    ⌘ CMD
+</button>
+
+<script is:inline>
+    document.getElementById('mobile-cmd-btn')?.addEventListener('click', () => {
+        const modal = document.getElementById('global-terminal');
+        const input = document.getElementById('terminal-input');
+        if (!modal) return;
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        setTimeout(() => input?.focus(), 50);
+    });
+</script>
+
+<!-- Mobile viewport height fix — prevents URL-bar-triggered jitter -->
+<script is:inline>
+(function() {
+    // Set --vh to actual visual viewport height (excludes URL bar)
+    function setVH() {
+        const vh = (window.visualViewport?.height ?? window.innerHeight) * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setVH();
+    // Re-run only on actual resize (not on scroll / URL bar hide/show)
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', setVH);
+    } else {
+        window.addEventListener('resize', setVH);
+    }
+    // Prevent layout shift on navigation
+    document.documentElement.style.overscrollBehavior = 'none';
+    document.body.style.overscrollBehavior = 'none';
+})();
+</script>
+
+<!-- The things that should be under the banner, only the TOC for now -->
+<div class="absolute w-full z-0 hidden 2xl:block">
+    <div class="relative max-w-[var(--page-width)] mx-auto">
+        <!-- TOC component -->
+        {siteConfig.toc.enable && <div id="toc-wrapper" class:list={["hidden lg:block transition absolute top-0 -right-[var(--toc-width)] w-[var(--toc-width)] items-center",
+            {"toc-hide": siteConfig.banner.enable}]}
+        >
+            <div id="toc-inner-wrapper" class="fixed top-14 w-[var(--toc-width)] h-[calc(100vh_-_20rem)] overflow-y-scroll overflow-x-hidden hide-scrollbar">
+                <div id="toc" class="w-full h-full transition-swup-fade ">
+                    <div class="h-8 w-full"></div>
+                    <TOC headings={headings}></TOC>
+                    <div class="h-8 w-full"></div>
+                </div>
+            </div>
+        </div>}
+
+        <!-- #toc needs to exist for Swup to work normally -->
+        {!siteConfig.toc.enable && <div id="toc"></div>}
+    </div>
+</div>
+</Layout>

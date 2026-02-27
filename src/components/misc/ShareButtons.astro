@@ -1,0 +1,49 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+    title: string;
+    url: string;
+    class?: string;
+}
+
+const { title, url, class: className } = Astro.props;
+
+const encodedTitle = encodeURIComponent(title);
+const encodedUrl = encodeURIComponent(url);
+
+const shareLinks = [
+    {
+        name: "LinkedIn",
+        icon: "fa6-brands:linkedin",
+        url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        color: "#0077b5"
+    },
+    {
+        name: "X (Twitter)",
+        icon: "fa6-brands:x-twitter",
+        url: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        color: "#000000"
+    }
+];
+---
+
+<div class:list={["flex flex-col gap-4 mt-12 mb-8 p-6 bg-black/5 dark:bg-white/5 rounded-2xl border border-dashed border-black/10 dark:border-white/10", className]}>
+    <div class="text-sm font-bold text-black/40 dark:text-white/40 uppercase tracking-widest flex items-center gap-2">
+        <Icon name="material-symbols:share-outline" />
+        Compartilhar Artigo
+    </div>
+    <div class="flex gap-4">
+        {shareLinks.map(link => (
+            <a 
+                href={link.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm hover:scale-105 transition-all active:scale-95 border border-black/5 dark:border-white/5 group"
+            >
+                <Icon name={link.icon} class="text-xl transition-colors group-hover:text-[var(--primary)]" />
+                <span class="font-bold text-sm text-black/70 dark:text-white/70 group-hover:text-[var(--primary)]">{link.name}</span>
+            </a>
+        ))}
+    </div>
+</div>

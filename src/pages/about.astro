@@ -1,0 +1,310 @@
+---
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+const skills = [
+  { name: "Web Exploitation", level: 90, tags: ["SQLi", "XSS", "SSRF", "LFI", "JWT"] },
+  { name: "Active Directory", level: 80, tags: ["Kerberoasting", "NTLM Relay", "BloodHound"] },
+  { name: "Privilege Escalation", level: 85, tags: ["Linux", "Windows", "SUID", "Token Abuse"] },
+  { name: "Scripting & Tooling", level: 80, tags: ["Python", "Bash", "Go", "C"] },
+  { name: "Pivoting & Tunneling", level: 75, tags: ["Chisel", "Ligolo-ng", "SOCKS5"] },
+  { name: "Malware Analysis", level: 65, tags: ["Ghidra", "x64dbg", "static/dynamic"] },
+];
+
+const certs = [
+  { name: "Segurança da Informação", org: "PUC Minas", status: "Em Andamento", year: "2026", color: "text-blue-400", dot: "bg-blue-400" },
+  { name: "DCPT — Desec Certified Pentest", org: "Desec Security", status: "Em Andamento", year: "2025", color: "text-yellow-400", dot: "bg-yellow-400" },
+  { name: "Pentest na Prática", org: "Desec Security", status: "Concluído", year: "2024", color: "text-green-400", dot: "bg-green-400" },
+  { name: "Segurança em Linux", org: "IBSEC", status: "Concluído", year: "2025", color: "text-green-400", dot: "bg-green-400" },
+  { name: "Google Hacking para Offsec", org: "XPSec", status: "Concluído", year: "2024", color: "text-green-400", dot: "bg-green-400" },
+  { name: "Santander Bootcamp Cibersegurança", org: "Santander", status: "Concluído", year: "2024", color: "text-green-400", dot: "bg-green-400" },
+];
+
+const methodology = [
+  { phase: "01", name: "Reconhecimento", desc: "OSINT, DNS, WHOIS, Google Dorks", icon: "🔍" },
+  { phase: "02", name: "Scanning", desc: "Nmap, Shodan, serviço e banner grabbing", icon: "📡" },
+  { phase: "03", name: "Enumeração", desc: "SMB, AD, Web endpoints, APIs", icon: "🗂️" },
+  { phase: "04", name: "Exploração", desc: "CVEs, SQLi, falhas lógicas, misconfigs", icon: "⚔️" },
+  { phase: "05", name: "Pós-Exploração", desc: "Escalação, pivoting, persistência", icon: "🐚" },
+  { phase: "06", name: "Relatório", desc: "Evidências, CVSS, remediação técnica", icon: "📋" },
+];
+---
+
+<MainGridLayout title="Sobre — Felipe Rosa" description="Especialista em Segurança Ofensiva | Red Team | CTF Player">
+  <div class="flex flex-col gap-8 w-full pb-20 onload-animation">
+
+    <!-- ── HERO CARD ─────────────────────────────────────────── -->
+    <div class="card-base relative overflow-hidden">
+      <!-- Glow bg -->
+      <div class="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 via-transparent to-transparent pointer-events-none"></div>
+      <!-- Scan line -->
+      <div class="absolute top-0 left-0 w-full h-[1px] bg-[var(--primary)]/40 animate-scan-hero pointer-events-none"></div>
+
+      <div class="relative z-10 p-6 sm:p-10 flex flex-col sm:flex-row gap-6 sm:gap-10 items-start">
+        <!-- Avatar / Symbol -->
+        <div class="shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-[20px] border-2 flex items-center justify-center bg-black/60 relative overflow-hidden" style="border-color: var(--primary);">
+          <span class="text-5xl sm:text-6xl select-none">👾</span>
+          <div class="absolute bottom-0 left-0 w-full h-[3px]" style="background: var(--primary);"></div>
+        </div>
+
+        <!-- Info -->
+        <div class="flex-1 min-w-0">
+          <div class="flex flex-wrap items-center gap-3 mb-2">
+            <span class="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-widest px-2.5 py-0.5 rounded border" style="color: var(--primary); border-color: var(--primary); background: rgba(0,0,0,0.4);">OPERATOR PROFILE</span>
+            <span class="text-xs sm:text-[13px] font-mono text-green-400/80 font-bold">● ACTIVE</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-black text-white/95 tracking-tight my-2">Felipe Rosa</h1>
+          <p class="font-mono text-sm sm:text-base mb-4" style="color: var(--primary);">Segurança Ofensiva · Red Team · CTF Player</p>
+          <p class="text-[13px] sm:text-[15px] text-white/75 leading-relaxed max-w-2xl">
+            Especialista em segurança ofensiva com foco em pentest, pesquisa de vulnerabilidades e Active Directory. Mentalidade de adversário — identifico e documento falhas críticas antes que agentes maliciosos o façam.
+          </p>
+
+          <!-- Badges -->
+          <div class="mt-6 flex flex-wrap gap-2.5">
+            {["Python", "Bash", "Go", "C", "Nmap", "Burp Suite", "BloodHound", "Impacket", "Metasploit"].map(t => (
+              <span class="text-[11px] sm:text-xs font-mono font-bold uppercase px-2.5 py-1 rounded-md" style="color: var(--primary); border: 1px solid var(--primary); opacity: 0.85; background: rgba(0,0,0,0.4);">{t}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Stats column -->
+        <div class="shrink-0 text-right font-mono text-xs sm:text-[13px] text-white/40 space-y-2.5 hidden sm:block mt-2">
+          <div>HTB <span class="text-white/70 tracking-widest font-bold">· 2483868</span></div>
+          <div>THM <span class="text-white/70 tracking-widest font-bold">· Fe1ps</span></div>
+          <div>UID <span class="text-white/70 tracking-widest font-bold">· 1000</span></div>
+          <div class="pt-2"><span style="color: var(--primary);" class="tracking-widest border-t border-white/10 pt-2 block">PUC Minas · 2026</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SKILLS + METHODOLOGY (2 cols on md+) ──────────────── -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Skills -->
+      <div class="card-base p-6 sm:p-8 flex flex-col gap-6">
+        <h2 class="text-sm sm:text-base font-mono font-bold uppercase tracking-widest" style="color: var(--primary);">// Expertise Técnica</h2>
+        <div class="flex flex-col gap-6">
+          {skills.map(s => (
+            <div>
+              <div class="flex justify-between items-center mb-1.5">
+                <span class="text-[13px] sm:text-[15px] font-bold text-white/95">{s.name}</span>
+                <span class="text-xs sm:text-sm font-mono font-bold" style="color: var(--primary);">{s.level}%</span>
+              </div>
+              <div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                <div
+                  class="h-full rounded-full skill-bar"
+                  style={`width: ${s.level}%; background: var(--primary); box-shadow: 0 0 8px var(--primary);`}
+                ></div>
+              </div>
+              <div class="mt-2.5 flex flex-wrap gap-2">
+                {s.tags.map(t => (
+                  <span class="text-[10px] sm:text-xs font-mono font-bold text-white/60 bg-white/5 border border-white/10 px-1.5 py-0.5 rounded">{t}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Methodology -->
+      <div class="card-base p-6 sm:p-8 flex flex-col gap-6">
+        <h2 class="text-sm sm:text-base font-mono font-bold uppercase tracking-widest mb-1" style="color: var(--primary);">// Metodologia Operacional</h2>
+        <div class="flex flex-col gap-6">
+          {methodology.map((m, i) => (
+            <div class="flex items-start gap-4 group relative">
+              <div class="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center text-xl bg-black/40 border-2 border-white/10 group-hover:border-[var(--primary)]/50 transition-colors z-10 relative">
+                {m.icon}
+              </div>
+              <div class="flex-1 min-w-0 pt-0.5">
+                <div class="flex items-center gap-2.5 mb-1">
+                  <span class="text-xs sm:text-sm font-mono font-black tracking-wider" style="color: var(--primary);">{m.phase}</span>
+                  <span class="text-[13px] sm:text-[15px] font-bold text-white/95">{m.name}</span>
+                </div>
+                <p class="text-xs sm:text-sm text-white/60 leading-relaxed font-medium">{m.desc}</p>
+              </div>
+              {i < methodology.length - 1 && (
+                <div class="absolute left-[1.3rem] top-[2.75rem] bottom-[-1.5rem] w-px bg-white/10 group-hover:bg-[var(--primary)]/30 transition-colors z-0"></div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CERTIFICATIONS ─────────────────────────────────────── -->
+    <div class="card-base p-6 sm:p-8">
+      <h2 class="text-sm sm:text-base font-mono font-bold uppercase tracking-widest mb-6" style="color: var(--primary);">// Certificações & Formação</h2>
+      <div class="flex flex-col divide-y divide-white/10">
+        {certs.map(c => (
+          <div class="flex flex-col md:flex-row md:items-center py-4 group hover:bg-white/[0.03] rounded-xl px-4 -mx-4 transition-colors gap-3 md:gap-4">
+            <div class="flex items-center gap-3 md:gap-4 flex-1 min-w-0">
+                <div class={`w-2.5 h-2.5 rounded-full shrink-0 ${c.dot} shadow-[0_0_8px_currentColor]`}></div>
+                <div class="flex flex-col gap-0.5">
+                  <span class="text-sm sm:text-[15px] font-bold text-white/95">{c.name}</span>
+                  <span class="text-xs sm:text-sm text-white/50">{c.org}</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 shrink-0 pl-7 md:pl-0">
+              <span class={`text-[11px] sm:text-xs font-mono font-bold uppercase px-2.5 py-1 rounded bg-white/5 border border-white/10 ${c.color}`}>{c.status}</span>
+              <span class="text-[11px] sm:text-xs font-mono font-bold text-white/40">{c.year}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ── PLATFORM BADGES ────────────────────────────────────── -->
+    <div class="card-base p-6 sm:p-8">
+      <h2 class="text-sm sm:text-base font-mono font-bold uppercase tracking-widest mb-6" style="color: var(--primary);">// Reconhecimento em Plataformas</h2>
+      <div class="flex flex-col md:flex-row gap-5 items-stretch justify-center">
+        <a href="https://tryhackme.com/p/Fe1ps" target="_blank" rel="noopener noreferrer"
+          class="group flex items-center gap-4 p-5 sm:p-6 rounded-2xl border-2 border-white/10 hover:border-[var(--primary)]/40 bg-black/40 transition-all hover:bg-black/60 w-full md:w-auto shadow-lg hover:shadow-[var(--primary)]/10">
+          <div class="w-14 h-14 rounded-xl bg-[#212c42] flex items-center justify-center shrink-0 text-2xl shadow-inner">🟥</div>
+          <div class="pr-2">
+            <div class="text-[15px] sm:text-base font-bold text-white/95 group-hover:text-white transition-colors">TryHackMe</div>
+            <div class="text-xs sm:text-sm font-mono font-bold text-white/50 mt-1">Fe1ps</div>
+          </div>
+          <img src="https://tryhackme-badges.s3.amazonaws.com/Fe1ps.png" alt="THM rank" class="ml-auto h-12 object-contain opacity-80 group-hover:opacity-100 transition-opacity hidden md:block" />
+        </a>
+        <a href="https://app.hackthebox.com/users/2483868" target="_blank" rel="noopener noreferrer"
+          class="group flex items-center gap-4 p-5 sm:p-6 rounded-2xl border-2 border-white/10 hover:border-[var(--primary)]/40 bg-black/40 transition-all hover:bg-black/60 w-full md:w-auto shadow-lg hover:shadow-[var(--primary)]/10">
+          <div class="w-14 h-14 rounded-xl bg-[#1a1a2a] flex items-center justify-center shrink-0 text-2xl shadow-inner">🟩</div>
+          <div class="pr-2">
+            <div class="text-[15px] sm:text-base font-bold text-white/95 group-hover:text-white transition-colors">HackTheBox</div>
+            <div class="text-xs sm:text-sm font-mono font-bold text-white/50 mt-1">#2483868</div>
+          </div>
+          <img src="https://www.hackthebox.eu/badge/image/2483868" alt="HTB rank" class="ml-auto h-12 object-contain opacity-80 group-hover:opacity-100 transition-opacity hidden md:block" />
+        </a>
+      </div>
+    </div>
+
+    <!-- ── CONTACT ─────────────────────────────────────────────── -->
+    <div class="card-base p-6 sm:p-8">
+      <h2 class="text-sm sm:text-base font-mono font-bold uppercase tracking-widest mb-6" style="color: var(--primary);">// Contato & Presença Profissional</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {[
+          { label: "LinkedIn", handle: "felipe0x01", href: "https://www.linkedin.com/in/felipe0x01/", icon: "💼" },
+          { label: "GitHub", handle: "felinux0x", href: "https://github.com/felinux0x", icon: "⛓️" },
+          { label: "Email", handle: "felipe.rosa.secdev@gmail...", href: "mailto:felipe.rosa.secdev@gmail.com", icon: "📡" },
+        ].map(c => (
+          <a href={c.href} target="_blank" rel="noopener noreferrer"
+            class="group flex items-center gap-4 p-5 rounded-2xl border-2 border-white/5 hover:border-[var(--primary)]/40 bg-black/20 transition-all hover:bg-black/40 hover:-translate-y-1">
+            <span class="text-3xl opacity-80 group-hover:opacity-100">{c.icon}</span>
+            <div class="min-w-0">
+              <div class="text-xs sm:text-[13px] font-mono font-bold text-white/40 uppercase tracking-wider mb-1 mt-1">{c.label}</div>
+              <div class="text-[13px] sm:text-[15px] font-bold text-white/85 group-hover:text-white truncate transition-colors">{c.handle}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Resume Decryptor -->
+      <div class="mt-8">
+        <div id="resume-container" class="relative overflow-hidden rounded-2xl border-2 border-dashed border-white/20 bg-black/30 p-6 flex flex-col items-center justify-center transition-all">
+          <button id="decrypt-btn" class="group relative px-6 py-3 font-mono font-bold text-sm tracking-widest uppercase bg-white/5 hover:bg-[var(--primary)]/20 text-white/70 hover:text-[var(--primary)] border border-white/10 hover:border-[var(--primary)]/50 rounded-xl transition-all overflow-hidden flex items-center gap-3">
+            <span class="absolute inset-0 w-0 bg-[var(--primary)]/10 transition-all duration-500 ease-out group-hover:w-full -z-10"></span>
+            <span class="text-xl">🗄️</span>
+            <span>Decrypt Resume</span>
+          </button>
+          
+          <div id="decrypt-progress" class="hidden w-full max-w-sm mt-4 flex-col gap-2">
+            <div class="flex justify-between text-[10px] font-mono text-[var(--primary)]">
+              <span>DECRYPTING_PAYLOAD...</span>
+              <span id="decrypt-pct">0%</span>
+            </div>
+            <div class="w-full h-1.5 bg-black/50 rounded-full overflow-hidden border border-white/5">
+              <div id="decrypt-bar" class="h-full bg-[var(--primary)] shadow-[0_0_8px_var(--primary)]" style="width: 0%;"></div>
+            </div>
+            <div id="decrypt-hex" class="text-[9px] font-mono text-white/30 h-3 overflow-hidden text-center opacity-50 mt-1"></div>
+          </div>
+          
+          <div id="resume-download" class="hidden mt-2 flex-col items-center animate-in fade-in zoom-in duration-500">
+            <span class="text-[10px] font-mono font-bold text-green-400 mb-2 uppercase tracking-widest">Decryption Complete</span>
+            <a href="/Felipe_da_Silva_Rosa_2026.pdf" download="Felipe_Rosa_CV_2026.pdf" class="px-6 py-2.5 bg-[var(--primary)] text-black font-bold font-mono text-sm uppercase tracking-wider rounded-lg hover:brightness-110 hover:shadow-[0_0_15px_var(--primary)] transition-all flex items-center gap-2">
+              <span>Download PDF</span>
+              <span>↓</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <div class="mt-10 pt-8 border-t border-white/10">
+        <blockquote class="font-mono text-[13px] sm:text-base text-white/50 italic text-center max-w-3xl mx-auto leading-relaxed">
+          "Security is not a product, but a process." <br class="sm:hidden" /><span class="hidden sm:inline">—</span> Bruce Schneier
+        </blockquote>
+      </div>
+    </div>
+
+  </div>
+</MainGridLayout>
+
+<script>
+  // Resume Decryption Animation
+  const btn = document.getElementById('decrypt-btn');
+  const progressContainer = document.getElementById('decrypt-progress');
+  const bar = document.getElementById('decrypt-bar');
+  const pct = document.getElementById('decrypt-pct');
+  const hex = document.getElementById('decrypt-hex');
+  const download = document.getElementById('resume-download');
+  const container = document.getElementById('resume-container');
+
+  if (btn) {
+    btn.addEventListener('click', () => {
+      btn.style.display = 'none';
+      progressContainer.classList.remove('hidden');
+      progressContainer.classList.add('flex');
+      container.classList.replace('border-white/20', 'border-[var(--primary)]/30');
+      
+      let progress = 0;
+      
+      const hexInterval = setInterval(() => {
+        let str = '';
+        for(let i=0; i<8; i++) str += Math.floor(Math.random()*16).toString(16).toUpperCase() + ' ';
+        if (hex) hex.textContent = str;
+      }, 50);
+
+      const interval = setInterval(() => {
+        progress += Math.random() * 5 + 1;
+        if (progress > 100) progress = 100;
+        
+        if (bar && pct) {
+          bar.style.width = `${progress}%`;
+          pct.textContent = `${Math.floor(progress)}%`;
+        }
+        
+        if (progress === 100) {
+          clearInterval(interval);
+          clearInterval(hexInterval);
+          setTimeout(() => {
+            progressContainer.style.display = 'none';
+            download.classList.remove('hidden');
+            download.classList.add('flex');
+            container.classList.replace('border-[var(--primary)]/30', 'border-[var(--primary)]/50');
+            container.classList.replace('bg-black/30', 'bg-[var(--primary)]/5');
+            container.classList.replace('border-dashed', 'border-solid');
+          }, 300);
+        }
+      }, 80);
+    });
+  }
+</script>
+
+<style>
+  @keyframes scan-hero {
+    0%   { top: 0;    opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .animate-scan-hero {
+    animation: scan-hero 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .skill-bar {
+    animation: grow-bar 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    transform-origin: left;
+  }
+  @keyframes grow-bar {
+    from { width: 0 !important; }
+  }
+</style>

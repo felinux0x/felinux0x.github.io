@@ -1,0 +1,68 @@
+---
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { profileConfig } from "../config";
+import { Icon } from "astro-icon/components";
+
+const links = [
+    ...profileConfig.links,
+    {
+        name: "TryHackMe Profile",
+        icon: "simple-icons:tryhackme",
+        url: "https://tryhackme.com/p/Fe1ps",
+        color: "#1f8b4c"
+    },
+    {
+        name: "HackTheBox Profile",
+        icon: "simple-icons:hackthebox",
+        url: "https://app.hackthebox.com/users/2483868",
+        color: "#9fef00"
+    }
+];
+---
+
+<MainGridLayout title="Links | felinux0x">
+    <div class="flex flex-col items-center w-full max-w-2xl mx-auto py-8 px-4 onload-animation">
+        <!-- Profile Header -->
+        <div class="text-center mb-10">
+            <div class="w-32 h-32 rounded-full border-4 border-[var(--primary)] overflow-hidden mx-auto mb-4 shadow-lg shadow-[var(--primary)]/20 animate-pulse-slow">
+                <img src="/src/assets/images/profile.jpg" alt="Profile" class="w-full h-full object-cover">
+            </div>
+            <h1 class="text-4xl font-bold text-black/90 dark:text-white/90 mb-2">Felipe Rosa</h1>
+            <p class="text-[var(--primary)] font-mono font-bold tracking-widest uppercase text-sm">Offensive Security Portfolio</p>
+        </div>
+
+        <!-- Links Grid -->
+        <div class="grid grid-cols-1 gap-4 w-full">
+            {links.map((link) => (
+                <a 
+                    href={link.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="group flex items-center p-4 bg-[var(--card-bg)] rounded-2xl border border-black/5 dark:border-white/5 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:border-[var(--primary)]/50 active:scale-95"
+                >
+                    <div class="w-12 h-12 rounded-xl bg-black/5 dark:bg-white/5 flex items-center justify-center mr-4 transition-colors group-hover:bg-[var(--primary)]/10">
+                        <Icon name={link.icon} class="text-2xl text-black/60 dark:text-white/60 group-hover:text-[var(--primary)] transition-colors" />
+                    </div>
+                    <span class="text-lg font-bold text-black/80 dark:text-white/80 group-hover:text-[var(--primary)] transition-colors flex-grow">
+                        {link.name}
+                    </span>
+                    <Icon name="material-symbols:arrow-outward-rounded" class="text-xl text-black/20 dark:text-white/20 group-hover:text-[var(--primary)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                </a>
+            ))}
+        </div>
+
+        <div class="mt-12 text-center text-black/30 dark:text-white/30 font-mono text-xs uppercase tracking-widest">
+            felipe.rosa.secdev@gmail.com // felinux0x
+        </div>
+    </div>
+</MainGridLayout>
+
+<style>
+    @keyframes pulse-slow {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.9; transform: scale(0.98); }
+    }
+    .animate-pulse-slow {
+        animation: pulse-slow 4s ease-in-out infinite;
+    }
+</style>

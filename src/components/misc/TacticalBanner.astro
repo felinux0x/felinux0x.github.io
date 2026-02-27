@@ -1,0 +1,128 @@
+<div class="w-full h-full bg-[#050505] overflow-hidden relative">
+    <!-- Binary Rain Layer (Synchronized) -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+        <canvas id="banner-binary-rain"></canvas>
+    </div>
+
+    <!-- Grid Pattern -->
+    <div class="absolute inset-0 opacity-[0.15]" style="background-image: linear-gradient(#00ff7f 1px, transparent 1px), linear-gradient(90deg, #00ff7f 1px, transparent 1px); background-size: 50px 50px;"></div>
+    
+    <!-- Subtle Gradient Glow -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60"></div>
+
+    <!-- Moving Scanning Line -->
+    <div class="absolute w-full h-[1px] bg-[#00ff7f]/60 top-0 animate-scan pointer-events-none shadow-[0_0_20px_#00ff7f]"></div>
+    
+    <!-- Technical HUD elements - Bottom Right -->
+    <div class="absolute bottom-20 right-10 text-[#00ff7f] font-mono text-[0.65rem] opacity-40 text-right space-y-1 hidden md:block">
+        <div>[ NODE: FELPS_C2 ]</div>
+        <div id="banner-coords">[ LAT: 19.91 S | LON: 43.93 W ]</div>
+        <div class="text-[0.5rem] opacity-50 font-mono tracking-tighter">B8 BB 8E 7F 41 AE CC 01 99 2A FF 00</div>
+    </div>
+    
+    <!-- Center Highlight (Crosshair) -->
+    <div class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
+        <div class="relative w-48 h-48 border border-[#00ff7f]/10 rounded-full">
+            <div class="absolute top-0 left-0 w-6 h-[2px] bg-[#00ff7f]/40"></div>
+            <div class="absolute top-0 right-0 w-6 h-[2px] bg-[#00ff7f]/40"></div>
+            <div class="absolute bottom-0 left-0 w-6 h-[2px] bg-[#00ff7f]/40"></div>
+            <div class="absolute bottom-0 right-0 w-6 h-[2px] bg-[#00ff7f]/40"></div>
+            
+            <div class="absolute top-1/2 left-0 w-full h-[1px] bg-[#00ff7f]/10 translate-y-[-50%]"></div>
+            <div class="absolute left-1/2 top-0 h-full w-[1px] bg-[#00ff7f]/10 translate-x-[-50%]"></div>
+
+            <div class="absolute inset-0 flex items-center justify-center">
+                 <div class="w-2 h-2 bg-[#00ff7f] rounded-full animate-ping"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hex Code Background (Faint) -->
+    <div class="absolute top-1/2 left-10 -translate-y-1/2 text-[#00ff7f] font-mono text-[1.8rem] font-black opacity-[0.04] rotate-90 select-none whitespace-nowrap tracking-[0.5em]">
+        ACCESS_GRANTED 01010111 01001000 01001001 01010100 01000101 01010010 01000001 01000010 01000011 01000011 01010100 01001001 01010011 01010111 01000001 01010100 01000011 01001000 01001001 01001110 01000111
+    </div>
+</div>
+
+<style>
+    @keyframes scan {
+        0% { top: -10%; opacity: 0; }
+        15% { opacity: 1; }
+        85% { opacity: 1; }
+        100% { top: 110%; opacity: 0; }
+    }
+    .animate-scan {
+        animation: scan 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+</style>
+
+<script>
+    function initBannerBinaryRain() {
+        const canvas = document.getElementById('banner-binary-rain');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let width = canvas.width = canvas.parentElement.offsetWidth;
+        let height = canvas.height = canvas.parentElement.offsetHeight;
+
+        const charSize = 12;
+        const columns = Math.floor(width / charSize);
+        const drops = new Array(columns).fill(0);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.fillStyle = '#00ff7f';
+            ctx.font = `${charSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = Math.random() > 0.8 ? (Math.random() > 0.5 ? "1" : "0") : "";
+                if (text) {
+                    ctx.fillText(text, i * charSize, drops[i] * charSize);
+                }
+
+                if (drops[i] * charSize > height && Math.random() > 0.98) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        const interval = setInterval(draw, 40);
+
+        window.addEventListener('resize', () => {
+            if (!canvas.parentElement) return;
+            width = canvas.width = canvas.parentElement.offsetWidth;
+            height = canvas.height = canvas.parentElement.offsetHeight;
+        });
+
+        return interval;
+    }
+
+    // Initialize on load and on astro swap
+    let bannerInterval;
+    document.addEventListener('astro:page-load', () => {
+        if (bannerInterval) clearInterval(bannerInterval);
+        bannerInterval = initBannerBinaryRain();
+    });
+    
+    // Initial run
+    bannerInterval = initBannerBinaryRain();
+
+    // Dynamic Hex Stream & Coords
+    function updateHUD() {
+        const coordsEl = document.getElementById('banner-coords');
+        
+        setInterval(() => {
+            if (coordsEl) {
+                const lat = (19.9167 + (Math.random() - 0.5) * 0.001).toFixed(4);
+                const lon = (43.9333 + (Math.random() - 0.5) * 0.001).toFixed(4);
+                coordsEl.innerText = `[ LAT: ${lat} S | LON: ${lon} W ]`;
+            }
+        }, 2000);
+    }
+    
+    document.addEventListener('astro:page-load', updateHUD);
+    updateHUD();
+</script>

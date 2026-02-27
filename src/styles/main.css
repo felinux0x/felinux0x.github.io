@@ -1,0 +1,323 @@
+@tailwind components;
+
+* {
+    cursor: none !important;
+}
+
+html, body, a, button, input, textarea, select, [role="button"], span, div, i, svg {
+    cursor: none !important;
+}
+
+@layer components {
+    * {
+        font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace !important;
+    }
+
+    .card-base {
+        @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg)] transition;
+    }
+    h1, h2, h3, h4, h5, h6, p, a, span, li, ul, ol, blockquote, code, pre, table, th, td, strong {
+        @apply transition;
+    }
+    .card-shadow {
+        @apply drop-shadow-[0_2px_4px_rgba(0,0,0,0.005)]
+    }
+    .expand-animation {
+        @apply relative before:ease-out before:transition active:bg-none hover:before:bg-[var(--btn-plain-bg-hover)] active:before:bg-[var(--btn-plain-bg-active)] z-0
+        before:absolute before:rounded-[inherit] before:inset-0 before:scale-[0.85] hover:before:scale-100 before:-z-10
+    }
+    .link {
+        @apply transition rounded-md p-1 -m-1 expand-animation;
+    }
+    .link-lg {
+        @apply transition rounded-md p-1.5 -m-1.5 expand-animation;
+    }
+    .float-panel {
+        @apply top-[5.25rem] rounded-[var(--radius-large)] overflow-hidden bg-[var(--float-panel-bg)] transition shadow-xl dark:shadow-none
+    }
+    .float-panel-closed {
+        @apply -translate-y-1 opacity-0 pointer-events-none
+    }
+    .search-panel mark {
+        @apply bg-transparent text-[var(--primary)]
+    }
+
+    .btn-card {
+        @apply transition flex items-center justify-center bg-[var(--card-bg)] hover:bg-[var(--btn-card-bg-hover)]
+        active:bg-[var(--btn-card-bg-active)]
+    }
+    .btn-card.disabled {
+        @apply pointer-events-none text-black/10 dark:text-white/10
+    }
+    .btn-plain {
+        @apply transition relative flex items-center justify-center bg-none
+        text-black/75 hover:text-[var(--primary)] dark:text-white/75 dark:hover:text-[var(--primary)];
+        &:not(.scale-animation) {
+            @apply hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]
+        }
+        &.scale-animation {
+            @apply expand-animation;
+            &.current-theme-btn {
+                @apply before:scale-100 before:opacity-100 before:bg-[var(--btn-plain-bg-hover)] text-[var(--primary)]
+            }
+        }
+    }
+    .btn-regular {
+        @apply transition flex items-center justify-center bg-[var(--btn-regular-bg)] hover:bg-[var(--btn-regular-bg-hover)] active:bg-[var(--btn-regular-bg-active)]
+        text-[var(--btn-content)] dark:text-white/75
+    }
+
+    .link-underline {
+        @apply transition underline decoration-2 decoration-dashed decoration-[var(--link-underline)]
+        hover:decoration-[var(--link-hover)] active:decoration-[var(--link-active)] underline-offset-[0.25rem]
+    }
+
+    .toc-hide,
+    .toc-not-ready {
+        @apply opacity-0 pointer-events-none
+    }
+
+    #toc-inner-wrapper {
+        mask-image: linear-gradient(to bottom, transparent 0%, black 2rem, black calc(100% - 2rem), transparent 100%);
+    }
+
+    .hide-scrollbar {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .text-90 {
+        @apply text-black/90 dark:text-white/90
+    }
+    .text-75 {
+        @apply text-black/75 dark:text-white/75
+    }
+    .text-50 {
+        @apply text-black/50 dark:text-white/50
+    }
+    .text-30 {
+        @apply text-black/30 dark:text-white/30
+    }
+    .text-25 {
+        @apply text-black/25 dark:text-white/25
+    }
+
+    .meta-icon {
+        @apply w-8 h-8 transition rounded-md flex items-center justify-center bg-[var(--btn-regular-bg)]
+        text-[var(--btn-content)] mr-2
+    }
+    .with-divider {
+        @apply before:content-['/'] before:ml-1.5 before:mr-1.5 before:text-[var(--meta-divider)] before:text-sm
+        before:font-medium before:first-of-type:hidden before:transition
+    }
+
+    .btn-regular-dark {
+        @apply flex items-center justify-center
+        bg-[oklch(0.45_0.01_var(--hue))] hover:bg-[oklch(0.50_0.01_var(--hue))] active:bg-[oklch(0.55_0.01_var(--hue))]
+        dark:bg-[oklch(0.30_0.02_var(--hue))] dark:hover:bg-[oklch(0.35_0.03_var(--hue))] dark:active:bg-[oklch(0.40_0.03_var(--hue))]
+    }
+    .btn-regular-dark.success {
+        @apply bg-[oklch(0.75_0.14_var(--hue))] dark:bg-[oklch(0.75_0.14_var(--hue))]
+    }
+}
+
+.custom-md img, #post-cover img {
+    @apply cursor-zoom-in
+}
+
+::selection {
+    background-color: var(--selection-bg)
+}
+
+.dash-line {
+    position: relative;
+}
+
+.dash-line::before {
+    content: "";
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    left: calc(50% - 1px);
+    border-left: 2px dashed var(--line-color);
+    pointer-events: none;
+    transition: all 0.3s;
+    transform: translateY(-50%);
+}
+
+.collapsed {
+    height: var(--collapsedHeight);
+}
+
+.custom-md spoiler {
+  @apply bg-[var(--codeblock-bg)] hover:bg-transparent px-1 py-0.5 overflow-hidden rounded-md transition-all duration-150;
+
+  &:not(:hover) {
+    color: var(--codeblock-bg);
+    * {
+        color: var(--codeblock-bg);
+    }
+  }
+
+}
+
+/* Hacker Glitch Aesthetic */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.glitch-hover:hover {
+  animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+  text-shadow: 2px 0 var(--primary), -2px 0 #ff00c1;
+  cursor: pointer;
+}
+
+/* CRT & Scanline Effects */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 9998;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.crt-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.98; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.9; }
+  15% { opacity: 0.98; }
+  30% { opacity: 0.95; }
+  50% { opacity: 0.98; }
+  60% { opacity: 0.9; }
+  70% { opacity: 0.98; }
+  80% { opacity: 0.95; }
+  90% { opacity: 0.98; }
+  100% { opacity: 0.95; }
+}
+
+/* Toxic Accent Refinement & Tactical Themes */
+:root {
+  --primary-rgb: 0, 255, 127; /* Generic fallback */
+}
+
+:root[data-theme="emerald"] { --hue: 160; --primary-rgb: 0, 255, 127; }
+:root[data-theme="amber"] { --hue: 35; --primary-rgb: 255, 170, 0; }
+:root[data-theme="cobalt"] { --hue: 210; --primary-rgb: 0, 160, 255; }
+:root[data-theme="crimson"] { --hue: 10; --primary-rgb: 255, 50, 50; }
+
+/* Cinematic Glitch Transitions */
+.transition-glitch {
+    animation: glitch-page 0.25s steps(2, end) 1;
+}
+
+@keyframes glitch-page {
+    0% { transform: translate(0); filter: hue-rotate(0deg); }
+    20% { transform: translate(-4px, 2px) skewX(5deg); filter: hue-rotate(90deg) brightness(1.5); clip-path: inset(10% 0 80% 0); }
+    40% { transform: translate(4px, -2px) skewX(-5deg); filter: hue-rotate(180deg) contrast(2); clip-path: inset(40% 0 20% 0); }
+    60% { transform: translate(-2px, 3px); filter: hue-rotate(270deg); clip-path: inset(70% 0 5% 0); }
+    80% { transform: translate(3px, -1px); filter: brightness(1.2); }
+    100% { transform: translate(0); filter: hue-rotate(0deg); }
+}
+
+html.is-animating .transition-swup-fade {
+    opacity: 0;
+    transform: translateY(5px);
+    filter: blur(2px);
+}
+
+html.is-leaving .transition-swup-fade {
+    animation: glitch-page 0.15s steps(1) infinite;
+}
+
+/* Scrollbar with Primary Sync */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-rgb), 0.3) !important;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-rgb), 0.6) !important;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE OVERHAUL
+   ============================================================ */
+
+/* Push page content up from the bottom console bar on mobile */
+@media (max-width: 640px) {
+    /* Give some breathing room above the console panel */
+    body {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    /* Make touch targets bigger */
+    button, a, [role="button"] {
+        min-height: 40px;
+    }
+
+    /* Fix filter buttons to be more tappable */
+    .filter-btn {
+        min-height: 32px;
+        padding: 0.35rem 0.75rem;
+    }
+
+    /* Ensure cheatsheet category badges don't overflow on tiny screens */
+    .command-card .flex.justify-between.items-start {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    /* Stop the TacticalBanner's hex-code wall from overflowing on mobile */
+    #tactical-banner .hex-stream {
+        display: none;
+    }
+}
+
+/* Floating mobile CMD button - only shows on mobile to trigger GlobalCommand */
+#mobile-cmd-btn {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    #mobile-cmd-btn {
+        display: flex;
+        position: fixed;
+        bottom: 4.5rem; /* above the system log bar */
+        right: 1rem;
+        z-index: 99;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.5rem 0.9rem;
+        background: rgba(var(--primary-rgb), 0.15);
+        border: 1px solid rgba(var(--primary-rgb), 0.4);
+        border-radius: 9999px;
+        color: rgb(var(--primary-rgb));
+        font-family: monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 20px -5px rgba(var(--primary-rgb), 0.4);
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    #mobile-cmd-btn:active {
+        transform: scale(0.95);
+        background: rgba(var(--primary-rgb), 0.3);
+    }
+}

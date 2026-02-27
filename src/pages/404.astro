@@ -1,0 +1,55 @@
+---
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<MainGridLayout title="404 - Kernel Panic">
+    <div class="flex flex-col items-center justify-center min-h-[60vh] w-full onload-animation">
+        
+        <!-- Error Box -->
+        <div class="card-base p-8 sm:p-12 border-l-4 border-red-500 bg-red-500/5 relative overflow-hidden w-full max-w-3xl flex flex-col items-center text-center">
+            
+            <!-- Matrix / Scanline bg -->
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZjAwMDAiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay"></div>
+            
+            <Icon name="material-symbols:warning-outline-rounded" class="text-6xl sm:text-7xl text-red-500 mb-6 drop-shadow-[0_0_15px_rgba(239,68,68,0.5)] animate-pulse" />
+            
+            <h1 class="text-3xl sm:text-5xl font-black text-white/95 tracking-tighter mb-2 uppercase">
+                Kernel Panic <span class="text-red-500 mx-2">—</span> 404
+            </h1>
+            
+            <p class="font-mono text-sm sm:text-base text-red-400/80 uppercase tracking-widest mb-8">
+                Fatal Exception: CONNECTION_REFUSED
+            </p>
+
+            <!-- Server Output Log -->
+            <div class="w-full bg-black/60 border border-white/10 rounded-xl p-5 font-mono text-xs sm:text-sm text-left shadow-inner mb-8 overflow-x-auto relative">
+                <!-- Mac buttons just for aesthetic -->
+                <div class="absolute top-3 right-4 flex gap-1.5 opacity-50">
+                    <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                </div>
+
+                <div class="space-y-1 mt-2">
+                    <div class="text-white/40">[ <span class="text-red-400">ERR</span> ] Routing module failed to resolve endpoint</div>
+                    <div class="text-white/40">[ <span class="text-blue-400">SYS</span> ] Requesting memory dump from process ID 404...</div>
+                    <div class="text-white/40">[ <span class="text-red-400">ERR</span> ] Page fault at memory address 0xffffffff81c03b1e</div>
+                    <div class="text-white/40">[ <span class="text-yellow-400">WARN</span>] Target resource has been moved, deleted, or never existed</div>
+                    <div class="text-white/80 mt-3 flex items-center gap-2">
+                        <span class="text-red-500 font-bold">root@server:~#</span> 
+                        <span>abort_connection <span class="text-white/30 animate-pulse">_</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Return Button -->
+            <a href="/" class="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 border border-red-500/30 hover:border-red-500 rounded-xl font-mono text-sm sm:text-base font-bold uppercase tracking-widest transition-all">
+                <span class="absolute inset-0 bg-red-500/5 blur-md opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                <Icon name="material-symbols:keyboard-return-rounded" class="text-xl" />
+                Return to Safe Zone
+            </a>
+            
+        </div>
+    </div>
+</MainGridLayout>

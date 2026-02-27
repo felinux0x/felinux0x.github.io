@@ -1,0 +1,203 @@
+<!-- ============================================================
+     BOOT SEQUENCE INTRO
+     Starts hidden. JS shows it only on first visit.
+     Uses sessionStorage to show only once per session.
+     ============================================================ -->
+
+<!-- Hidden by default — JS enables it on first visit only -->
+<div id="boot-screen" class="fixed inset-0 z-[9999] bg-black flex-col overflow-hidden" style="display:none; font-family: 'Courier New', monospace;">
+    
+    <!-- PHASE 1: Arch Loading -->
+    <div id="arch-boot" class="flex-1 flex flex-col items-center justify-center p-4">
+        <pre class="text-[#1793d1] font-bold text-[10px] sm:text-xs leading-tight text-center mb-6 drop-shadow-[0_0_8px_rgba(23,147,209,0.5)]">
+                   -`                    
+                  .o+`                   
+                 `ooo/                   
+                `+oooo:                  
+               `+oooooo:                 
+               -+oooooo+:                
+             `/:-:++oooo+:               
+            `/++++/+++++++:              
+           `/++++++++++++++:             
+          `/+++ooooooooooooo/`           
+         ./ooosssso++osssssso+`          
+        .oossssso-````/ossssss+`         
+       -osssssso.      :ssssssso.        
+      :osssssss/        osssso+++.       
+     /ossssssss/        +ssssooo/-       
+   `/ossssso+/:-        -:/+osssso+-     
+  `+sso+:-`                 `.-/+oso:    
+ `++:.                           `-/+/   
+ .`                                 `/   
+        </pre>
+        <div class="text-[#1793d1] text-xs sm:text-sm mb-3 font-bold tracking-widest uppercase drop-shadow-[0_0_8px_rgba(23,147,209,0.5)]">Booting Arch Linux...</div>
+        <div class="w-48 sm:w-64 h-1.5 border border-[#1793d1]/40 bg-[#1793d1]/10 rounded-full overflow-hidden relative shadow-[0_0_10px_rgba(23,147,209,0.2)]">
+            <div id="arch-bar" class="absolute top-0 left-0 h-full bg-[#1793d1] shadow-[0_0_10px_rgba(23,147,209,0.8)]" style="width: 0%; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+        </div>
+    </div>
+
+    <!-- PHASE 2: Terminal Output -->
+    <div id="boot-output" class="flex-1 p-4 sm:p-6 overflow-hidden text-[11px] sm:text-[13px] leading-relaxed hidden" style="color: #00ff7f; max-height: calc(100vh - 52px);"></div>
+
+    <!-- Footer -->
+    <div class="px-4 sm:px-6 pb-4 flex items-center border-t pt-3" style="border-color: rgba(0,255,127,0.15);">
+        <span style="color: rgba(0,255,127,0.35); font-size: 10px;">[ FELPS SECURE BOOT v3.0 ]</span>
+        <div class="flex-1"></div>
+        <button id="boot-skip" class="hover:text-[#00ff7f] transition-colors" style="color: rgba(0,255,127,0.35); font-size: 10px; background:none; border:none; cursor:pointer;">skip sequence →</button>
+    </div>
+</div>
+
+<style>
+    #boot-screen.boot-visible {
+        display: flex !important;
+    }
+    #boot-screen.boot-dissolving {
+        transition: opacity 700ms ease, transform 700ms ease;
+        opacity: 0;
+        transform: scale(1.015);
+        pointer-events: none;
+    }
+
+    .bl { display: block; animation: bl-in 60ms ease forwards; opacity: 0; }
+    @keyframes bl-in { to { opacity: 1; } }
+
+    .c-ok   { color: #00ff7f; }
+    .c-warn { color: #ffaa00; }
+    .c-info { color: #4fc3f7; }
+    .c-dim  { color: rgba(0,255,127,0.35); }
+    .c-wht  { color: rgba(255,255,255,0.9); }
+
+    .boot-cursor {
+        display: inline-block; width: 8px; height: 13px;
+        background: #00ff7f; vertical-align: middle; margin-left: 2px;
+        animation: bc 0.7s step-end infinite;
+    }
+    @keyframes bc { 0%,100%{opacity:1} 50%{opacity:0} }
+</style>
+
+<script>
+(function () {
+    const screen   = document.getElementById('boot-screen');
+    const archBoot = document.getElementById('arch-boot');
+    const archBar  = document.getElementById('arch-bar');
+    const output   = document.getElementById('boot-output');
+    const skipBtn  = document.getElementById('boot-skip');
+    if (!screen || !output) return;
+
+    // First visit check
+    if (sessionStorage.getItem('felps-boot-v3')) return;
+    sessionStorage.setItem('felps-boot-v3', '1');
+
+    // Show screen
+    screen.classList.add('boot-visible');
+    document.body.style.overflow = 'hidden';
+
+    let done = false;
+    function dismiss() {
+        if (done) return;
+        done = true;
+        document.body.style.overflow = '';
+        screen.classList.add('boot-dissolving');
+        setTimeout(() => { screen.style.display = 'none'; }, 750);
+    }
+
+    skipBtn?.addEventListener('click', dismiss);
+    document.addEventListener('keydown', dismiss, { once: true });
+
+    // --- Boot sequence logic ---
+    
+    // 1. Arch Linux Loading Bar
+    setTimeout(() => {
+        if (done) return;
+        if (archBar) archBar.style.width = '100%';
+    }, 100);
+
+    // 2. Switch to Terminal
+    setTimeout(() => {
+        if (done) return;
+        if (archBoot) archBoot.classList.add('hidden');
+        output.classList.remove('hidden');
+        startTerminal();
+    }, 1500); // Wait for bar to fill
+
+    // 3. Kernel & Exploitation load + Login typing
+    function startTerminal() {
+        // Base delay for terminal lines (starts after Arch logo)
+        const t0 = 0; 
+        
+        const LINES = [
+            { t: 'Loading kernel: linux-rt-hardened 6.7.0 ...',            c: 'c-info', d: t0 + 50  },
+            { t: '[    0.000000] Linux version 6.7.0-rt-hardened (gcc 13.2.1)', c: 'c-dim', d: t0 + 150 },
+            { t: '[    0.391204] NET: Registered PF_INET6 protocol family',c: 'c-dim',  d: t0 + 200  },
+            { t: '[    0.512008] pci 0000:03:00.0: AMD Ethernet Controller', c: 'c-dim',d: t0 + 250  },
+            { t: 'Starting systemd 255 (255.3-1-arch)...',                 c: 'c-info', d: t0 + 350  },
+            { t: '[  OK  ]  Reached target Local File Systems',            c: 'c-ok',   d: t0 + 400  },
+            { t: '[  OK  ]  Started Network Service',                      c: 'c-ok',   d: t0 + 450  },
+            { t: '[ WARN ]  tor.service: Starting anonymization layer...',  c: 'c-warn', d: t0 + 550  },
+            { t: '[  OK  ]  Tor Hidden Service — ACTIVE',                  c: 'c-ok',   d: t0 + 650  },
+            { t: '[  OK  ]  OpenSSH Server Daemon — LISTENING :22',        c: 'c-ok',   d: t0 + 700  },
+            { t: '',                                                        c: '',       d: t0 + 750 },
+            { t: 'Loading offensive toolkit...',                           c: 'c-info', d: t0 + 800 },
+            { t: '[  OK  ]  nmap 7.94SVN — port scanning & enumeration',   c: 'c-ok',   d: t0 + 850 },
+            { t: '[  OK  ]  metasploit-framework 6.3 — exploit framework', c: 'c-ok',   d: t0 + 900 },
+            { t: '[  OK  ]  impacket 0.12 — Windows protocol attacks',     c: 'c-ok',   d: t0 + 950 },
+            { t: '[  OK  ]  bloodhound-ce — AD attack path mapper',        c: 'c-ok',   d: t0 + 1000 },
+            { t: '[  OK  ]  burpsuite 2024.1 — web proxy & scanner',      c: 'c-ok',   d: t0 + 1050 },
+            { t: '',                                                        c: '',       d: t0 + 1100 },
+            { t: 'Arch Linux 6.7.0-rt (tty1)',                             c: 'c-wht',  d: t0 + 1300 },
+            { t: '',                                                        c: '',       d: t0 + 1350 },
+            // Typing Login
+            { t: 'offsec login: ',                                         c: 'c-wht',  d: t0 + 1450, type: 'felps' },
+            // Typing Password
+            { t: 'Password: ',                                             c: 'c-dim',  d: t0 + 2400, type: '••••••••••' },
+            { t: '',                                                        c: '',       d: t0 + 3200 },
+            { t: 'Last login: Today from 192.168.66.1',                    c: 'c-dim',  d: t0 + 3300 },
+            { t: '',                                                        c: '',       d: t0 + 3400 },
+            { t: '┌──(felps💀offsec)-[~]',                                c: 'c-ok',   d: t0 + 3500 },
+            // Typing command
+            { t: '└─$ ',                                                  c: 'c-wht',  d: t0 + 3700, type: './launch_portfolio.sh' },
+            { t: '',                                                        c: '',       d: t0 + 5100 },
+            { t: '[ ACCESS GRANTED — Welcome, Operator. ]',                c: 'c-ok',   d: t0 + 5400 },
+        ];
+
+        let maxDelay = 0;
+        LINES.forEach(line => {
+            if (line.d > maxDelay) maxDelay = line.d;
+            setTimeout(() => {
+                if (done) return;
+                const el = document.createElement('div');
+                el.className = 'bl ' + line.c;
+                el.innerHTML = line.t || '\u00a0';
+                output.appendChild(el);
+                
+                // Typing effect
+                if (line.type) {
+                    let i = 0;
+                    const typeSpeed = line.type.includes('•') ? 30 : 70; // Passwords type faster
+                    const typeInterval = setInterval(() => {
+                        if (done) { clearInterval(typeInterval); return; }
+                        el.innerHTML = line.t + line.type.substring(0, i + 1);
+                        i++;
+                        if (i >= line.type.length) clearInterval(typeInterval);
+                    }, typeSpeed);
+                }
+                
+                output.scrollTop = output.scrollHeight;
+            }, line.d);
+        });
+
+        // Blinking cursor at the end
+        setTimeout(() => {
+            if (done) return;
+            const el = document.createElement('div');
+            el.className = 'bl c-ok';
+            el.innerHTML = '<span class="boot-cursor"></span>';
+            output.appendChild(el);
+            output.scrollTop = output.scrollHeight;
+        }, maxDelay + 400);
+
+        // Auto dismiss
+        setTimeout(dismiss, maxDelay + 1400);
+    }
+})();
+</script>

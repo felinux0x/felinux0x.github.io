@@ -1,0 +1,80 @@
+---
+import { siteConfig } from "../../config";
+import { BANNER_HEIGHT } from "../../constants/constants";
+
+const posts = [
+    { title: "HTB: Cap Writeup", time: "2m ago" },
+    { title: "THM: Brute It", time: "1h ago" },
+    { title: "Network Scanning 101", time: "5h ago" }
+];
+---
+
+<div class="card-base p-4 font-mono text-[0.7rem] text-[var(--primary)] bg-black/60 border border-[var(--primary)]/20 shadow-[0_0_15px_rgba(0,255,127,0.1)]">
+    <div class="flex items-center justify-between mb-2 border-b border-[var(--primary)]/20 pb-1">
+        <span class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-red-500/50"></span>
+            <span class="w-2 h-2 rounded-full bg-yellow-500/50"></span>
+            <span class="w-2 h-2 rounded-full bg-green-500/50"></span>
+            <span class="ml-1 opacity-70">bash -- 80x24</span>
+        </span>
+        <span class="opacity-40">FELPS_C2</span>
+    </div>
+    
+    <div class="space-y-1.5 overflow-hidden">
+        <div class="flex justify-between opacity-60">
+            <span>UPTIME:</span>
+            <span id="uptime-val">00d 04h 12m 33s</span>
+        </div>
+        <div class="flex justify-between opacity-60">
+            <span>STATUS:</span>
+            <span class="text-green-400 animate-pulse">STEALTH_MODE</span>
+        </div>
+        
+        <div class="mt-4 mb-1 text-[0.6rem] border-t border-[var(--primary)]/10 pt-2 opacity-40">
+            // RECENT_OPERATIONS
+        </div>
+        
+        {posts.map(post => (
+            <div class="flex justify-between gap-2">
+                <span class="truncate">[{post.title}]</span>
+                <span class="whitespace-nowrap opacity-40">{post.time}</span>
+            </div>
+        ))}
+
+        <div class="mt-3 flex items-center">
+            <span class="mr-1">root@felps:~#</span>
+            <span class="w-2 h-4 bg-[var(--primary)] animate-[blink_1s_infinite]"></span>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+</style>
+
+<script>
+    function updateUptime() {
+        const uptimeEl = document.getElementById('uptime-val');
+        if (!uptimeEl) return;
+        
+        const startTime = new Date();
+        startTime.setHours(startTime.getHours() - 4); // Fake session start
+        
+        setInterval(() => {
+            const now = new Date();
+            const diff = now.getTime() - startTime.getTime();
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            uptimeEl.innerText = `00d ${hours.toString().padStart(2, '0')}h ${mins.toString().padStart(2, '0')}m ${secs.toString().padStart(2, '0')}s`;
+        }, 1000);
+    }
+    
+    document.addEventListener('astro:page-load', updateUptime);
+    updateUptime();
+</script>

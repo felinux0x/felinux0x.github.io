@@ -1,0 +1,77 @@
+---
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import ProjectCard from "@components/misc/ProjectCard.astro";
+
+const projects = [
+  {
+    title: "Ransomware Analysis Toolkit",
+    description: "Toolkit educacional focado em análise de técnicas de criptografia simétrica e assimétrica (RSA/AES) utilizadas em malwares modernos.",
+    href: "https://github.com/felinux0x/ransomware-analysis-toolkit",
+    tags: ["Malware", "Analysis", "Python"],
+    status: "Finished",
+    stack: ["Python"]
+  },
+  {
+    title: "RATao - Remote Admin Tool",
+    description: "Ferramenta de Command & Control (C2) desenvolvida para demonstrar técnicas de persistência, obfuscação e bypass de AV.",
+    href: "https://github.com/felinux0x/RATao",
+    tags: ["RedTeam", "C2", "C#"],
+    status: "Research",
+    stack: ["C#"]
+  },
+  {
+    title: "Python IDS Framework",
+    description: "Framework modular para detecção de intrusão em rede, utilizando análise de pacotes em tempo real com Scapy.",
+    href: "https://github.com/felinux0x/python-ids-framework",
+    tags: ["IDS", "Network", "Security"],
+    status: "Active",
+    stack: ["Python"]
+  },
+  {
+    title: "PyVigil - HIDS",
+    description: "Sistema de detecção de intrusão baseado em host que monitora integridade de arquivos e logs críticos no Linux.",
+    href: "https://github.com/felinux0x/PyVigial",
+    tags: ["HIDS", "Defense", "Linux"],
+    status: "Active",
+    stack: ["Python"]
+  },
+  {
+    title: "Arch Pentest Installer",
+    description: "Script de automação para transformar uma instalação base do Arch Linux em uma workstation completa de Pentest.",
+    href: "https://github.com/felinux0x/arch-pentest-installer",
+    tags: ["Automation", "Arch", "Pentest"],
+    status: "Finished",
+    stack: ["Bash"]
+  },
+  {
+    title: "Spectro - String Obfuscation",
+    description: "Biblioteca em Go para ofuscação de strings e payloads, dificultando a análise estática por analistas de malware.",
+    href: "https://github.com/felinux0x/spectro-go",
+    tags: ["Obfuscation", "Golang", "Evasion"],
+    status: "Active",
+    stack: ["Go"]
+  }
+];
+---
+<MainGridLayout title="Projetos" description="Hub de Ferramentas e Projetos Ofensivos">
+    <div class="flex flex-col gap-8 w-full onload-animation">
+        <!-- Header Section -->
+        <div class="card-base p-5 sm:p-8 text-center relative overflow-hidden group">
+            <div class="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/5 to-transparent opacity-50"></div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black mb-4 relative z-10 text-black/90 dark:text-white/90">
+                ⚔️ HUB DE <span class="text-[var(--primary)]">PROJETOS</span>
+            </h1>
+            <p class="text-sm text-black/60 dark:text-white/60 max-w-2xl mx-auto relative z-10">
+                Repositório de ferramentas desenvolvidas para pesquisa em segurança, 
+                automação de pentest e análise comportamental de artefatos maliciosos.
+            </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-20">
+            {projects.map(project => (
+                <ProjectCard {...project} />
+            ))}
+        </div>
+    </div>
+</MainGridLayout>

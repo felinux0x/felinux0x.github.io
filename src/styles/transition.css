@@ -1,0 +1,113 @@
+/* ============================================================
+   PAGE TRANSITIONS — Swup
+   ============================================================*/
+/* Page transition animations with Swup */
+html.is-changing .transition-swup-fade {
+    transition: opacity 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+html.is-animating .transition-swup-fade {
+    opacity: 0;
+    /* No translateY — it causes layout shift / jitter on mobile */
+}
+
+/* Glitch transition */
+html.is-animating .transition-glitch {
+    animation: glitch-out 220ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+@keyframes glitch-out {
+    0%   { opacity: 1; transform: translate(0); }
+    40%  { opacity: 0.7; transform: translate(-3px, 1px); }
+    70%  { opacity: 0.4; transform: translate(3px, -1px); }
+    100% { opacity: 0; transform: translate(0); }
+}
+
+/* ============================================================
+   ONLOAD ANIMATIONS — staggered entrance
+   ============================================================ */
+
+/* Main keyframe — every element uses this by default */
+@keyframes enter-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Navbar from top */
+@keyframes enter-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sidebar from left */
+@keyframes enter-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- Base class — applies enter-up to ALL .onload-animation elements --- */
+.onload-animation {
+    opacity: 0;
+    animation-name: enter-up;
+    animation-duration: 600ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    /* GPU-accelerate to prevent repaint jitter on mobile */
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* --- Per-element overrides --- */
+
+#navbar {
+    animation-name: enter-down;
+    animation-delay: 0ms;
+    animation-duration: 450ms;
+}
+
+#banner-credit {
+    animation-delay: 200ms;
+    animation-duration: 550ms;
+}
+
+#sidebar {
+    animation-name: enter-left;
+    animation-delay: 100ms;
+    animation-duration: 600ms;
+}
+
+#content-wrapper {
+    animation-delay: var(--content-delay);
+}
+
+.footer {
+    animation-delay: 280ms;
+    animation-duration: 500ms;
+}
+
+/* ============================================================
+   POST CONTENT — staggered paragraphs
+   ============================================================ */
+#post-container :nth-child(1) { animation-delay: calc(var(--content-delay) + 0ms);   }
+#post-container :nth-child(2) { animation-delay: calc(var(--content-delay) + 60ms);  }
+#post-container :nth-child(3) { animation-delay: calc(var(--content-delay) + 120ms); }
+#post-container :nth-child(4) { animation-delay: calc(var(--content-delay) + 190ms); }
+#post-container :nth-child(5) { animation-delay: calc(var(--content-delay) + 260ms); }
+#post-container :nth-child(6) { animation-delay: calc(var(--content-delay) + 330ms); }

@@ -1,0 +1,79 @@
+<!-- ============================================================
+     UNDERGROUND OVERLAYS — background matching TacticalBanner
+     - Sparse binary rain (same density as banner)
+     - Subtle grid pattern (50px, same as banner)
+     - Horizontal scanning line (slow, full-page)
+     ============================================================ -->
+
+<!-- Binary Rain — same density/color as TacticalBanner -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden opacity-10">
+    <canvas id="binary-rain"></canvas>
+</div>
+
+<!-- Grid Pattern — exact copy from TacticalBanner -->
+<div
+    class="fixed inset-0 pointer-events-none z-0 opacity-[0.07]"
+    style="background-image: linear-gradient(var(--primary, #00ff7f) 1px, transparent 1px), linear-gradient(90deg, var(--primary, #00ff7f) 1px, transparent 1px); background-size: 50px 50px;"
+></div>
+
+<!-- Slow scanning line — full page -->
+<div class="fixed top-0 left-0 w-full h-[1px] pointer-events-none z-[1] bg-[var(--primary)]/30 animate-page-scan shadow-[0_0_14px_var(--primary)]"></div>
+
+<style>
+    #binary-rain { width: 100%; height: 100%; }
+
+    @keyframes page-scan {
+        0%   { top: -2%;  opacity: 0; }
+        10%  { opacity: 1; }
+        90%  { opacity: 1; }
+        100% { top: 102%; opacity: 0; }
+    }
+    .animate-page-scan {
+        animation: page-scan 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+</style>
+
+<script>
+(function () {
+    const canvas = document.getElementById('binary-rain');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let width  = canvas.width  = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    const charSize = 12; // same as banner
+    let columns = Math.floor(width / charSize);
+    let drops = new Array(columns).fill(0);
+
+    function draw() {
+        // Same fade alpha as banner (0.08)
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+        ctx.fillRect(0, 0, width, height);
+
+        // Same green as banner — but respect theme via CSS var
+        ctx.fillStyle = '#00ff7f';
+        ctx.font = `${charSize}px monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+            // Same sparse logic as banner: only 20% chance to draw a char
+            const text = Math.random() > 0.8 ? (Math.random() > 0.5 ? '1' : '0') : '';
+            if (text) {
+                ctx.fillText(text, i * charSize, drops[i] * charSize);
+            }
+            if (drops[i] * charSize > height && Math.random() > 0.98) drops[i] = 0;
+            drops[i]++;
+        }
+    }
+
+    // Same 40ms interval as banner
+    let interval = setInterval(draw, 40);
+
+    window.addEventListener('resize', () => {
+        width  = canvas.width  = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        columns = Math.floor(width / charSize);
+        drops   = new Array(columns).fill(0);
+    });
+})();
+</script>

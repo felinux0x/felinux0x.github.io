@@ -1,0 +1,117 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  tags: string[];
+  status: "Active" | "Research" | "Finished";
+  stack: string[];
+}
+
+const { title, description, href, tags, status, stack } = Astro.props;
+
+const statusColors = {
+  Active: "text-green-400 border-green-400/30 bg-green-400/5",
+  Research: "text-blue-400 border-blue-400/30 bg-blue-400/5",
+  Finished: "text-purple-400 border-purple-400/30 bg-purple-400/5",
+};
+---
+
+<a 
+  href={href} 
+  target="_blank" 
+  rel="noopener noreferrer"
+  class="group relative flex flex-col p-6 bg-[var(--card-bg)] rounded-2xl border border-black/5 dark:border-white/5 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:border-[var(--primary)]/50 active:scale-95 overflow-hidden"
+>
+  <!-- Scanning Line -->
+  <div class="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+    <div class="absolute top-0 left-0 w-full h-[1px] bg-[var(--primary)] shadow-[0_0_15px_var(--primary)] animate-scan"></div>
+  </div>
+
+  <!-- Tech Metadata Overlay -->
+  <div class="absolute bottom-4 right-12 z-20 font-mono text-[7px] text-[var(--primary)]/40 opacity-0 group-hover:opacity-100 transition-all duration-700 select-none pointer-events-none text-right leading-tight">
+    LOG_ID: 0x{Math.random().toString(16).slice(2, 8).toUpperCase()}<br/>
+    STATUS: NOMINAL<br/>
+    BUFFER: {Math.floor(Math.random() * 1024)}KB
+  </div>
+
+  <div class="flex justify-between items-start mb-4 relative z-10">
+    <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 group-hover:bg-[var(--primary)]/10 transition-colors">
+      <Icon name="material-symbols:terminal-rounded" class="text-2xl text-black/60 dark:text-white/60 group-hover:text-[var(--primary)] transition-colors" />
+    </div>
+    <span class={`text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded border ${statusColors[status]}`}>
+      {status}
+    </span>
+  </div>
+
+  <h3 class="text-xl font-bold text-black/90 dark:text-white/90 mb-2 group-hover:text-[var(--primary)] transition-colors relative z-10 project-title">
+    {title}
+  </h3>
+
+  <p class="text-sm text-black/60 dark:text-white/60 mb-6 flex-grow relative z-10">
+    {description}
+  </p>
+
+  <div class="flex flex-wrap gap-2 mb-4 relative z-10">
+    {tags.map(tag => (
+      <span class="text-[10px] font-mono text-black/40 dark:text-white/40 bg-black/5 dark:bg-white/5 px-2 py-1 rounded">
+        #{tag}
+      </span>
+    ))}
+  </div>
+
+  <div class="flex items-center justify-between pt-4 border-t border-black/5 dark:border-white/5 relative z-10">
+    <div class="flex gap-3">
+      {stack.map(s => (
+        <span title={s} class="transition-transform group-hover:scale-110">
+           {s === 'Python' && <Icon name="simple-icons:python" class="text-lg opacity-60 hover:opacity-100" />}
+           {s === 'C#' && <Icon name="simple-icons:csharp" class="text-lg opacity-60 hover:opacity-100" />}
+           {s === 'Go' && <Icon name="simple-icons:go" class="text-lg opacity-60 hover:opacity-100" />}
+           {s === 'Bash' && <Icon name="simple-icons:gnubash" class="text-lg opacity-60 hover:opacity-100" />}
+           {s === 'Scapy' && <Icon name="simple-icons:python" class="text-lg opacity-60 hover:opacity-100" />}
+        </span>
+      ))}
+    </div>
+    <Icon name="material-symbols:arrow-outward-rounded" class="text-xl text-black/20 dark:text-white/20 group-hover:text-[var(--primary)] transition-all" />
+  </div>
+</a>
+
+<script is:inline>
+  // Add log to console when hovering
+  document.querySelectorAll('a.group').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      const title = el.querySelector('.project-title')?.innerText;
+      if (title) {
+        window.dispatchEvent(new CustomEvent('tactical-log', { 
+            detail: { message: `Scanning project: ${title}...`, type: "info" } 
+        }));
+      }
+    });
+  });
+</script>
+
+<style>
+  .group:hover .project-title {
+    text-shadow: 2px 0 var(--primary), -2px 0 #ff00ff22;
+    animation: title-glitch 0.3s infinite linear alternate-reverse;
+  }
+
+  @keyframes title-glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-1px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+  }
+
+  @keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+  }
+  .animate-scan {
+    animation: scan 2s linear infinite;
+  }
+</style>

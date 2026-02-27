@@ -1,0 +1,122 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  command: string;
+  description?: string;
+  user?: string;
+  host?: string;
+  difficulty?: "Easy" | "Medium" | "Hard";
+  tags?: string[];
+}
+
+const { command, description, user = "felps", host = "offsec", difficulty, tags } = Astro.props;
+
+const diffColors = {
+  Easy: "text-green-400 border-green-400/30 bg-green-400/5",
+  Medium: "text-yellow-400 border-yellow-400/30 bg-yellow-400/5",
+  Hard: "text-red-400 border-red-400/30 bg-red-500/10",
+};
+---
+
+<div class="command-terminal group mb-6 overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-[#0d0d0d] shadow-lg">
+  <!-- Terminal Header -->
+  <div class="flex items-center justify-between px-4 py-2 bg-black/40 border-b border-white/5">
+    <div class="flex items-center gap-3">
+      <div class="flex gap-1.5 mr-2">
+        <div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+      </div>
+      {difficulty && (
+        <span class={`text-[9px] uppercase tracking-tighter font-bold px-1.5 py-0.5 rounded border ${diffColors[difficulty]}`}>
+          {difficulty}
+        </span>
+      )}
+    </div>
+    <div class="hidden sm:block text-[10px] font-mono text-white/20 uppercase tracking-widest px-2">
+      {description || "sh"}
+    </div>
+    <button 
+      class="copy-btn p-1.5 rounded-md hover:bg-white/5 transition-colors text-white/40 hover:text-[var(--primary)] text-xs flex items-center gap-1.5"
+      data-command={command}
+      title="Copy Command"
+    >
+      <span class="hidden sm:inline opacity-0 group-hover:opacity-100 transition-opacity">COPY</span>
+      <Icon name="material-symbols:content-copy-outline" class="text-sm" />
+    </button>
+  </div>
+
+  <!-- Terminal Body -->
+  <div class="p-4 font-mono text-sm sm:text-base leading-relaxed overflow-x-auto custom-scrollbar">
+    <div class="flex gap-3">
+      <span class="text-[var(--primary)] shrink-0 select-none">
+        <span class="text-blue-400">{user}</span>@<span class="text-purple-400">{host}</span>:<span class="text-yellow-400">~</span>$
+      </span>
+      <code class="text-blue-50/90 whitespace-pre-wrap break-all">{command}</code>
+    </div>
+    
+    {tags && tags.length > 0 && (
+      <div class="mt-4 flex flex-wrap gap-2 opacity-40 group-hover:opacity-100 transition-opacity">
+        {tags.map(tag => (
+          <span class="text-[9px] font-bold text-[var(--primary)] uppercase tracking-tight">#{tag}</span>
+        ))}
+      </div>
+    )}
+  </div>
+</div>
+
+<script>
+  function initCopyButtons() {
+    const buttons = document.querySelectorAll('.copy-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const cmd = btn.getAttribute('data-command');
+        if (!cmd) return;
+        
+        try {
+          await navigator.clipboard.writeText(cmd);
+          
+          // Success Feedback
+          const icon = btn.querySelector('svg');
+          if (icon) {
+            btn.classList.add('text-green-400');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+            
+            setTimeout(() => {
+              btn.innerHTML = originalHTML;
+              btn.classList.remove('text-green-400');
+            }, 2000);
+          }
+        } catch (err) {
+          console.error('Failed to copy: ', err);
+        }
+      });
+    });
+  }
+
+  // Init on load and after swup transitions
+  initCopyButtons();
+  document.addEventListener('swup:content:replace', initCopyButtons);
+</script>
+
+<style>
+  .custom-scrollbar::-webkit-scrollbar {
+    height: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+  
+  .command-terminal:hover {
+    box-shadow: 0 0 20px -5px var(--primary-shadow);
+  }
+</style>

