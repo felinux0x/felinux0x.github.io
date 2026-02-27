@@ -241,52 +241,79 @@ const methodology = [
 <script>
   // @ts-nocheck
   // Resume Decryption Animation
-  const btn = document.getElementById('decrypt-btn');
-  const progressContainer = document.getElementById('decrypt-progress');
-  const bar = document.getElementById('decrypt-bar');
-  const pct = document.getElementById('decrypt-pct');
-  const hex = document.getElementById('decrypt-hex');
-  const download = document.getElementById('resume-download');
-  const container = document.getElementById('resume-container');
+  function initResumeDecrypt() {
+    const btn = document.getElementById('decrypt-btn');
+    const progressContainer = document.getElementById('decrypt-progress');
+    const bar = document.getElementById('decrypt-bar');
+    const pct = document.getElementById('decrypt-pct');
+    const hex = document.getElementById('decrypt-hex');
+    const download = document.getElementById('resume-download');
+    const container = document.getElementById('resume-container');
 
-  if (btn) {
-    btn.addEventListener('click', () => {
-      btn.style.display = 'none';
-      progressContainer.classList.remove('hidden');
-      progressContainer.classList.add('flex');
-      container.classList.replace('border-white/20', 'border-[var(--primary)]/30');
-      
-      let progress = 0;
-      
-      const hexInterval = setInterval(() => {
-        let str = '';
-        for(let i=0; i<8; i++) str += Math.floor(Math.random()*16).toString(16).toUpperCase() + ' ';
-        if (hex) hex.textContent = str;
-      }, 50);
-
-      const interval = setInterval(() => {
-        progress += Math.random() * 5 + 1;
-        if (progress > 100) progress = 100;
-        
-        if (bar && pct) {
-          bar.style.width = `${progress}%`;
-          pct.textContent = `${Math.floor(progress)}%`;
+    // Only attach if button exists and hasn't been clicked/initialised yet in this session view
+    if (btn && !btn.dataset.initialized) {
+      btn.dataset.initialized = "true";
+      btn.addEventListener('click', () => {
+        btn.style.display = 'none';
+        if (progressContainer) {
+          progressContainer.classList.remove('hidden');
+          progressContainer.classList.add('flex');
+        }
+        if (container) {
+          container.classList.replace('border-white/20', 'border-[var(--primary)]/30');
         }
         
-        if (progress === 100) {
-          clearInterval(interval);
-          clearInterval(hexInterval);
-          setTimeout(() => {
-            progressContainer.style.display = 'none';
-            download.classList.remove('hidden');
-            download.classList.add('flex');
-            container.classList.replace('border-[var(--primary)]/30', 'border-[var(--primary)]/50');
-            container.classList.replace('bg-black/30', 'bg-[var(--primary)]/5');
-            container.classList.replace('border-dashed', 'border-solid');
-          }, 300);
-        }
-      }, 80);
+        let progress = 0;
+        
+        const hexInterval = setInterval(() => {
+          let str = '';
+          for(let i=0; i<8; i++) str += Math.floor(Math.random()*16).toString(16).toUpperCase() + ' ';
+          if (hex) hex.textContent = str;
+        }, 50);
+
+        const interval = setInterval(() => {
+          progress += Math.random() * 5 + 1;
+          if (progress > 100) progress = 100;
+          
+          if (bar && pct) {
+            bar.style.width = `${progress}%`;
+            pct.textContent = `${Math.floor(progress)}%`;
+          }
+          
+          if (progress === 100) {
+            clearInterval(interval);
+            clearInterval(hexInterval);
+            setTimeout(() => {
+              if (progressContainer) progressContainer.style.display = 'none';
+              if (download) {
+                download.classList.remove('hidden');
+                download.classList.add('flex');
+              }
+              if (container) {
+                container.classList.replace('border-[var(--primary)]/30', 'border-[var(--primary)]/50');
+                container.classList.replace('bg-black/30', 'bg-[var(--primary)]/5');
+                container.classList.replace('border-dashed', 'border-solid');
+              }
+            }, 300);
+          }
+        }, 80);
+      });
+    }
+  }
+
+  // Run on initial page load
+  initResumeDecrypt();
+
+  // Run on Swup page navigation
+  if (window.swup) {
+    window.swup.hooks.on('page:view', initResumeDecrypt);
+  } else {
+    document.addEventListener('swup:enable', () => {
+      window.swup.hooks.on('page:view', initResumeDecrypt);
     });
+    // Fallback document events
+    document.addEventListener('swup:contentReplaced', initResumeDecrypt);
+    document.addEventListener('astro:page-load', initResumeDecrypt);
   }
 </script>
 
