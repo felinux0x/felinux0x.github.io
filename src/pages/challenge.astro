@@ -3,51 +3,65 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="System Access — Restricted Area">
-  <div class="min-h-screen w-full flex flex-col items-center justify-center p-4 sm:p-8 bg-black/90 relative overflow-hidden font-mono text-white selection:bg-[var(--primary)] selection:text-black">
+  <div class="min-h-screen w-full flex flex-col items-center justify-center p-4 sm:p-8 bg-black relative overflow-hidden font-mono text-white selection:bg-green-400 selection:text-black">
     
-    <!-- Efeitos de fundo (scanlines, glow) -->
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.8)_100%)] z-10"></div>
-    <div class="pointer-events-none absolute inset-0 z-20 opacity-10 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px]"></div>
+    <!-- Scanlines -->
+    <div class="pointer-events-none fixed inset-0 z-20 opacity-[0.04] bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,1)_2px,rgba(0,0,0,1)_4px)]"></div>
+    <!-- Vignette -->
+    <div class="pointer-events-none fixed inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.85)_100%)]"></div>
+    <!-- Flicker overlay -->
+    <div class="pointer-events-none fixed inset-0 z-30 opacity-0" id="flicker-overlay" style="background:rgba(0,255,70,0.02)"></div>
 
-    <div class="z-30 w-full max-w-2xl flex flex-col gap-6">
-      
-      <!-- Cabeçalho do Terminal -->
-      <div class="border border-white/20 bg-black/60 rounded-lg p-1 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-        <div class="flex items-center gap-2 px-3 py-2 border-b border-white/10 bg-white/5 rounded-t-md">
-          <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-          <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-          <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-          <span class="ml-2 text-xs font-bold text-white/50 tracking-widest">root@system:~</span>
+    <div class="z-40 w-full max-w-2xl flex flex-col gap-4">
+
+      <!-- Top bar -->
+      <div class="flex items-center justify-between text-[10px] text-green-500/40 tracking-widest uppercase px-1">
+        <span id="clock">--:--:--</span>
+        <span>SESSION_ID: <span class="text-green-500/60" id="session-id">----</span></span>
+        <span>UPTIME: <span id="uptime">0s</span></span>
+      </div>
+
+      <!-- Terminal Window -->
+      <div class="border border-green-500/20 bg-black rounded-lg shadow-[0_0_40px_rgba(0,255,70,0.05)] overflow-hidden">
+        
+        <!-- Title bar -->
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-green-500/10 bg-green-500/[0.03]">
+          <div class="w-3 h-3 rounded-full bg-red-500/70 hover:bg-red-500 transition-colors cursor-pointer"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500/70 hover:bg-yellow-500 transition-colors cursor-pointer"></div>
+          <div class="w-3 h-3 rounded-full bg-green-500/70 hover:bg-green-500 transition-colors cursor-pointer"></div>
+          <span class="ml-3 text-[11px] font-bold text-green-500/40 tracking-[0.2em] uppercase">root@system:~ — bash</span>
         </div>
         
-        <!-- Corpo do Terminal -->
-        <div class="p-6 sm:p-8 text-sm sm:text-base leading-relaxed h-[400px] flex flex-col">
+        <!-- Terminal Body -->
+        <div class="p-5 sm:p-7 text-sm leading-relaxed h-[420px] flex flex-col">
           
-          <div id="terminal-output" class="flex-1 overflow-y-auto space-y-3 mb-4 pr-2 custom-scrollbar">
-            <p class="text-green-400 font-bold">Iniciando protocolo de segurança avançada...</p>
-            <p class="text-white/70">[OK] Camada de ofuscação ativa.</p>
-            <p class="text-white/70">[OK] Módulos de detecção passiva rodando em background.</p>
+          <div id="terminal-output" class="flex-1 overflow-y-auto space-y-2 mb-4 pr-1 scrollbar-thin">
+            <p class="text-green-400 font-bold tracking-wide">Iniciando protocolo de segurança avançada...</p>
+            <p class="text-green-500/50">[OK] Camada de ofuscação ativa.</p>
+            <p class="text-green-500/50">[OK] Módulos de detecção passiva rodando em background.</p>
+            <p class="text-green-500/50">[OK] Criptografia de sessão estabelecida.</p>
             <br/>
-            <p class="text-[var(--primary)] font-bold uppercase tracking-widest">&gt;&gt; ACESSO RESTRITO &lt;&lt;</p>
-            <p class="text-white/90">Apenas operadores autorizados podem prosseguir.</p>
+            <p class="text-green-400 font-bold tracking-[0.15em]">&gt;&gt; ACESSO RESTRITO &lt;&lt;</p>
+            <p class="text-green-200/70">Apenas operadores autorizados podem prosseguir.</p>
             <br/>
-            <p class="text-white/60">Para provar seu nível de autorização, resolva o desafio abaixo e insira a resposta correspondente.</p>
+            <p class="text-green-500/40 text-xs">Para provar seu nível de autorização, resolva os desafios abaixo.</p>
             <br/>
-            <div id="challenge-container" class="p-4 border border-[var(--primary)]/30 bg-[var(--primary)]/5 rounded text-[var(--primary)] font-bold text-center relative">
-              <span id="challenge-prefix" class="text-[var(--primary)]">Desafio:</span> <span id="challenge-text" class="font-normal text-white/90">Qual é o nome do sistema operacional de código aberto cujo mascote é um pinguim chamado Tux?</span><br/>
-              <button id="btn-hint" type="button" class="mt-3 text-[10px] sm:text-xs px-3 py-1 bg-black/40 border border-[var(--primary)]/30 text-white/50 hover:text-[var(--primary)] hover:border-[var(--primary)] rounded transition-all uppercase tracking-widest relative z-10">
+            <div id="challenge-container" class="p-4 border border-green-500/20 bg-green-500/[0.03] rounded">
+              <p class="text-green-400/70 text-xs tracking-widest uppercase mb-2" id="challenge-prefix">Desafio Nível 1:</p>
+              <p id="challenge-text" class="text-green-200/90 font-normal leading-relaxed"></p>
+              <button id="btn-hint" type="button" class="mt-3 text-[10px] px-3 py-1 bg-black/60 border border-green-500/20 text-green-500/40 hover:text-green-400 hover:border-green-500/50 rounded transition-all tracking-widest uppercase">
                 [ Mostrar Dica ]
               </button>
             </div>
           </div>
 
-          <!-- Input do usuário -->
-          <div class="flex items-center gap-2 mt-auto pt-4 border-t border-white/10 relative">
-            <span class="text-[var(--primary)] font-bold" id="prompt-prefix">root@system:~$</span>
+          <!-- Input -->
+          <div class="flex items-center gap-3 pt-4 border-t border-green-500/10">
+            <span class="text-green-400 font-bold text-xs tracking-wide shrink-0">root@system:~$</span>
             <input 
               type="text" 
               id="flag-input" 
-              class="flex-1 bg-transparent border-none outline-none text-white/90 placeholder-white/20 font-mono caret-[var(--primary)]"
+              class="flex-1 bg-transparent border-none outline-none text-green-200/90 placeholder-green-500/20 font-mono caret-green-400 text-sm"
               placeholder="Digite a resposta e pressione ENTER..."
               autocomplete="off"
               spellcheck="false"
@@ -57,241 +71,291 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </div>
 
+      <!-- Bottom bar -->
+      <div class="flex items-center justify-between text-[10px] text-green-500/25 tracking-widest uppercase px-1">
+        <span>ENCRYPTED</span>
+        <span id="progress-text">NÍVEL 1/4</span>
+        <span>v2.4.1</span>
+      </div>
+
     </div>
   </div>
 </Layout>
 
 <script>
-  // @ts-nocheck
-  document.addEventListener('DOMContentLoaded', () => {
-    const input = document.getElementById('flag-input');
-    const output = document.getElementById('terminal-output');
-    const promptPrefix = document.getElementById('prompt-prefix');
-    const challengePrefix = document.getElementById('challenge-prefix');
-    const challengeText = document.getElementById('challenge-text');
-    const btnHint = document.getElementById('btn-hint');
+// @ts-nocheck
+document.addEventListener('DOMContentLoaded', () => {
 
-    // Desafios para iniciantes
-    const questions = [
-      {
-        text: "Qual é o nome do sistema operacional de código aberto cujo mascote é um pinguim chamado Tux?",
-        answers: ["linux"],
-        hint: "O nome deste sistema começa com 'L' e termina com 'x'. Foi criado por Linus Torvalds."
-      },
-      {
-        text: "Que linguagem de programação é a base da interatividade na web e roda nativamente nos navegadores?",
-        answers: ["javascript", "js"],
-        hint: "Sua sigla é frequentemente abreviada como JS."
-      },
-      {
-        text: "Qual é a linguagem de marcação padrão (sigla de 4 letras) usada para estruturar páginas web?",
-        answers: ["html"],
-        hint: "Começa com H e termina com L."
-      },
-      {
-        text: "Qual é o comando padrão do terminal Linux usado para listar os arquivos de um diretório?",
-        answers: ["ls"],
-        hint: "São apenas duas letras, uma abreviação da palavra 'list' do inglês."
-      }
-    ];
+  // ── UI refs ──────────────────────────────────────────────────────────────
+  const input       = document.getElementById('flag-input');
+  const output      = document.getElementById('terminal-output');
+  const challengePfx = document.getElementById('challenge-prefix');
+  const challengeTxt = document.getElementById('challenge-text');
+  const btnHint     = document.getElementById('btn-hint');
+  const progressTxt = document.getElementById('progress-text');
 
-    let currentQuestionIndex = 0;
+  // ── Clock / uptime ───────────────────────────────────────────────────────
+  const clockEl   = document.getElementById('clock');
+  const uptimeEl  = document.getElementById('uptime');
+  const sessionEl = document.getElementById('session-id');
+  sessionEl.textContent = Math.random().toString(36).slice(2,10).toUpperCase();
+  let uptimeSec = 0;
+  setInterval(() => {
+    const now = new Date();
+    clockEl.textContent = now.toTimeString().slice(0,8);
+    uptimeSec++;
+    uptimeEl.textContent = uptimeSec < 60 ? `${uptimeSec}s` : `${Math.floor(uptimeSec/60)}m${uptimeSec%60}s`;
+  }, 1000);
 
-    // Altere a URL de destino aqui!
-    const SUCCESS_REDIRECT_URL = "https://juniper-triangle-3f5.notion.site/Para-ela-31cb1baf67dc80bb8436d1dd812d4055?pvs=74";
-    const TYPE_SPEED = 30;
+  // ── Subtle flicker ───────────────────────────────────────────────────────
+  const flickerEl = document.getElementById('flicker-overlay');
+  setInterval(() => {
+    if (Math.random() < 0.08) {
+      flickerEl.style.opacity = '1';
+      setTimeout(() => flickerEl.style.opacity = '0', 60 + Math.random()*80);
+    }
+  }, 2000);
 
-    const printToTerminal = (text, className = "text-white/80") => {
-      const p = document.createElement('p');
-      p.className = className;
-      p.textContent = text;
+  // ── Obfuscation helpers ──────────────────────────────────────────────────
+  // Destination is split + encoded so DevTools won't reveal it plainly
+  const _d = [
+    'aHR0cHM6Ly9qdW5pcGVyLXRyaWFuZ2xl',
+    'LTNmNS5ub3Rpb24uc2l0ZS9QYXJhLWEt',
+    'bWVuaW5hLWRvcy1vbGhvcy12ZXJkZXMt',
+    'MzFjYjFiYWY2N2RjODBiYjg0MzZkMWRk',
+    'ODEyZDQwNTU/cHZzPTc0'
+  ];
+  const getUrl = () => atob(_d.join(''));
+
+  // Answers are hashed (djb2) — answers never appear in plain text
+  const hash = s => [...s].reduce((h,c) => Math.imul(31,h)+c.charCodeAt(0)|0, 5381) >>> 0;
+
+  // ── Desafios ─────────────────────────────────────────────────────────────
+  const questions = [
+    {
+      text: "Qual é o nome do sistema operacional de código aberto cujo mascote é um pinguim chamado Tux?",
+      hashes: [hash("linux")],
+      hint: "Começa com 'L', termina com 'x'. Criado por Linus Torvalds."
+    },
+    {
+      text: "Que linguagem de programação é a base da interatividade na web e roda nativamente nos navegadores?",
+      hashes: [hash("javascript"), hash("js")],
+      hint: "Sua sigla é frequentemente abreviada como JS."
+    },
+    {
+      text: "Qual é a linguagem de marcação (sigla de 4 letras) usada para estruturar páginas web?",
+      hashes: [hash("html")],
+      hint: "Começa com H e termina com L."
+    },
+    {
+      text: "Qual é o comando padrão do terminal Linux para listar os arquivos de um diretório?",
+      hashes: [hash("ls")],
+      hint: "Duas letras — abreviação de 'list'."
+    }
+  ];
+
+  // ── Carta (armazenada ofuscada — base64 por parágrafo) ───────────────────
+  const _letter = [
+    btoa(encodeURIComponent("Bru, se você chegou até aqui, já viu que eu guardo muita coisa, né? Mas tem um sentimento que não cabe em desafio de terminal, nem em nenhuma lógica que eu conheça.")),
+    btoa(encodeURIComponent("Eu queria que você soubesse o tamanho do orgulho que eu sinto de você. Olhar o seu esforço, te ver mergulhada nas matérias de ADS, aproveitando cada curso da Alura e com essa vontade absurda de fazer as coisas acontecerem... isso me ganha de um jeito difícil de explicar. Você me inspira, de verdade. Ver a sua garra pra crescer me dá vontade de ser alguém melhor também.")),
+    btoa(encodeURIComponent("A gente brinca sobre 'esquecer tudo' ou ter que 'deletar a linha 1340' quando o cansaço bate, mas na vida real, eu não deletaria nenhum segundo das nossas calls, das nossas risadas ou de cada vez que a gente se apoiou pra não desistir de um problema difícil.")),
+    btoa(encodeURIComponent("Sendo bem sincero, do fundo do meu coração: eu gosto muito de estar com você e adoraria ter a chance de ver até onde a gente pode chegar juntos, se você também sentir essa vontade. Eu te admiro pela mulher que você é — a que corre atrás, que não aceita menos que o seu melhor, e que ainda acha tempo pra tornar o simples em especial. Mas não escrevi isso pra te colocar peso ou pressão. Escrevi porque eu precisava que você soubesse que eu enxergo cada detalhezinho do seu brilho.")),
+    btoa(encodeURIComponent("Seja como for, eu sigo aqui. Torcendo por você na primeira fileira, orgulhoso da \"menina dos olhos verdes\" que está conquistando o próprio céu.\n\nCom todo o meu carinho,\nFe."))
+  ];
+  const getLetter = () => _letter.map(p => decodeURIComponent(atob(p)));
+
+  // ── State ────────────────────────────────────────────────────────────────
+  let currentQ = 0;
+  const TYPE_SPEED = 28;
+
+  // ── Helpers ──────────────────────────────────────────────────────────────
+  const print = (text, cls = "text-green-200/70") => {
+    const p = document.createElement('p');
+    p.className = cls;
+    p.textContent = text;
+    const container = document.getElementById('challenge-container');
+    if (container && output.contains(container)) {
+      output.insertBefore(p, container);
+    } else {
       output.appendChild(p);
+    }
+    output.scrollTop = output.scrollHeight;
+  };
+
+  const typeWrite = async (text, cls = "text-green-200/70") => {
+    const p = document.createElement('p');
+    p.className = cls;
+    const container = document.getElementById('challenge-container');
+    if (container && output.contains(container)) {
+      output.insertBefore(p, container);
+    } else {
+      output.appendChild(p);
+    }
+    for (let i = 0; i < text.length; i++) {
+      p.textContent += text[i];
       output.scrollTop = output.scrollHeight;
-    };
+      await sleep(TYPE_SPEED);
+    }
+  };
 
-    const typeWriterToTerminal = async (text, className = "text-white/80") => {
-      const p = document.createElement('p');
-      p.className = className;
-      output.appendChild(p);
-      
-      for (let i = 0; i < text.length; i++) {
-        p.textContent += text.charAt(i);
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+  const typeWriteHuman = async (text, cls = "text-green-200/85 leading-relaxed") => {
+    const p = document.createElement('p');
+    p.className = cls;
+    output.appendChild(p);
+
+    const cursor = document.createElement('span');
+    cursor.className = "animate-pulse text-green-400 font-bold";
+    cursor.textContent = "█";
+    p.appendChild(cursor);
+
+    for (let i = 0; i < text.length; i++) {
+      cursor.insertAdjacentText('beforebegin', text[i]);
+      output.scrollTop = output.scrollHeight;
+      let delay = Math.random() * 35 + 18;
+      if (['.', '!', '?'].includes(text[i])) delay += 350;
+      else if ([',', ';', '…'].includes(text[i])) delay += 180;
+      else if (text[i] === '\n') delay += 500;
+      await sleep(delay);
+    }
+    cursor.remove();
+  };
+
+  // ── Update challenge UI ──────────────────────────────────────────────────
+  const updateChallenge = () => {
+    const q = questions[currentQ];
+    challengePfx.textContent = `Desafio Nível ${currentQ + 1}:`;
+    challengeTxt.textContent = q.text;
+    progressTxt.textContent  = `NÍVEL ${currentQ + 1}/${questions.length}`;
+    if (btnHint) {
+      btnHint.disabled = false;
+      btnHint.classList.remove('opacity-30','pointer-events-none');
+    }
+    input.value    = '';
+    input.disabled = false;
+    input.focus();
+    output.scrollTop = output.scrollHeight;
+  };
+
+  // ── Hint button ──────────────────────────────────────────────────────────
+  btnHint?.addEventListener('click', e => {
+    e.stopPropagation();
+    print(`[!] DICA: ${questions[currentQ].hint}`, "text-yellow-400/80 text-xs");
+    btnHint.disabled = true;
+    btnHint.classList.add('opacity-30','pointer-events-none');
+    input.focus();
+  });
+
+  // ── Input handler ────────────────────────────────────────────────────────
+  input.addEventListener('keydown', async e => {
+    if (e.key !== 'Enter') return;
+    const value = input.value.trim().toLowerCase();
+    if (!value) return;
+
+    input.disabled = true;
+    print(`root@system:~$ ${value}`, 'text-green-500/30 text-xs');
+
+    const q = questions[currentQ];
+    const correct = q.hashes.includes(hash(value));
+
+    if (correct) {
+      await typeWrite("[*] Verificando hash...", "text-yellow-400/80 text-xs");
+      await sleep(500);
+      await typeWrite("[+] Resposta válida. Acesso parcial concedido.", "text-green-400 font-bold text-xs");
+
+      currentQ++;
+
+      if (currentQ < questions.length) {
+        await typeWrite(`[!] Adquirindo nível ${currentQ + 1}/${questions.length}...`, "text-green-500/50 text-xs");
+        await sleep(900);
+        updateChallenge();
+
+      } else {
+        // ── ALL CORRECT ──────────────────────────────────────────────────
+        await sleep(300);
+        await typeWrite("[+] Todos os níveis concluídos.", "text-green-400 font-bold text-xs");
+        await sleep(300);
+        await typeWrite("[+] ACESSO TOTAL CONCEDIDO.", "text-green-400 font-bold");
+        await sleep(800);
+
+        // Clear terminal
+        output.innerHTML = '';
+        input.parentElement.style.display = 'none';
+
+        // Separator
+        const sep = document.createElement('p');
+        sep.className = "text-green-500/20 text-xs tracking-widest mb-6";
+        sep.textContent = "─".repeat(48);
+        output.appendChild(sep);
+
+        // Type the letter
+        const paragraphs = getLetter();
+        for (const para of paragraphs) {
+          await typeWriteHuman(para, "text-green-100/80 leading-relaxed mb-1");
+          // blank line between paragraphs
+          const br = document.createElement('div');
+          br.className = "h-4";
+          output.appendChild(br);
+          await sleep(600);
+        }
+
+        // Separator
+        const sep2 = document.createElement('p');
+        sep2.className = "text-green-500/20 text-xs tracking-widest mt-4 mb-8";
+        sep2.textContent = "─".repeat(48);
+        output.appendChild(sep2);
+
+        // Continue button
+        const btnWrap = document.createElement('div');
+        btnWrap.className = "text-center opacity-0 transition-opacity duration-700";
+        const btn = document.createElement('button');
+        btn.textContent = "[ CONTINUAR ]";
+        btn.className = "px-8 py-3 border border-green-500/40 text-green-400 bg-green-500/5 font-bold tracking-[0.2em] text-sm rounded hover:bg-green-500/10 hover:border-green-400 hover:shadow-[0_0_20px_rgba(0,255,70,0.15)] transition-all duration-300 cursor-pointer";
+        btn.addEventListener('click', () => { window.location.href = getUrl(); });
+        btnWrap.appendChild(btn);
+        output.appendChild(btnWrap);
         output.scrollTop = output.scrollHeight;
-        await new Promise(r => setTimeout(r, TYPE_SPEED));
+        await sleep(100);
+        btnWrap.classList.remove('opacity-0');
+        btnWrap.classList.add('opacity-100');
       }
-    };
 
-    function updateChallengeUI() {
-      const q = questions[currentQuestionIndex];
-      challengePrefix.textContent = `Desafio Nível ${currentQuestionIndex + 1}: `;
-      challengeText.textContent = q.text;
-      
-      if (btnHint) {
-        btnHint.disabled = false;
-        btnHint.classList.remove('opacity-30', 'pointer-events-none');
-      }
-      
-      input.value = '';
+    } else {
+      await typeWrite("[-] Acesso negado. Hash inválido.", "text-red-500/80 text-xs");
+      input.value    = '';
       input.disabled = false;
       input.focus();
-
-      // Rola a tela para mostrar a pergunta
-      const challengeContainer = document.getElementById('challenge-container');
-      if (challengeContainer) {
-        challengeContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
     }
-
-    if (btnHint) {
-      btnHint.addEventListener('click', (e) => {
-        e.stopPropagation(); // Mantém o foco sem pular direto pro input
-        const q = questions[currentQuestionIndex];
-        printToTerminal(`[!] AJUDA DO SISTEMA: ${q.hint}`, "text-yellow-400 font-bold");
-        btnHint.disabled = true;
-        btnHint.classList.add('opacity-30', 'pointer-events-none');
-        input.focus();
-      });
-    }
-
-    input.addEventListener('keydown', async (e) => {
-      if (e.key === 'Enter') {
-        const value = input.value.trim().toLowerCase();
-        if (!value) return;
-
-        input.disabled = true;
-        printToTerminal(`root@system:~$ ${value}`, 'text-white/50');
-
-        const q = questions[currentQuestionIndex];
-        const isCorrect = q.answers.includes(value);
-
-        if (isCorrect) {
-          await typeWriterToTerminal("[*] Verificando...", "text-yellow-400 font-bold");
-          await new Promise(r => setTimeout(r, 600));
-          await typeWriterToTerminal("[+] Resposta válida.", "text-green-400 font-bold");
-          
-          currentQuestionIndex++;
-          
-          if (currentQuestionIndex < questions.length) {
-            await typeWriterToTerminal(`[!] Adquirindo nível de acesso ${currentQuestionIndex + 1}...`, "text-blue-400 font-bold mt-2");
-            setTimeout(() => {
-              updateChallengeUI();
-            }, 1000);
-          } else {
-            await typeWriterToTerminal("[+] Acesso Total Concedido.", "text-green-400 font-bold");
-            await new Promise(r => setTimeout(r, 1000));
-            
-            // Limpar o terminal e esconder o input
-            output.innerHTML = '';
-            const inputContainer = input.parentElement;
-            if (inputContainer) inputContainer.style.display = 'none';
-
-            // Mensagem
-            const letterParagraphs = [
-              "Bru, aproveitando que a gente tem esse espaço e estamos conversando com calma... tem algo que já faz um tempo que eu queria te dizer. Você sabe o quanto eu valorizo a nossa parceria e a liberdade incrível que a gente tem para falar sobre tudo. E é exatamente por essa confiança que eu cheguei à conclusão de que não queria esconder mais nada de você.",
-              "Lembra quando eu te falei que eu estava gostando de alguém? Pois é... eu estava falando de você esse tempo todo. Aos poucos eu fui percebendo que, para mim, aquilo que sempre foi nossa amizade começou a se transformar em algo muito maior. Acabou sendo impossível não sentir isso, porque eu admiro demais a pessoa que você é, a sua essência e a forma tão autêntica como você leva a vida.",
-              "Como eu consigo me expressar muito melhor escrevendo do que falando cara a cara, deixei meus sentimentos em um link que você vai acessar logo logo, quando o botão de continuar aparecer. Leia no seu ritmo, quando estiver em paz. Não existe pressa nenhuma para você ler e, principalmente, não quero que sinta a obrigação de me dar uma resposta logo de cara, tá? Meu único objetivo hoje era que você soubesse de verdade.",
-              "E olha, de todo o meu coração: fica tranquila. A minha maior prioridade sempre vai ser a gente continuar numa boa. Jamais iria querer que você se sentisse cobrada ou pressionada. Quando (e se) você quiser conversar a respeito de tudo, estarei aqui para ouvir. Se só precisar de um espaço e um tempo para processar, eu te entendo 100%. Tudo no seu tempo."
-            ];
-
-            // Digitar a carta
-            for (const paragraph of letterParagraphs) {
-              const p = document.createElement('p');
-              p.className = "text-white/90 mb-5 leading-relaxed tracking-wide text-sm sm:text-base";
-              output.appendChild(p);
-              
-              const cursor = document.createElement('span');
-              cursor.className = "ml-1 animate-pulse font-bold text-[var(--primary)] text-sm";
-              cursor.textContent = "█";
-              p.appendChild(cursor);
-
-              for (let i = 0; i < paragraph.length; i++) {
-                cursor.insertAdjacentText('beforebegin', paragraph.charAt(i));
-                output.scrollTop = output.scrollHeight;
-                
-                // Variar a velocidade pra parecer humano
-                let delay = Math.random() * 30 + 20; // 20 a 50ms
-                if (['.', ',', '?', '!'].includes(paragraph.charAt(i))) {
-                  delay += 300; // pausa nas vírgulas e pontos
-                }
-                
-                await new Promise(r => setTimeout(r, delay));
-              }
-              
-              cursor.remove(); // remove o cursor ao final do parágrafo
-              await new Promise(r => setTimeout(r, 800)); // pausa antes do proximo paragrafo
-            }
-
-            // Botão Continuar
-            const btnContainer = document.createElement('div');
-            btnContainer.className = "mt-8 mb-4 text-center transition-opacity duration-1000 opacity-0 relative z-50 pointer-events-auto";
-            const btnNext = document.createElement('button');
-            btnNext.textContent = "[ CONTINUAR ]";
-            btnNext.className = "px-6 py-3 border border-[var(--primary)] text-[var(--primary)] bg-[var(--primary)]/10 font-bold tracking-widest rounded hover:bg-[var(--primary)] hover:text-black transition-all duration-300 cursor-pointer";
-            
-            btnNext.addEventListener('click', () => {
-              window.location.href = SUCCESS_REDIRECT_URL;
-            });
-
-            btnContainer.appendChild(btnNext);
-            output.appendChild(btnContainer);
-            output.scrollTop = output.scrollHeight;
-
-            // Fade in do botão
-            setTimeout(() => {
-              btnContainer.classList.remove('opacity-0');
-              btnContainer.classList.add('opacity-100');
-            }, 100);
-          }
-
-        } else {
-          await typeWriterToTerminal("[-] Acesso negado. Resposta incorreta.", "text-red-500 font-bold");
-          input.value = '';
-          input.disabled = false;
-          input.focus();
-        }
-      }
-    });
-
-    window.addEventListener('click', () => {
-      if(!input.disabled) input.focus();
-    });
-
-    // Iniciar
-    updateChallengeUI();
   });
+
+  // Keep focus on click
+  window.addEventListener('click', () => { if (!input.disabled) input.focus(); });
+
+  // Init
+  updateChallenge();
+});
 </script>
 
 <style>
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-</style>
-
-<style is:global>
-  /* Remove o piscar da classe crt-flicker e restaura ponteiros */
-  .crt-flicker {
-    animation: none !important;
-    opacity: 1 !important;
-  }
+  /* Monospace de terminal real */
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap');
   
-  /* Restaura o cursor padrão apenas nesta aba para melhor experiência no terminal */
-  *, html, body, a, button, input, textarea {
-    cursor: auto !important;
-  }
-  input, textarea {
-    cursor: text !important;
-  }
-  #custom-cursor {
-    display: none !important;
-  }
+  :root { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+
+  html, body { background: #000; }
+
+  /* Scrollbar fina estilo terminal */
+  #terminal-output::-webkit-scrollbar { width: 4px; }
+  #terminal-output::-webkit-scrollbar-track { background: transparent; }
+  #terminal-output::-webkit-scrollbar-thumb { background: rgba(0,255,70,0.1); border-radius: 2px; }
+  #terminal-output::-webkit-scrollbar-thumb:hover { background: rgba(0,255,70,0.2); }
+
+  /* Cursor customizado */
+  * { cursor: crosshair !important; }
+  input, textarea { cursor: text !important; }
+  button { cursor: pointer !important; }
+
+  /* Glow sutil no texto verde */
+  .text-green-400 { text-shadow: 0 0 8px rgba(0,255,70,0.4); }
 </style>
