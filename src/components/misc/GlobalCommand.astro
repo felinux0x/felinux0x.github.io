@@ -4,9 +4,8 @@
      ============================================================ -->
 <div id="global-terminal" class="fixed inset-0 z-[200] flex items-end sm:items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
     <div
-        class="w-full sm:w-[90%] sm:max-w-2xl bg-[#0a0a0a] sm:border border-t border-[var(--primary)]/30 sm:rounded-xl shadow-[0_0_80px_-20px_var(--primary)] overflow-hidden transition-all duration-300 flex flex-col"
+        class="w-full h-[100dvh] sm:h-auto sm:w-[90%] sm:max-w-2xl sm:max-h-[80vh] sm:min-h-[420px] bg-[#0a0a0a] sm:border border-t border-[var(--primary)]/30 sm:rounded-xl shadow-[0_0_80px_-20px_var(--primary)] overflow-hidden transition-all duration-300 flex flex-col"
         id="terminal-modal"
-        style="max-height: 80vh; min-height: 420px;"
     >
         <!-- Title bar -->
         <div class="flex items-center px-4 py-2.5 bg-[#111] border-b border-white/5 shrink-0">
@@ -47,6 +46,13 @@
 <script>
 // @ts-nocheck
 (function() {
+    let initialized = false;
+
+    // Wait until keydown or explicit command opens it
+    function bootTerminal() {
+        if (initialized) return;
+        initialized = true;
+
     const NAV_COMMANDS = {
         'cd /'       : { action: 'nav', url: '/',           desc: 'Ir para home' },
         'cd /home'   : { action: 'nav', url: '/',           desc: 'Ir para home' },
@@ -157,6 +163,7 @@
         // Use a wrapper div with flex for side-by-side art + info
         const wrapper = document.createElement('div');
         wrapper.style.display = 'flex';
+        wrapper.style.flexWrap = 'wrap';
         wrapper.style.gap = '1.5rem';
         wrapper.style.alignItems = 'flex-start';
 
@@ -354,14 +361,7 @@
 
         document.getElementById('term-close-btn')?.addEventListener('click', closeTerminal);
 
-        window.addEventListener('keydown', (e) => {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                const isOpen = !containerEl.classList.contains('opacity-0');
-                isOpen ? closeTerminal() : openTerminal();
-            }
-            if (e.key === 'Escape') closeTerminal();
-        });
+
 
         containerEl.addEventListener('click', (e) => {
             if (e.target === containerEl) closeTerminal();
@@ -380,15 +380,42 @@
                 else { historyIndex = -1; inputEl.value = ''; }
             }
         });
+        
+        // Expose open function so external clicks can trigger it
+        window.explicitOpenTerminal = openTerminal;
+    } // End of setup
 
-        // Theme init
-        const savedTheme = localStorage.getItem('tactical-theme') || 'emerald';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-    }
+    // Return the init function
+    return setup;
+    } // End of bootTerminal()
 
-    setup();
-    document.addEventListener('swup:content:replace', setup);
-    document.addEventListener('astro:page-load', setup);
+    // Global listener for the lazy-load trigger
+    window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            const initFn = bootTerminal();
+            if (initFn) initFn();
+            const containerEl = document.getElementById('global-terminal');
+            if (!containerEl) return;
+            const isOpen = !containerEl.classList.contains('opacity-0');
+            isOpen ? containerEl.classList.add('opacity-0', 'pointer-events-none') : window.explicitOpenTerminal?.();
+        }
+        if (e.key === 'Escape') {
+            document.getElementById('global-terminal')?.classList.add('opacity-0', 'pointer-events-none');
+        }
+    });
+
+    // We also need to wait for mobile clicks
+    document.getElementById('mobile-cmd-btn')?.addEventListener('click', () => {
+        const initFn = bootTerminal();
+        if (initFn) initFn();
+        window.explicitOpenTerminal?.();
+    });
+
+    // Theme init is lightweight, do it immediately
+    const savedTheme = localStorage.getItem('tactical-theme') || 'emerald';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
 })();
 </script>
 

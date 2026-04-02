@@ -1,7 +1,5 @@
 ---
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
+import "@fontsource-variable/jetbrains-mono";
 
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import CustomCursor from "@components/control/CustomCursor.astro";
@@ -115,15 +113,19 @@ const bannerOffset =
 			switch (theme) {
 				case LIGHT_MODE:
 					document.documentElement.classList.remove('dark');
+					document.documentElement.style.colorScheme = 'light';
 					break
 				case DARK_MODE:
 					document.documentElement.classList.add('dark');
+					document.documentElement.style.colorScheme = 'dark';
 					break
 				case AUTO_MODE:
 					if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 						document.documentElement.classList.add('dark');
+						document.documentElement.style.colorScheme = 'dark';
 					} else {
 						document.documentElement.classList.remove('dark');
+						document.documentElement.style.colorScheme = 'light';
 					}
 			}
 

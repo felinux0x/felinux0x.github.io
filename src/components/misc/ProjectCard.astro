@@ -2,20 +2,20 @@
 import { Icon } from "astro-icon/components";
 
 interface Props {
-  title: string;
-  description: string;
-  href: string;
-  tags: string[];
-  status: "Active" | "Research" | "Finished";
-  stack: string[];
+	title: string;
+	description: string;
+	href: string;
+	tags: string[];
+	status: "Active" | "Research" | "Finished";
+	stack: string[];
 }
 
 const { title, description, href, tags, status, stack } = Astro.props;
 
 const statusColors = {
-  Active: "text-green-400 border-green-400/30 bg-green-400/5",
-  Research: "text-blue-400 border-blue-400/30 bg-blue-400/5",
-  Finished: "text-purple-400 border-purple-400/30 bg-purple-400/5",
+	Active: "text-green-400 border-green-400/30 bg-green-400/5",
+	Research: "text-blue-400 border-blue-400/30 bg-blue-400/5",
+	Finished: "text-purple-400 border-purple-400/30 bg-purple-400/5",
 };
 ---
 

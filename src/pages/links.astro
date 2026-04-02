@@ -1,22 +1,22 @@
 ---
-import MainGridLayout from "../layouts/MainGridLayout.astro";
-import { profileConfig } from "../config";
 import { Icon } from "astro-icon/components";
+import { profileConfig } from "../config";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
 
 const links = [
-    ...profileConfig.links,
-    {
-        name: "TryHackMe Profile",
-        icon: "simple-icons:tryhackme",
-        url: "https://tryhackme.com/p/Fe1ps",
-        color: "#1f8b4c"
-    },
-    {
-        name: "HackTheBox Profile",
-        icon: "simple-icons:hackthebox",
-        url: "https://app.hackthebox.com/users/2483868",
-        color: "#9fef00"
-    }
+	...profileConfig.links,
+	{
+		name: "TryHackMe Profile",
+		icon: "simple-icons:tryhackme",
+		url: "https://tryhackme.com/p/Fe1ps",
+		color: "#1f8b4c",
+	},
+	{
+		name: "HackTheBox Profile",
+		icon: "simple-icons:hackthebox",
+		url: "https://app.hackthebox.com/users/2483868",
+		color: "#9fef00",
+	},
 ];
 ---
 

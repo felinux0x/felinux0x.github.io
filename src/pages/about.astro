@@ -2,30 +2,126 @@
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 
 const skills = [
-  { name: "Web Exploitation", level: 90, tags: ["SQLi", "XSS", "SSRF", "LFI", "JWT"] },
-  { name: "Active Directory", level: 80, tags: ["Kerberoasting", "NTLM Relay", "BloodHound"] },
-  { name: "Privilege Escalation", level: 85, tags: ["Linux", "Windows", "SUID", "Token Abuse"] },
-  { name: "Scripting & Tooling", level: 80, tags: ["Python", "Bash", "Go", "C"] },
-  { name: "Pivoting & Tunneling", level: 75, tags: ["Chisel", "Ligolo-ng", "SOCKS5"] },
-  { name: "Malware Analysis", level: 65, tags: ["Ghidra", "x64dbg", "static/dynamic"] },
+	{
+		name: "Web Exploitation",
+		level: 90,
+		tags: ["SQLi", "XSS", "SSRF", "LFI", "JWT"],
+	},
+	{
+		name: "Active Directory",
+		level: 80,
+		tags: ["Kerberoasting", "NTLM Relay", "BloodHound"],
+	},
+	{
+		name: "Privilege Escalation",
+		level: 85,
+		tags: ["Linux", "Windows", "SUID", "Token Abuse"],
+	},
+	{
+		name: "Scripting & Tooling",
+		level: 80,
+		tags: ["Python", "Bash", "Go", "C"],
+	},
+	{
+		name: "Pivoting & Tunneling",
+		level: 75,
+		tags: ["Chisel", "Ligolo-ng", "SOCKS5"],
+	},
+	{
+		name: "Malware Analysis",
+		level: 65,
+		tags: ["Ghidra", "x64dbg", "static/dynamic"],
+	},
 ];
 
 const certs = [
-  { name: "Segurança da Informação", org: "PUC Minas", status: "Em Andamento", year: "2026", color: "text-blue-400", dot: "bg-blue-400" },
-  { name: "DCPT — Desec Certified Pentest", org: "Desec Security", status: "Em Andamento", year: "2025", color: "text-yellow-400", dot: "bg-yellow-400" },
-  { name: "Pentest na Prática", org: "Desec Security", status: "Concluído", year: "2024", color: "text-green-400", dot: "bg-green-400" },
-  { name: "Segurança em Linux", org: "IBSEC", status: "Concluído", year: "2025", color: "text-green-400", dot: "bg-green-400" },
-  { name: "Google Hacking para Offsec", org: "XPSec", status: "Concluído", year: "2024", color: "text-green-400", dot: "bg-green-400" },
-  { name: "Santander Bootcamp Cibersegurança", org: "Santander", status: "Concluído", year: "2024", color: "text-green-400", dot: "bg-green-400" },
+	{
+		name: "Segurança da Informação",
+		org: "PUC Minas",
+		status: "Em Andamento",
+		year: "2026",
+		color: "text-blue-400",
+		dot: "bg-blue-400",
+	},
+	{
+		name: "DCPT — Desec Certified Pentest",
+		org: "Desec Security",
+		status: "Em Andamento",
+		year: "2025",
+		color: "text-yellow-400",
+		dot: "bg-yellow-400",
+	},
+	{
+		name: "Pentest na Prática",
+		org: "Desec Security",
+		status: "Concluído",
+		year: "2024",
+		color: "text-green-400",
+		dot: "bg-green-400",
+	},
+	{
+		name: "Segurança em Linux",
+		org: "IBSEC",
+		status: "Concluído",
+		year: "2025",
+		color: "text-green-400",
+		dot: "bg-green-400",
+	},
+	{
+		name: "Google Hacking para Offsec",
+		org: "XPSec",
+		status: "Concluído",
+		year: "2024",
+		color: "text-green-400",
+		dot: "bg-green-400",
+	},
+	{
+		name: "Santander Bootcamp Cibersegurança",
+		org: "Santander",
+		status: "Concluído",
+		year: "2024",
+		color: "text-green-400",
+		dot: "bg-green-400",
+	},
 ];
 
 const methodology = [
-  { phase: "01", name: "Reconhecimento", desc: "OSINT, DNS, WHOIS, Google Dorks", icon: "🔍" },
-  { phase: "02", name: "Scanning", desc: "Nmap, Shodan, serviço e banner grabbing", icon: "📡" },
-  { phase: "03", name: "Enumeração", desc: "SMB, AD, Web endpoints, APIs", icon: "🗂️" },
-  { phase: "04", name: "Exploração", desc: "CVEs, SQLi, falhas lógicas, misconfigs", icon: "⚔️" },
-  { phase: "05", name: "Pós-Exploração", desc: "Escalação, pivoting, persistência", icon: "🐚" },
-  { phase: "06", name: "Relatório", desc: "Evidências, CVSS, remediação técnica", icon: "📋" },
+	{
+		phase: "01",
+		name: "Reconhecimento",
+		desc: "OSINT, DNS, WHOIS, Google Dorks",
+		icon: "🔍",
+	},
+	{
+		phase: "02",
+		name: "Scanning",
+		desc: "Nmap, Shodan, serviço e banner grabbing",
+		icon: "📡",
+	},
+	{
+		phase: "03",
+		name: "Enumeração",
+		desc: "SMB, AD, Web endpoints, APIs",
+		icon: "🗂️",
+	},
+	{
+		phase: "04",
+		name: "Exploração",
+		desc: "CVEs, SQLi, falhas lógicas, misconfigs",
+		icon: "⚔️",
+	},
+	{
+		phase: "05",
+		name: "Pós-Exploração",
+		desc: "Escalação, pivoting, persistência",
+		icon: "🐚",
+	},
+	{
+		phase: "06",
+		name: "Relatório",
+		desc: "Evidências, CVSS, remediação técnica",
+		icon: "📋",
+	},
 ];
 ---
 
@@ -305,16 +401,16 @@ const methodology = [
   initResumeDecrypt();
 
   // Run on Swup page navigation
-  if (window.swup) {
+    if (window?.swup?.hooks) {
+    window.swup.hooks.on('content:replace', initResumeDecrypt);
     window.swup.hooks.on('page:view', initResumeDecrypt);
   } else {
     document.addEventListener('swup:enable', () => {
+      window.swup.hooks.on('content:replace', initResumeDecrypt);
       window.swup.hooks.on('page:view', initResumeDecrypt);
     });
-    // Fallback document events
-    document.addEventListener('swup:contentReplaced', initResumeDecrypt);
-    document.addEventListener('astro:page-load', initResumeDecrypt);
   }
+  document.addEventListener('astro:page-load', initResumeDecrypt);
 </script>
 
 <style>

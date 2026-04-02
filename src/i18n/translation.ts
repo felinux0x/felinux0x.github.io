@@ -5,12 +5,12 @@ import { es } from "./languages/es";
 import { id } from "./languages/id";
 import { ja } from "./languages/ja";
 import { ko } from "./languages/ko";
+import { pt_BR } from "./languages/pt-BR";
 import { th } from "./languages/th";
 import { tr } from "./languages/tr";
 import { vi } from "./languages/vi";
 import { zh_CN } from "./languages/zh_CN";
 import { zh_TW } from "./languages/zh_TW";
-import { pt_BR } from "./languages/pt-BR";
 
 export type Translation = {
 	[K in I18nKey]: string;

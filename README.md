@@ -41,6 +41,16 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm format`              | Format your code using Biome                        |
 | `pnpm new-post <filename>` | Create a new blog post                              |
 
+## 📝 Creating New Posts
+
+To create a new blog post securely and quickly with frontmatter included, use the built-in script:
+
+```sh
+pnpm new-post "Your Post Title Here"
+```
+
+This command will automatically create a Markdown file in `src/content/posts/` and populate it with the correct frontmatter (date, tags, etc.). After creation, you can directly open and edit the file.
+
 ## 🛠️ Built With
 - [Astro](https://astro.build/)
 - [Tailwind CSS](https://tailwindcss.com/)

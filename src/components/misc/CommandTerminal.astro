@@ -2,20 +2,27 @@
 import { Icon } from "astro-icon/components";
 
 interface Props {
-  command: string;
-  description?: string;
-  user?: string;
-  host?: string;
-  difficulty?: "Easy" | "Medium" | "Hard";
-  tags?: string[];
+	command: string;
+	description?: string;
+	user?: string;
+	host?: string;
+	difficulty?: "Easy" | "Medium" | "Hard";
+	tags?: string[];
 }
 
-const { command, description, user = "felps", host = "offsec", difficulty, tags } = Astro.props;
+const {
+	command,
+	description,
+	user = "felps",
+	host = "offsec",
+	difficulty,
+	tags,
+} = Astro.props;
 
 const diffColors = {
-  Easy: "text-green-400 border-green-400/30 bg-green-400/5",
-  Medium: "text-yellow-400 border-yellow-400/30 bg-yellow-400/5",
-  Hard: "text-red-400 border-red-400/30 bg-red-500/10",
+	Easy: "text-green-400 border-green-400/30 bg-green-400/5",
+	Medium: "text-yellow-400 border-yellow-400/30 bg-yellow-400/5",
+	Hard: "text-red-400 border-red-400/30 bg-red-500/10",
 };
 ---
 

@@ -1,15 +1,15 @@
 ---
 import BackToTop from "@components/control/BackToTop.astro";
 import Footer from "@components/Footer.astro";
+import GlobalCommand from "@components/misc/GlobalCommand.astro";
 import Navbar from "@components/Navbar.astro";
 import SideBar from "@components/widget/SideBar.astro";
 import type { MarkdownHeading } from "astro";
 import { Icon } from "astro-icon/components";
-import ImageWrapper from "../components/misc/ImageWrapper.astro";
-import TOC from "../components/widget/TOC.astro";
-import TacticalBanner from "../components/misc/TacticalBanner.astro";
 import BootSequence from "../components/misc/BootSequence.astro";
-import GlobalCommand from "@components/misc/GlobalCommand.astro";
+import ImageWrapper from "../components/misc/ImageWrapper.astro";
+import TacticalBanner from "../components/misc/TacticalBanner.astro";
+import TOC from "../components/widget/TOC.astro";
 import { siteConfig } from "../config";
 import {
 	BANNER_HEIGHT,
@@ -44,14 +44,7 @@ const mainPanelTop = siteConfig.banner.enable
 	: "5.5rem";
 ---
 
-<!-- 
-  ===========================================
-  Ah, you're inspecting the source code? 
-  Good. Here's your reward: 
-  FLAG: felps{h1dd3n_1n_pl41n_51gh7}
-  Use it in the terminal.
-  ===========================================
--->
+
 
 <Layout title={title} banner={banner} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle}>
 
@@ -119,7 +112,8 @@ const mainPanelTop = siteConfig.banner.enable
 <div id="ctrlk-toast"
     style="display:none; position:fixed; top:1rem; right:1rem; z-index:300;"
     class="flex items-center gap-3 px-4 py-3 bg-zinc-900/95 border border-[var(--primary)]/40 rounded-xl backdrop-blur-md shadow-xl font-mono text-xs text-white/80 transition-all duration-500 opacity-0"
-    aria-live="polite"
+    role="alert"
+    aria-hidden="true"
 >
     <span class="text-[var(--primary)] font-bold">[$]</span>
     <span>Pressione <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-[var(--primary)] font-bold text-[10px]">Ctrl</kbd> + <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-[var(--primary)] font-bold text-[10px]">K</kbd> para abrir o terminal</span>
@@ -137,6 +131,7 @@ const mainPanelTop = siteConfig.banner.enable
 
     setTimeout(() => {
         toast.style.display = 'flex';
+        toast.setAttribute('aria-hidden', 'false');
         // Force reflow for transition
         void toast.offsetWidth;
         
@@ -147,6 +142,7 @@ const mainPanelTop = siteConfig.banner.enable
 
         setTimeout(() => {
             toast.style.opacity = '0';
+            toast.setAttribute('aria-hidden', 'true');
             setTimeout(() => { toast.style.display = 'none'; }, 500);
         }, 5500);
     }, delay);

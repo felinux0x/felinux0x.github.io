@@ -2,9 +2,9 @@
 import { Icon } from "astro-icon/components";
 
 interface Props {
-    title: string;
-    url: string;
-    class?: string;
+	title: string;
+	url: string;
+	class?: string;
 }
 
 const { title, url, class: className } = Astro.props;
@@ -13,18 +13,18 @@ const encodedTitle = encodeURIComponent(title);
 const encodedUrl = encodeURIComponent(url);
 
 const shareLinks = [
-    {
-        name: "LinkedIn",
-        icon: "fa6-brands:linkedin",
-        url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-        color: "#0077b5"
-    },
-    {
-        name: "X (Twitter)",
-        icon: "fa6-brands:x-twitter",
-        url: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
-        color: "#000000"
-    }
+	{
+		name: "LinkedIn",
+		icon: "fa6-brands:linkedin",
+		url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+		color: "#0077b5",
+	},
+	{
+		name: "X (Twitter)",
+		icon: "fa6-brands:x-twitter",
+		url: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+		color: "#000000",
+	},
 ];
 ---
 

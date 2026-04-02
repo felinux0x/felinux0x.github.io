@@ -26,3 +26,6 @@ export const collections = {
 	posts: postsCollection,
 	spec: specCollection,
 };
+
+import type { CollectionEntry } from "astro:content";
+export type BlogPost = CollectionEntry<"posts">;

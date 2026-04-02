@@ -20,10 +20,11 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - name: Install, build, and upload your site
+      - name: Install dependencies and build
         uses: withastro/action@v3
         with:
             package-manager: pnpm@9.14.4
+            install-args: --frozen-lockfile
 
   deploy:
     needs: build

