@@ -1,5 +1,7 @@
 # �‍☠️ Tactical Portfolio & Blog 
 
+[![CI Status](https://github.com/felinux0x/felinux0x.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/felinux0x/felinux0x.github.io/actions/workflows/ci.yml)
+
 An immersive, terminal-themed portfolio and blog designed for Offensive Security professionals, Red Team operators, and cybersecurity enthusiasts. Built with **Astro**, **Tailwind CSS**, and **Vanilla JS**, prioritizing extreme performance and an authentic Linux-like user experience.
 
 ## ✨ Features

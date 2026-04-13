@@ -159,7 +159,35 @@ const bannerOffset =
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
 
-	</head>
+	<!-- SEO enhancements -->
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://felinux0x.github.io/" />
+<meta name="theme-color" content="#0f0f0f" />
+
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description || pageTitle} />
+<meta property="og:type" content={setOGTypeArticle ? "article" : "website"} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:image" content={new URL(banner, Astro.site)} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description || pageTitle} />
+<meta name="twitter:image" content={new URL(banner, Astro.site)} />
+<meta name="twitter:site" content="@felinux0x" />
+<meta name="twitter:creator" content="@felinux0x" />
+
+<!-- Privacy-first analytics (Plausible) -->
+<script defer data-domain="felinux0x.github.io" src="https://plausible.io/js/script.js"></script>
+
+<style>
+    /* A11y Focus Outline */
+    *:focus-visible {
+        outline: 2px dashed var(--primary);
+        outline-offset: 2px;
+    }
+</style>
+</head>
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
 	>

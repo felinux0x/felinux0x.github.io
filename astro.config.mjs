@@ -1,4 +1,5 @@
 import sitemap from "@astrojs/sitemap";
+import AstroPWA from "@vite-pwa/astro";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
@@ -102,6 +103,12 @@ export default defineConfig({
 		}),
         svelte(),
 		sitemap(),
+		AstroPWA({
+			registerType: 'autoUpdate',
+			workbox: {
+				globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,ttf,eot,webp}']
+			}
+		}),
 	],
 	markdown: {
 		remarkPlugins: [

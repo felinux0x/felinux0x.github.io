@@ -90,7 +90,16 @@
             }
         }
 
-        const interval = setInterval(draw, 40);
+        let lastFrameTime = 0;
+        function animate(time) {
+            if (time - lastFrameTime >= 40) {
+                draw();
+                lastFrameTime = time;
+            }
+            requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
 
         window.addEventListener('resize', () => {
             if (!canvas.parentElement) return;
@@ -114,14 +123,21 @@
     // Dynamic Hex Stream & Coords
     function updateHUD() {
         const coordsEl = document.getElementById('banner-coords');
-        
-        setInterval(() => {
-            if (coordsEl) {
-                const lat = (19.9167 + (Math.random() - 0.5) * 0.001).toFixed(4);
-                const lon = (43.9333 + (Math.random() - 0.5) * 0.001).toFixed(4);
-                coordsEl.innerText = `[ LAT: ${lat} S | LON: ${lon} W ]`;
+
+        let lastHUDUpdate = 0;
+        function animateHUD(time) {
+            if (time - lastHUDUpdate >= 2000) {
+                if (coordsEl) {
+                    const lat = (19.9167 + (Math.random() - 0.5) * 0.001).toFixed(4);
+                    const lon = (43.9333 + (Math.random() - 0.5) * 0.001).toFixed(4);
+                    coordsEl.innerText = `[ LAT: ${lat} S | LON: ${lon} W ]`;
+                }
+                lastHUDUpdate = time;
             }
-        }, 2000);
+            requestAnimationFrame(animateHUD);
+        }
+
+        requestAnimationFrame(animateHUD);
     }
     
     document.addEventListener('astro:page-load', updateHUD);

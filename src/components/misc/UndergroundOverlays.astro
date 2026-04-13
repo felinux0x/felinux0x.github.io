@@ -67,8 +67,16 @@
         }
     }
 
-    // Same 40ms interval as banner
-    let interval = setInterval(draw, 40);
+    let lastFrameTime = 0;
+    function animate(time) {
+        if (time - lastFrameTime >= 40) {
+            draw();
+            lastFrameTime = time;
+        }
+        requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
 
     window.addEventListener('resize', () => {
         width  = canvas.width  = window.innerWidth;
